@@ -13,15 +13,9 @@ const mapStateToProps = state => {
   };
 };
 
-const mapDispatchToProps = dispatch => {
-  return {
-    addTemplate: template => {
-      dispatch(addTemplate(template));
-    },
-    deleteTemplate: id => {
-      dispatch(deleteTemplate(id));
-    }
-  };
+const mapDispatchToProps = {
+  addTemplate,
+  deleteTemplate
 };
 
 function Templates(props) {
