@@ -1,10 +1,9 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
+import Templates from './containers/Templates.jsx';
 
 class App extends Component {
   render() {
-    return (
-      <h1>Hello React :)</h1>
-    );
+    return <Templates />;
   }
 }
 export default App;
