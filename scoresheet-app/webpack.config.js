@@ -2,7 +2,7 @@ const path = require('path');
 
 module.exports = {
   devtool: 'eval',
-  entry: ['webpack-dev-server/client?http://localhost:3000', './src/index.jsx'],
+  entry: ['webpack-dev-server/client?http://localhost:3000', './scoresheet-app/src/index.jsx'],
   output: {
     path: path.join(__dirname, 'dist'),
     filename: 'bundle.js',

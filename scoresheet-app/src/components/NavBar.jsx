@@ -6,7 +6,7 @@ export default function NavBar(props) {
   return (
   <div className="navbar">
     <div id="logo">
-      <img src="../src/img-files/logo-first-draft.png" />
+      <img src="../scoresheet-app/src/img-files/logo-first-draft.png" />
     </div>
   </div>
   );
