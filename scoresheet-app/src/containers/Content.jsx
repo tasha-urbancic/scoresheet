@@ -2,26 +2,29 @@ import React, { Component } from 'react';
 
 import { connect } from 'react-redux';
 
-import { changePage } from '../redux/actions/pages';
+import { changePage, changeGameID } from '../redux/actions/pages';
 
 import HomePage from '../components/HomePage.jsx';
 // import TemplateList from '../components/TemplateList.jsx';
 
 const mapStateToProps = state => {
   return {
-    page: state.page
+    page: state.page,
+    gameid: state.gameid
   };
 };
 
 const mapDispatchToProps = {
-  changePage
+  changePage,
+  changeGameID
 };
 
 function Content(props) {
   return (
     <div>
-      {props.page}
-      <HomePage onButtonClick={props.changePage} />
+      {props.page}<br></br>
+      {props.gameid}
+      <HomePage onButtonClick={props.changePage} onKeyDown={props.changeGameID} />
     </div>
   );
 }
