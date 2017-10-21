@@ -6,15 +6,16 @@ require('../styles/application.scss');
 // Render the top-level React component
 import React from 'react';
 import ReactDOM from 'react-dom';
+import logger from 'redux-logger';
 
-import { createStore } from 'redux';
+import { createStore, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
 
 import pages from './redux/reducers/pages';
 
 import App from './App.jsx';
 
-const store = createStore(pages);
+const store = createStore(pages, applyMiddleware(logger));
 
 ReactDOM.render(
   <Provider store={store}>
