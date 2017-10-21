@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
-import UserPage from './containers/UserPage.jsx';
-import NavBar from './components/NavBar.jsx'
+import Content from './containers/Content.jsx';
+import NavBar from './components/NavBar.jsx';
 
 class App extends Component {
   render() {
-  return (
-    <div>
-      <NavBar />
-      <UserPage />
-    </div>
+    return (
+      <div>
+        <NavBar />
+        <Content />
+      </div>
     );
   }
 }
