@@ -1,39 +1,14 @@
-import React from "react";
+import React from 'react';
 
-export default function HomePage(props) {
+import TemplateList from '../containers/TemplateList.jsx';
+
+export default function HomePage() {
   return (
     <div>
       <p>SOME AWESOME TAGLINE!!!</p>
       <button>Make New ScoreSheet</button>
       <div className="template-list">
-        <table>
-          <thead>
-            <tr>
-              <th>Games:</th>
-              <th />
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>Settlers of Catan</td>
-              <td>
-                <button>Start Game</button>
-              </td>
-            </tr>
-            <tr>
-              <td>Seven Wonders</td>
-              <td>
-                <button>Start Game</button>
-              </td>
-            </tr>
-            <tr>
-              <td>Unearth</td>
-              <td>
-                <button>Start Game</button>
-              </td>
-            </tr>
-          </tbody>
-        </table>
+        <TemplateList />
       </div>
     </div>
   );
