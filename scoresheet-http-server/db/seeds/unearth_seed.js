@@ -10,6 +10,12 @@ exports.seed = function(knex, Promise) {
     ])
   ]).then(([templateIds]) => {
     return Promise.all([
+      knex('games').returning('id')
+      .insert([
+        {
+          template_id: templateIds[0]
+        }
+      ]),
       knex('fields').returning('id')
       .insert([
         {
@@ -132,9 +138,27 @@ exports.seed = function(knex, Promise) {
           template_id: templateIds[0]
         }
       ])
-    ]).then(([fieldIds, relationshipIds]) => {
-      return Promise.all([ 
-        knex('individual_piece_relationships').insert([
+    ]).then(([gamesIds, fieldIds, relationshipIds]) => {
+      return Promise.all([
+        knex('players').returning('id').insert([
+          {
+            name: 'Tasha',
+            game_id: gamesIds[0]
+          },
+          {
+            name: 'Mij',
+            game_id: gamesIds[0]
+          },
+          {
+            name: 'Jenny',
+            game_id: gamesIds[0]
+          },
+          {
+            name: 'Deanna',
+            game_id: gamesIds[0]
+          }
+        ]),
+        knex('individual_piece_relationships').returning('id').insert([
           {
             relationship_id: relationshipIds[0],
             value: 2
@@ -248,8 +272,150 @@ exports.seed = function(knex, Promise) {
             value: 1
           }
         ])
-      ]).then(([individualPieceRelationshipIds]) => {
-        return Promise.all([ 
+      ]).then(([playerIds, individualPieceRelationshipIds]) => {
+        return Promise.all([
+          knex('fields_players').insert([
+            {
+              field_id: fieldIds[0],
+              player_id: playerIds[0],
+              value: 2
+            },
+            {
+              field_id: fieldIds[1],
+              player_id: playerIds[0],
+              value: 2
+            },
+            {
+              field_id: fieldIds[2],
+              player_id: playerIds[0],
+              value: 1
+            },
+            {
+              field_id: fieldIds[3],
+              player_id: playerIds[0],
+              value: 0
+            },
+            {
+              field_id: fieldIds[4],
+              player_id: playerIds[0],
+              value: 0
+            },
+            {
+              field_id: fieldIds[5],
+              player_id: playerIds[0],
+              value: 4
+            },
+            {
+              field_id: fieldIds[6],
+              player_id: playerIds[0],
+              value: 16
+            },
+            {
+              field_id: fieldIds[0],
+              player_id: playerIds[1],
+              value: 1
+            },
+            {
+              field_id: fieldIds[1],
+              player_id: playerIds[1],
+              value: 1
+            },
+            {
+              field_id: fieldIds[2],
+              player_id: playerIds[1],
+              value: 1
+            },
+            {
+              field_id: fieldIds[3],
+              player_id: playerIds[1],
+              value: 1
+            },
+            {
+              field_id: fieldIds[4],
+              player_id: playerIds[1],
+              value: 1
+            },
+            {
+              field_id: fieldIds[5],
+              player_id: playerIds[1],
+              value: 1
+            },
+            {
+              field_id: fieldIds[6],
+              player_id: playerIds[1],
+              value: 3
+            },
+            {
+              field_id: fieldIds[0],
+              player_id: playerIds[2],
+              value: 2
+            },
+            {
+              field_id: fieldIds[1],
+              player_id: playerIds[2],
+              value: 3
+            },
+            {
+              field_id: fieldIds[2],
+              player_id: playerIds[2],
+              value: 0
+            },
+            {
+              field_id: fieldIds[3],
+              player_id: playerIds[2],
+              value: 0
+            },
+            {
+              field_id: fieldIds[4],
+              player_id: playerIds[2],
+              value: 0
+            },
+            {
+              field_id: fieldIds[5],
+              player_id: playerIds[2],
+              value: 2
+            },
+            {
+              field_id: fieldIds[6],
+              player_id: playerIds[2],
+              value: 10
+            },
+            {
+              field_id: fieldIds[0],
+              player_id: playerIds[3],
+              value: 0
+            },
+            {
+              field_id: fieldIds[1],
+              player_id: playerIds[3],
+              value: 1
+            },
+            {
+              field_id: fieldIds[2],
+              player_id: playerIds[3],
+              value: 0
+            },
+            {
+              field_id: fieldIds[3],
+              player_id: playerIds[3],
+              value: 5
+            },
+            {
+              field_id: fieldIds[4],
+              player_id: playerIds[3],
+              value: 0
+            },
+            {
+              field_id: fieldIds[5],
+              player_id: playerIds[3],
+              value: 1
+            },
+            {
+              field_id: fieldIds[6],
+              player_id: playerIds[3],
+              value: 6
+            }
+          ]),
           knex('pieces').insert([
             {
               individual_piece_relationship_id: individualPieceRelationshipIds[0],
