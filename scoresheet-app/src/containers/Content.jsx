@@ -5,6 +5,7 @@ import { connect } from "react-redux";
 import { changePage, changeGameID } from "../redux/actions/pages";
 
 import HomePage from "../components/HomePage.jsx";
+import PlayGamePage from "../containers/PlayGamePage.jsx";
 // import TemplateList from '../components/TemplateList.jsx';
 
 const mapStateToProps = state => {
@@ -22,12 +23,18 @@ const mapDispatchToProps = {
 function Content(props) {
   return (
     <div>
-      {/* {props.page}<br></br>
+      {/* {props.page}
+      <br />
       {props.gameid} */}
-      <HomePage
-        onButtonClick={props.changePage}
-        onKeyDown={props.changeGameID}
-      />
+      {props.page === "home" ? (
+        <HomePage
+          onButtonClick={props.changePage}
+          onKeyDown={props.changeGameID}
+        />
+      ) : (
+        ""
+      )}
+      {props.page === "game" ? <PlayGamePage /> : ""}
     </div>
   );
 }
