@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import * as ReactBootstrap from 'react-bootstrap';
+// import * as ReactBootstrap from 'react-bootstrap';
 import Content from './containers/Content.jsx';
 import NavBar from './components/NavBar.jsx';
 
