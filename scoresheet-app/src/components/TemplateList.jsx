@@ -1,6 +1,10 @@
+// logic for creating a list of all templates goes here
+
+// this could be a plain js file that queries for templates
+
 import React from 'react';
 
-export default function ListTemplates(props) {
+export default function TemplateList(props) {
   const templates = props.templates.map(template => {
     return (
       <li>

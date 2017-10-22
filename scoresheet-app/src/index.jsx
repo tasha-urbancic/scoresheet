@@ -10,11 +10,11 @@ import ReactDOM from 'react-dom';
 import { createStore } from 'redux';
 import { Provider } from 'react-redux';
 
-import templates from './redux/reducers/templates';
+import pages from './redux/reducers/pages';
 
 import App from './App.jsx';
 
-const store = createStore(templates, { templates: [] });
+const store = createStore(pages);
 
 ReactDOM.render(
   <Provider store={store}>

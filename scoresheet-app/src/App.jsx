@@ -1,9 +1,15 @@
 import React, { Component } from 'react';
-import Templates from './containers/Templates.jsx';
+import Content from './containers/Content.jsx';
+import NavBar from './components/NavBar.jsx';
 
 class App extends Component {
   render() {
-    return <Templates />;
+    return (
+      <div>
+        <NavBar />
+        <Content />
+      </div>
+    );
   }
 }
 export default App;
