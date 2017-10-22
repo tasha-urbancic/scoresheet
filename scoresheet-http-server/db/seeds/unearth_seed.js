@@ -414,6 +414,26 @@ exports.seed = function(knex, Promise) {
               field_id: fieldIds[6],
               player_id: playerIds[3],
               value: 6
+            },
+            {
+              field_id: fieldIds[7],
+              player_id: playerIds[0],
+              value: 35
+            },
+            {
+              field_id: fieldIds[7],
+              player_id: playerIds[1],
+              value: 18
+            },
+            {
+              field_id: fieldIds[7],
+              player_id: playerIds[2],
+              value: 28
+            },
+            {
+              field_id: fieldIds[7],
+              player_id: playerIds[3],
+              value: 38
             }
           ]),
           knex('pieces').insert([
