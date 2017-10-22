@@ -14,6 +14,8 @@ import { Provider } from 'react-redux';
 import pages from './redux/reducers/pages';
 
 import App from './App.jsx';
+import 'bootstrap/dist/css/bootstrap.css';
+import 'bootstrap/dist/css/bootstrap-theme.css';
 
 const store = createStore(pages, applyMiddleware(logger));
 
