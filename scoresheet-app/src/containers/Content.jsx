@@ -1,10 +1,10 @@
-import React, { Component } from "react";
+import React, { Component } from 'react';
 
-import { connect } from "react-redux";
+import { connect } from 'react-redux';
 
-import { changePage, changeGameID } from "../redux/actions/pages";
+import { changePage, changeGameID } from '../redux/actions/pages';
 
-import HomePage from "../components/HomePage.jsx";
+import HomePage from '../components/HomePage.jsx';
 // import TemplateList from '../components/TemplateList.jsx';
 
 const mapStateToProps = state => {
