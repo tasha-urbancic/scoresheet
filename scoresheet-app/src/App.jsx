@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
-import { Navbar, Jumbotron, Button } from 'react-bootstrap';
+import * as ReactBootstrap from 'react-bootstrap';
 import Content from './containers/Content.jsx';
 import NavBar from './components/NavBar.jsx';
+
+// e.g. ReactBootstrap.Button, Navbar, Jumbotron, Table, Grid, collapse, Accordion, etc
 
 class App extends Component {
   render() {

@@ -1,34 +1,15 @@
 {
-  "name": "react-simple-boilerplate",
+  "name": "scoresheet-app",
   "version": "1.0.0",
-  "description": "Simple and lightweight Boilerplate for ReactJS projects",
+  "description": "",
+  "main": "server.js",
   "scripts": {
-    "lint": "eslint --ext .jsx,.js src",
-    "start": "node scoresheet-app/server.js",
-    "knex": "knex"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/noahlotzer/react-simple-boilerplate.git"
-  },
-  "keywords": [
-    "react",
-    "reactjs",
-    "boilerplate",
-    "reload",
-    "live",
-    "edit",
-    "webpack"
-  ],
-  "author": "Noah-Jerome Lotzer <n.lotzer@neusta.de>",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/noahlotzer/react-simple-boilerplate/issues"
-  },
-  "homepage": "https://github.com/noahlotzer/react-simple-boilerplate",
-  "engines": {
-    "node": ">=6.0.0"
-  },
+  "author": "",
+  "license": "ISC"
+  ,
   "devDependencies": {
     "babel-core": "^6.23.1",
     "babel-loader": "^6.3.1",
@@ -70,6 +51,5 @@
     "request": "^2.83.0",
     "request-promise": "^4.2.2",
     "uuid": "^3.1.0"
-  },
-  "main": "index.js"
+  }
 }
