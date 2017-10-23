@@ -13,7 +13,9 @@ class App extends Component {
       <div>
         <NavBar />
         <Content />
-        {/* <ReactBootstrap.Collapse /> */}
+        <ReactBootstrap.Button bsStyle="success" bsSize="small">
+          Something
+        </ReactBootstrap.Button>
       </div>
     );
   }
