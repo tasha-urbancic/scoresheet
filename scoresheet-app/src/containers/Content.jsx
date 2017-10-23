@@ -1,15 +1,18 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { changePage, changeGameID, changeTemplateName } from "../redux/actions/pages";
+// import { changePage, changeGameID, changeTemplateName } from "../redux/actions/pages";
+import { changePage, changeGameID} from "../redux/actions/pages";
+import {changeTemplateName } from "../redux/actions/create-templates";
+
 import TemplateRender from '../components/TemplateRender.jsx';
 import HomePage from "../components/HomePage.jsx";
 // import TemplateList from '../components/TemplateList.jsx';
 
 const mapStateToProps = state => {
   return {
-    page: state.page,
-    gameid: state.gameid,
-    templateName: state.templateName
+    page: state.pages.page,
+    gameid: state.pages.gameid,
+    templateName: state.createTemplates.templateName
   };
 };
 
@@ -20,6 +23,8 @@ const mapDispatchToProps = {
 };
 
 function Content(props) {
+
+  console.log(props.page);
 
   if (props.page === 'home') {
     return (
@@ -39,6 +44,10 @@ function Content(props) {
         onKeyDown={props.changeTemplateName}
       />
     );
+  } else {
+    return (
+      <div></div>
+    )
   }
 
 }
