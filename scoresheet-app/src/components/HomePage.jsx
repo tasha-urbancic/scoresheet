@@ -6,7 +6,7 @@ export default function HomePage() {
   return (
     <div>
       <p>SOME AWESOME TAGLINE!!!</p>
-      <button>Make New ScoreSheet</button>
+      <button onClick={e => props.onButtonClick('newScoresheet')}>Make New ScoreSheet</button>
       <div className="template-list">
         <TemplateList />
       </div>
@@ -15,6 +15,7 @@ export default function HomePage() {
 }
 
 {
+
   /* <div>
       WELCOME TO THE HOMEPAGE
       <button onClick={e => props.onButtonClick('game')}>GO TO GAME</button>

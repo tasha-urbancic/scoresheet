@@ -8,14 +8,24 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import logger from 'redux-logger';
 
-import { createStore, applyMiddleware } from 'redux';
+import { createStore, applyMiddleware, combineReducers } from 'redux';
 import { Provider } from 'react-redux';
 
 import pages from './redux/reducers/pages';
+import createTemplates from './redux/reducers/create-templates';
 
 import App from './App.jsx';
+import '../../node_modules/bootstrap/dist/css/bootstrap.css';
+import '../../node_modules/bootstrap/dist/css/bootstrap-theme.css';
 
-const store = createStore(pages, applyMiddleware(logger));
+const totalReducer = combineReducers({
+  pages,
+  createTemplates
+})
+
+const store = createStore(totalReducer, applyMiddleware(logger));
+
+console.log(store.getState());
 
 ReactDOM.render(
   <Provider store={store}>

@@ -1,3 +1,3 @@
 export const CHANGE_PAGE = 'CHANGE_PAGE';
-
 export const CHANGE_GAME_ID = 'CHANGE_GAME_ID';
+// export const CHANGE_TEMPLATE_NAME = 'CHANGE_TEMPLATE_NAME';
