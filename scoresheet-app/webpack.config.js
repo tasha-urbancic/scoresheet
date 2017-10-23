@@ -18,11 +18,29 @@ module.exports = {
             presets: ['es2015', 'stage-0', 'react']
           }
         },
-        include: path.join(__dirname, 'src')
+        exclude: /node_modules/
       },
       {
-        test: /\.scss$/,
+        test: /\.s?css$/,
         use: ['style-loader', 'css-loader', 'sass-loader']
+      },
+      {
+        test: /\.ttf$/,
+        use: {
+          loader: 'file-loader',
+          options: {
+            name: '[name].[ext]',
+            outputPath: 'fonts/'
+          }
+        }
+      },
+      { test: /\.(png|woff|woff2|eot|ttf|svg)$/, loader: 'url-loader?limit=100000' },
+      {
+        test: /\.json$/,
+        loader: 'json-loader',
+      }, {
+        test: /\.txt$/,
+        loader: 'raw-loader',
       }
     ]
   }
