@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 // import { changePage, changeGameID, changeTemplateName } from "../redux/actions/pages";
 import { changePage, changeGameID} from "../redux/actions/pages";
-import {changeTemplateName } from "../redux/actions/create-templates";
+import {changeTemplateName, addColumn} from "../redux/actions/create-templates";
 
 import TemplateRender from '../components/TemplateRender.jsx';
 import HomePage from "../components/HomePage.jsx";
@@ -12,19 +12,19 @@ const mapStateToProps = state => {
   return {
     page: state.pages.page,
     gameid: state.pages.gameid,
-    templateName: state.createTemplates.templateName
+    templateName: state.createTemplates.templateName,
+    templateColumns: state.createTemplates.templateColumn
   };
 };
 
 const mapDispatchToProps = {
   changePage,
   changeGameID,
-  changeTemplateName
+  changeTemplateName,
+  addColumn
 };
 
 function Content(props) {
-
-  console.log(props.page);
 
   if (props.page === 'home') {
     return (
@@ -41,7 +41,8 @@ function Content(props) {
     return (
       <TemplateRender 
         onButtonClick={props.changePage}
-        onKeyDown={props.changeTemplateName}
+        renameTemplate={props.changeTemplateName}
+        addColumn={props.addColumn}
       />
     );
   } else {

@@ -6,15 +6,19 @@ import React, { Component } from 'react';
 import AddRelationship from './AddRelationship.jsx';
 import SetupScoresheetStructure from './SetupScoresheetStructure.jsx';
 
+
+
 export default function TemplateRender(props) {
   return (
     <div>
       <h3>Name your template:</h3>
       <input placeholder="Enter template name" onKeyUp={e => {
-        props.onKeyDown(e.target.value)
+        props.renameTemplate(e.target.value)
         }} ></input>
         <button>Add</button> <br />
-      <SetupScoresheetStructure />
+      <SetupScoresheetStructure 
+        addColumn={props.addColumn}
+      />
       <br />
       <button>Submit Structure</button>
       <AddRelationship />

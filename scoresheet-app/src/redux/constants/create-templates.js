@@ -1,1 +1,2 @@
 export const CHANGE_TEMPLATE_NAME = 'CHANGE_TEMPLATE_NAME';
+export const ADD_COLUMN = 'ADD_COLUMN';

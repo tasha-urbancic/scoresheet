@@ -7,7 +7,8 @@ export default function SetupScoresheetStructure(props) {
       <h3>1.) Add columns:</h3>
 
       <h4>Enter column names:</h4>
-      <input placeholder="column name" />
+      <input placeholder="column name" onKeyUp={e => {
+        props.addColumn(e.target.value)}}/>
       <button>Add</button><br />
       {/* <input placeholder="Enter column name..." /><br />
       <button>Add</button><br /> */}
