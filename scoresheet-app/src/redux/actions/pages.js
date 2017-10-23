@@ -1,4 +1,4 @@
-import { CHANGE_PAGE, CHANGE_GAME_ID } from '../constants/pages';
+import { CHANGE_PAGE, CHANGE_GAME_ID, CHANGE_TEMPLATE_NAME} from '../constants/pages';
 
 export function changePage(page) {
   return {
@@ -12,4 +12,11 @@ export function changeGameID(gameid) {
     type: CHANGE_GAME_ID,
     gameid
   }
+}
+
+export function changeTemplateName(templateName) {
+  return {
+    type: CHANGE_TEMPLATE_NAME,
+    templateName
+  };
 }

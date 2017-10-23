@@ -10,10 +10,16 @@ export default function TemplateRender(props) {
   return (
     <div>
       <h3>Name your template:</h3>
-      <input placeholder="Enter a name for your template" /><br />
+      <input placeholder="Enter template name" onKeyUp={e => {
+        props.onKeyDown(e.target.value)
+        }} ></input>
+        <button>Add</button> <br />
       <SetupScoresheetStructure />
+      <br />
+      <button>Submit Structure</button>
       <AddRelationship />
-      <button onClick={e => props.onButtonClick('home')}>Submit</button>
+      <br />
+      <button>Submit Relationships</button>
     </div>
   );
 }

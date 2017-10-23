@@ -4,7 +4,7 @@ export default function AddRelationship(props) {
   return (
     <div>
 
-      <h2>2.) Add rule:</h2>
+      <h3>2.) Add rules:</h3>
 
       <select name="equality" id="equality-dropdown">
           <option>=</option>
@@ -54,8 +54,6 @@ export default function AddRelationship(props) {
 
           and
 
-          <input type="number" placeholder="Number of pieces"/>
-
           <select name="column-list" id="column-list-dropdown">
                   <option>Red coin</option>
                   <option>Orange coin</option>
@@ -76,16 +74,9 @@ export default function AddRelationship(props) {
 
           <input type="number" placeholder="Number of pieces"/>
 
-          <select name="column-list" id="column-list-dropdown">
-                  <option>Red coin</option>
-                  <option>Orange coin</option>
-                  <option>Yellow coin</option>
-                  <option>Green card</option>
-                  <option>Blue card</option>
-                  <option>Purple card</option>
-          </select>
-
           <button>+(#2)</button>
+
+          <button onClick={e => props.onButtonClick('home')}>Add Rule</button>
 
     </div>
   );
