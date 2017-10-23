@@ -1,0 +1,16 @@
+{
+  "templates": [
+    {
+      "id": 1,
+      "name": "Catan"
+    },
+    {
+      "id": 2,
+      "name": "Monopoly"
+    },
+    {
+      "id": 3,
+      "name": "Scrabble"
+    }
+  ]
+}
