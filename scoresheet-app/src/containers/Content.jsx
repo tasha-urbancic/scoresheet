@@ -1,3 +1,4 @@
+
 import React, { Component } from "react";
 import { connect } from "react-redux";
 // import { changePage, changeGameID, changeTemplateName } from "../redux/actions/pages";
@@ -6,6 +7,7 @@ import {changeTemplateName } from "../redux/actions/create-templates";
 
 import TemplateRender from '../components/TemplateRender.jsx';
 import HomePage from "../components/HomePage.jsx";
+
 // import TemplateList from '../components/TemplateList.jsx';
 
 const mapStateToProps = state => {
