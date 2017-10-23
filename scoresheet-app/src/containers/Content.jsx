@@ -1,35 +1,55 @@
 import React, { Component } from "react";
-
 import { connect } from "react-redux";
+// import { changePage, changeGameID, changeTemplateName } from "../redux/actions/pages";
+import { changePage, changeGameID} from "../redux/actions/pages";
+import {changeTemplateName } from "../redux/actions/create-templates";
 
-import { changePage, changeGameID } from "../redux/actions/pages";
-
+import TemplateRender from '../components/TemplateRender.jsx';
 import HomePage from "../components/HomePage.jsx";
 // import TemplateList from '../components/TemplateList.jsx';
 
 const mapStateToProps = state => {
   return {
-    page: state.page,
-    gameid: state.gameid
+    page: state.pages.page,
+    gameid: state.pages.gameid,
+    templateName: state.createTemplates.templateName
   };
 };
 
 const mapDispatchToProps = {
   changePage,
-  changeGameID
+  changeGameID,
+  changeTemplateName
 };
 
 function Content(props) {
-  return (
-    <div>
-      {/* {props.page}<br></br>
-      {props.gameid} */}
-      <HomePage
+
+  console.log(props.page);
+
+  if (props.page === 'home') {
+    return (
+      <div>
+        {/* {props.page}<br></br>
+        {props.gameid} */}
+        <HomePage
+          onButtonClick={props.changePage}
+          onKeyDown={props.changeGameID}
+        />
+      </div>
+    );
+  } else if (props.page === 'newScoresheet') {
+    return (
+      <TemplateRender 
         onButtonClick={props.changePage}
-        onKeyDown={props.changeGameID}
+        onKeyDown={props.changeTemplateName}
       />
-    </div>
-  );
+    );
+  } else {
+    return (
+      <div></div>
+    )
+  }
+
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Content);

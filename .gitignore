@@ -64,6 +64,7 @@ build/Release
 
 # Dependency directories
 node_modules/
+scoresheet-app/node_modules/
 jspm_packages/
 
 # Typescript v1 declaration files

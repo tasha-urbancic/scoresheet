@@ -2,8 +2,24 @@
 // to be exported to the view template page, and
 // the gameplay page
 
-import React from "react";
+import React, { Component } from 'react';
+import AddRelationship from './AddRelationship.jsx';
+import SetupScoresheetStructure from './SetupScoresheetStructure.jsx';
 
-export default function ScoreSheet(props) {
-  return <div />;
+export default function TemplateRender(props) {
+  return (
+    <div>
+      <h3>Name your template:</h3>
+      <input placeholder="Enter template name" onKeyUp={e => {
+        props.onKeyDown(e.target.value)
+        }} ></input>
+        <button>Add</button> <br />
+      <SetupScoresheetStructure />
+      <br />
+      <button>Submit Structure</button>
+      <AddRelationship />
+      <br />
+      <button>Submit Relationships</button>
+    </div>
+  );
 }
