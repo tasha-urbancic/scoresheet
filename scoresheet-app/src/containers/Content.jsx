@@ -42,6 +42,7 @@ function Content(props) {
       <TemplateRender 
         changePage={props.changePage}
         renameTemplate={props.changeTemplateName}
+        templateName={props.templateName}
       />
     );
   } else if (props.page === "game") {
