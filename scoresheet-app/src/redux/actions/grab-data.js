@@ -6,8 +6,7 @@ export function dataFetch() {
     fetch('http://localhost:8080/api/', {
       method: 'GET',
       headers: { 'Content-Type': 'application/json' },
-      mode: 'cors',
-      credentials: 'include'
+      mode: 'cors'
     })
       .then(res => res.json())
       .then(data => {

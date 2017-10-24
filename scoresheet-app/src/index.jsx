@@ -4,6 +4,7 @@
 require("../styles/application.scss");
 
 // Render the top-level React component
+
 import React from "react";
 import ReactDOM from "react-dom";
 import logger from "redux-logger";
@@ -20,7 +21,6 @@ import { Provider } from "react-redux";
 // starting to integrate react-router, this is direct from
 // the tutorial
 import { BrowserRouter as Router, Route } from "react-router-dom";
-import PropTypes from "prop-types";
 
 import pages from "./redux/reducers/pages";
 import createTemplates from "./redux/reducers/create-templates";
@@ -32,6 +32,7 @@ import App from "./App.jsx";
 import "../../node_modules/bootstrap/dist/css/bootstrap.css";
 import "../../node_modules/bootstrap/dist/css/bootstrap-theme.css";
 
+
 const totalReducer = combineReducers({
   pages,
   createTemplates,
@@ -40,8 +41,8 @@ const totalReducer = combineReducers({
 
 const store = createStore(
   totalReducer,
-  applyMiddleware(thunk),
-  composeWithDevTools(applyMiddleware(logger))
+
+  composeWithDevTools(applyMiddleware(thunk), applyMiddleware(logger))
 );
 
 store.dispatch(dataFetch());
