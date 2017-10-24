@@ -1,7 +1,7 @@
 const path = require('path');
 
 module.exports = {
-  devtool: 'eval',
+  devtool: 'eval-source-map',
   entry: ['webpack-dev-server/client?http://localhost:3000', './scoresheet-app/src/index.jsx'],
   output: {
     path: path.join(__dirname, 'dist'),
