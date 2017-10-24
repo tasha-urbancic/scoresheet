@@ -1,51 +1,24 @@
-// gameplay page html goes here
+import React, { Component } from "react";
+import { connect } from "react-redux";
+// import {} from "../redux/actions/game-page";
+import PlayGame from "../components/PlayGame.jsx";
 
-// include navbar component
-
-// include template_render component
-import React from "react";
-
-const testGame = {
-  name: "Test Game",
-  pieces: [
-    "yellow card",
-    "red card",
-    "orange card",
-    "blue coin",
-    "green coin",
-    "purple coin"
-  ]
+const mapStateToProps = state => {
+  return {
+    // templateCurrentColumn: state.createTemplates.templateCurrentColumn,
+    // templateColumns: state.createTemplates.templateColumns,
+    // templateNote: state.createTemplates.templateNote
+  };
 };
 
-const players = ["mary", "max", "rebecca", "felix"];
+const mapDispatchToProps = {
+  // updateCurrentColumn,
+  // addColumn,
+  // addNoteToTemplate
+};
 
 export default function ScoreSheet(props) {
   return (
-    <div>
-      <table>
-        <thead>
-          <tr>
-            <td>Players</td>
-            {testGame.pieces.map(i => {
-              return <td>{i}</td>;
-            })}
-            <td>Total Score</td>
-          </tr>
-        </thead>
-        <tbody>
-          {players.map(i => {
-            return (
-              <tr>
-                <td>{i}</td>
-                {testGame.pieces.map(i => {
-                  return <td contentEditable="true" />;
-                })}
-                <td>0</td>
-              </tr>
-            );
-          })}
-        </tbody>
-      </table>
-    </div>
+    <PlayGame />
   );
 }
