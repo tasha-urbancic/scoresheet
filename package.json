@@ -5,7 +5,8 @@
   "scripts": {
     "lint": "eslint --ext .jsx,.js src",
     "knex": "knex",
-    "start": "node scoresheet-http-server/server/server.js"
+    "run": "node scoresheet-http-server/server/server.js",
+    "start": "node scoresheet-app/server.js"
   },
   "repository": {
     "type": "git",
