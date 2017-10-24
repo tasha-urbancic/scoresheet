@@ -7,6 +7,7 @@ export default function HomePage(props) {
     <div>
       <p>SOME AWESOME TAGLINE!!!</p>
       <button onClick={e => props.changePage('newScoresheet')}>Make New ScoreSheet</button>
+      <button onClick={e => props.changePage('game')}>Start Game</button>
       <div className="template-list">
         <TemplateList />
       </div>
