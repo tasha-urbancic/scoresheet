@@ -51,6 +51,9 @@ export default class PlayGame extends Component {
             })}
           </tbody>
         </table>
+
+        <button>Compute Winner</button>
+
       </div>
     )
   }
