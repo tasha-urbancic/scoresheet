@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import * as ReactBootstrap from "react-bootstrap";
+// import * as ReactBootstrap from "react-bootstrap";
 import Content from "./containers/Content.jsx";
 import NavBar from "./components/NavBar.jsx";
 
@@ -11,11 +11,12 @@ class App extends Component {
       <div>
         <NavBar />
         <Content />
-        <ReactBootstrap.Button bsStyle="success" bsSize="small">
-          Something
-        </ReactBootstrap.Button>
       </div>
     );
   }
 }
 export default App;
+
+{/* <ReactBootstrap.Button bsStyle="success" bsSize="small">
+Something
+</ReactBootstrap.Button> */}
