@@ -3,10 +3,24 @@ import React, { Component } from 'react';
 
 export default class AddRelationship extends Component {
 
+  const defaultPiece = { equality: '=', number: 1, piece: ''};
+  const defaultValue = 1;
+  const defaultOperation = { piece: '', operation: '*', number: 1};
+
+  const defaultRule = {
+    pieces: [
+      defaultPiece
+    ],
+    value: defaultValue,
+    additional_operations: [
+      defaultOperation
+    ]
+  }
+
   constructor(props) {
     super(props);
     this.state= {
-
+      rules: [defaultRule, defaultRule]
     }
   }
   
@@ -16,79 +30,124 @@ export default class AddRelationship extends Component {
 
         <h3>2.) Add rules:</h3>
 
-        <select name="equality" id="equality-dropdown">
-            <option>=</option>
-            <option>&gt;</option>
-            <option>&lt;</option>
-        </select>
+        {this.state.rules.map(function(rule, i){
 
-        <input type="number" placeholder="Number of pieces"/>
+          return (
+          
+            <div>
 
-        <select name="column-list" id="column-list-dropdown">
-            <option>Red coin</option>
-            <option>Orange coin</option>
-            <option>Yellow coin</option>
-            <option>Green card</option>
-            <option>Blue card</option>
-            <option>Purple card</option>
-        </select>
+              {this.state.rules[i].pieces.map(function(piece, j){
+                return (
+                  <div>
+                    {j !== 1 &&
+                      and
+                    }
+                    <select name="equality" id="equality-dropdown" onChange={ e =>
+                      setState({this.state.rules[i].pieces[j].equality: e.target.value});
+                    }>
+                        <option>=</option>
+                        <option>&gt;</option>
+                        <option>&lt;</option>
+                    </select>
 
-        <button>+(#1)</button> is worth 
+                    <input type="number" placeholder="Number of pieces" onChange={ e =>
+                      setState({this.state.rules[i].pieces[j].number: e.target.value});
+                    }/>
 
-        <input type="number" placeholder="How many points?"/>
+                    <select name="column-list" id="column-list-dropdown" onChange={ e =>
+                      setState({this.state.rules[i].pieces[j].piece: e.target.value});
+                    }>
+                      {this.props.templateColumns.map(function(columnName, i){
+                        return <option>{columnName}</option>;
+                      })}
+                    </select>
+                  </div>
+                )
+              })}
 
-        <button>+(#2)</button>
+              <button onClick={e =>
+                setState({this.state.rules[i].pieces: ...this.state.rules[i].pieces, defaultPiece});
+              }>
+              Add New Piece
+              </button>
 
-        <h4>+(#1) toggles (in place):</h4>
+              <p>is worth</p>
+              <input type="number" placeholder="How many points?" onChange={ e =>
+                setState({this.state.rules[i].value: e.target.value});
+              }/>
 
-        and <select name="equality" id="equality-dropdown">
-                <option>=</option>
-                <option>&gt;</option>
-                <option>&lt;</option>
-            </select>
+              {this.state.rules[i].additional_operations.map(function(operation, k){
+                return (
+                  
+                  <div>
 
-            <input type="number" placeholder="Number of pieces"/>
+                    {k !== 1 &&
+                      and
+                    }
 
-            <select name="column-list" id="column-list-dropdown">
-                    <option>Red coin</option>
-                    <option>Orange coin</option>
-                    <option>Yellow coin</option>
-                    <option>Green card</option>
-                    <option>Blue card</option>
-                    <option>Purple card</option>
-            </select>
+                    <select name="column-list" id="column-list-dropdown" onChange={ e =>
+                      setState({this.state.rules[i].additional_opperations[k].piece: e.target.value});
+                    }>
+                      {this.props.templateColumns.map(function(columnName, i){
+                        return <option>{columnName}</option>;
+                      })}
+                    </select>
 
-            <button>+(#1)</button>
+                    <select onChange={ e =>
+                      setState({this.state.rules[i].additional_opperations[k].operation: e.target.value});
+                    }>
+                        <option>+</option>
+                        <option>-</option>
+                        <option>*</option>
+                        <option>/</option>
+                        <option>^</option>
+                    </select>
 
-        <h4>+(#2) toggles (in place):</h4>
+                    <input type="number" placeholder="Number of pieces" onChange={ e =>
+                      setState({this.state.rules[i].additional_opperations[k].number: e.target.value});
+                    }/>
+                  
+                  </div>
+                )
+              })}
 
-            and
+            <button onClick={ e =>
+              setState({this.state.rules[i].additional_opperations: ...additional_opperations, defaultOperation });
+            }>
+            Add New Operation
+            </button>
 
-            <select name="column-list" id="column-list-dropdown">
-                    <option>Red coin</option>
-                    <option>Orange coin</option>
-                    <option>Yellow coin</option>
-                    <option>Green card</option>
-                    <option>Blue card</option>
-                    <option>Purple card</option>
-            </select>
+            </div>
 
-            <select>
-                <option>+</option>
-                <option>-</option>
-                <option>*</option>
-                <option>/</option>
-                <option>^</option>
-                <option>etc...</option>
-            </select>
+          )
+              
+        })}
 
-            <input type="number" placeholder="Number of pieces"/>
+        <button onClick={e =>
+          setState({this.state.rules: ...this.state.rules, defaultRule});
+        }>Add Rule</button>
 
-            <button>+(#2)</button>
+      {/* render the rule as a list item, so you know it has been added */}
 
-            <button onClick={e => props.onButtonClick('home')}>Add Rule</button>
+      {/* <button onClick={
+        // this.props.writeRulesIntoTemplate(this.state.rules)
+        // write a writeRulesIntoTemplate action in redux state
+        // then change page state to home, to redirect home?
+        this.props.onButtonClick('home')
+      }>Submit Relationships</button> */}
 
-      </div>
+        </div>
+      )
     );
   }
 }
+
+// const rule = {
+//   pieces: [
+//     { equality: '=', number: '', piece: ''},
+//     { equality: ..., number: ..., piece: ...},
+//     { equality: ..., number: ..., piece: ...}
+//   ],
+//   value: 'abc',
+//   additional_operations = [operation, operation ...]
+// }

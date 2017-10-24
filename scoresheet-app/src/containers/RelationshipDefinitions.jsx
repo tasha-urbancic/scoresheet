@@ -6,7 +6,7 @@ import AddRelationship from "../components/AddRelationship.jsx";
 
 const mapStateToProps = state => {
   return {
-
+    templateColumns: state.createTemplates.templateColumns
   };
 };
 

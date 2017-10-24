@@ -53,7 +53,6 @@ export default class TemplateRender extends Component {
         <button>Submit Structure</button>
         <RelationshipDefinitions />
         <br />
-        <button>Submit Relationships</button>
       </div>
     );
   }
