@@ -5,8 +5,8 @@
   "scripts": {
     "lint": "eslint --ext .jsx,.js src",
     "knex": "knex",
-    "run": "node scoresheet-http-server/server/server.js",
-    "start": "node scoresheet-app/server.js"
+    "start": "node scoresheet-app/server.js",
+    "start-server": "node scoresheet-http-server/server/server.js"
   },
   "repository": {
     "type": "git",
@@ -53,6 +53,7 @@
     "body-parser": "^1.15.2",
     "bootstrap": "^3.3.7",
     "cookie-session": "^2.0.0-beta.3",
+    "cors": "^2.8.4",
     "dotenv": "^4.0.0",
     "file-loader": "^1.1.5",
     "json-loader": "^0.5.7",

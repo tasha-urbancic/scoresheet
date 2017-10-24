@@ -2,16 +2,18 @@ const express = require('express');
 const router = express.Router();
 const data = require('./data.json');
 
-router.get('/', (req, res) => {
-  // console.log('hey look it did a get');
-  res.status(200).json({ message: 'Connected!' });
+// API request for all templates data (homepage)
+router.get('/api/', (req, res) => {
+  res.status(200).json(data);
 });
 
-router.get('/templates/all', (req, res) => {
+// API request for Create New Template form data
+router.get('/api/templates/new', (req, res) => {
   res.status(200).json({ data });
 });
 
-router.get('/templates/:id', (req, res) => {
+// API request for new game start
+router.get('/api/game/:id', (req, res) => {
   const id = req.params.id * 1;
   const template = data.templates.find(template => template.id === id);
   res.status(200).json({ template });

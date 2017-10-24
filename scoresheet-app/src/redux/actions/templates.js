@@ -7,9 +7,9 @@ export function addTemplate(template) {
   };
 }
 
-export function deleteTemplate(id) {
-  return {
-    type: DELETE_TEMPLATE,
-    id
-  };
-}
+// export function deleteTemplate(id) {
+//   return {
+//     type: DELETE_TEMPLATE,
+//     id
+//   };
+// }

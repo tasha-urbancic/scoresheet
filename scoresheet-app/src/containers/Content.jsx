@@ -1,7 +1,7 @@
-
-import React, { Component } from "react";
-import { connect } from "react-redux";
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
 // import { changePage, changeGameID, changeTemplateName } from "../redux/actions/pages";
+
 import { changePage, changeGameID} from "../redux/actions/pages";
 import {changeTemplateName, updateCurrentColumn, addColumn} from "../redux/actions/create-templates";
 
@@ -50,9 +50,7 @@ function Content(props) {
       <PlayGamePage />
     );
   } else {
-    return (
-      <div></div>
-    )
+    return <div />;
   }
 }
 
