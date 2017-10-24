@@ -2,15 +2,15 @@
   "templates": [
     {
       "id": 1,
-      "name": "Catan"
+      "name": "Settlers of Catan"
     },
     {
       "id": 2,
-      "name": "Monopoly"
+      "name": "Seven Wonders"
     },
     {
       "id": 3,
-      "name": "Scrabble"
+      "name": "Unearth"
     }
   ]
 }
