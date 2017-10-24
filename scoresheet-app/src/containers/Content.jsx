@@ -1,12 +1,14 @@
-
-import React, { Component } from "react";
-import { connect } from "react-redux";
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
 // import { changePage, changeGameID, changeTemplateName } from "../redux/actions/pages";
-import { changePage, changeGameID} from "../redux/actions/pages";
-import {changeTemplateName, addColumn} from "../redux/actions/create-templates";
+import { changePage, changeGameID } from '../redux/actions/pages';
+import {
+  changeTemplateName,
+  addColumn
+} from '../redux/actions/create-templates';
 
 import TemplateRender from '../components/TemplateRender.jsx';
-import HomePage from "../components/HomePage.jsx";
+import HomePage from '../components/HomePage.jsx';
 
 // import TemplateList from '../components/TemplateList.jsx';
 
@@ -27,7 +29,6 @@ const mapDispatchToProps = {
 };
 
 function Content(props) {
-
   if (props.page === 'home') {
     return (
       <div>
@@ -41,18 +42,15 @@ function Content(props) {
     );
   } else if (props.page === 'newScoresheet') {
     return (
-      <TemplateRender 
+      <TemplateRender
         onButtonClick={props.changePage}
         renameTemplate={props.changeTemplateName}
         addColumn={props.addColumn}
       />
     );
   } else {
-    return (
-      <div></div>
-    )
+    return <div />;
   }
-
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Content);
