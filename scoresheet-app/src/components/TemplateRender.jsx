@@ -5,6 +5,7 @@
 import React, { Component } from 'react';
 import AddRelationship from './AddRelationship.jsx';
 import ScoresheetStructure from '../containers/ScoresheetStructure.jsx';
+import RelationshipDefinitions from '../containers/RelationshipDefinitions.jsx';
 
 
 export default class TemplateRender extends Component {
@@ -50,9 +51,8 @@ export default class TemplateRender extends Component {
         <ScoresheetStructure />
         <br />
         <button>Submit Structure</button>
-        <AddRelationship />
+        <RelationshipDefinitions />
         <br />
-        <button>Submit Relationships</button>
       </div>
     );
   }

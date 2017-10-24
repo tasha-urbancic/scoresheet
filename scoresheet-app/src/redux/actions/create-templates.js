@@ -1,4 +1,4 @@
-import {CHANGE_TEMPLATE_NAME, UPDATE_CURRENT_COLUMN, ADD_COLUMN, ADD_NOTE_TO_TEMPLATE} from '../constants/create-templates';
+import {CHANGE_TEMPLATE_NAME, UPDATE_CURRENT_COLUMN, ADD_COLUMN, ADD_NOTE_TO_TEMPLATE, WRITE_RULES_INTO_TEMPLATE} from '../constants/create-templates';
 
 export function changeTemplateName(templateName) {
   return {
@@ -29,4 +29,11 @@ export function addNoteToTemplate(templateNote) {
     type: ADD_NOTE_TO_TEMPLATE,
     templateNote
   };
+}
+
+export function writeRulesIntoTemplate(templateRules) {
+  return {
+    type: WRITE_RULES_INTO_TEMPLATE,
+    templateRules
+  }
 }
