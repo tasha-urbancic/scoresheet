@@ -168,21 +168,18 @@ export default class AddRelationship extends Component {
         })}
 
         <button onClick={e => {
-          const rules = [...this.state.rules];
-            setState({rules: [...rules, defaultRule]});
+            const rules = [...this.state.rules];
+            this.setState({rules: [...rules, defaultRule]});
           }
         }>Add Rule</button>
 
-        {/* render the rule as a list item, so you know it has been added */}
+        
+        <button onClick={ e => {
+            // write a writeRulesIntoTemplate action in redux state
+            this.props.writeRulesIntoTemplate(this.state.rules);
+          }
+        }>Submit Relationships</button>
 
-        {/* <button onClick={
-          // this.props.writeRulesIntoTemplate(this.state.rules)
-          // write a writeRulesIntoTemplate action in redux state
-          // then change page state to home, to redirect home?
-          this.props.onButtonClick('home')
-        }>Submit Relationships</button> */}
-
-      
       </div>
     )
   }

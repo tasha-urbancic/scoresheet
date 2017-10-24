@@ -3,16 +3,18 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import {} from "../redux/actions/create-templates";
 import AddRelationship from "../components/AddRelationship.jsx";
-import {updateCurrentColumn} from "../redux/actions/create-templates";
+import {updateCurrentColumn, writeRulesIntoTemplate} from "../redux/actions/create-templates";
 
 const mapStateToProps = state => {
   return {
-    templateColumns: state.createTemplates.templateColumns
+    templateColumns: state.createTemplates.templateColumns,
+    templateRules: state.createTemplates.templateRules
   };
 };
 
 const mapDispatchToProps = {
-  updateCurrentColumn
+  updateCurrentColumn,
+  writeRulesIntoTemplate
 };
 
 function ScoresheetStructure(props) {
