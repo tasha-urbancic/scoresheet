@@ -1,83 +1,94 @@
 import React, { Component } from 'react';
 
-export default function AddRelationship(props) {
-  return (
-    <div>
 
-      <h3>2.) Add rules:</h3>
+export default class AddRelationship extends Component {
 
-      <select name="equality" id="equality-dropdown">
-          <option>=</option>
-          <option>&gt;</option>
-          <option>&lt;</option>
-      </select>
+  constructor(props) {
+    super(props);
+    this.state= {
 
-      <input type="number" placeholder="Number of pieces"/>
+    }
+  }
+  
+  render() {
+    return (
+      <div>
 
-      <select name="column-list" id="column-list-dropdown">
-          <option>Red coin</option>
-          <option>Orange coin</option>
-          <option>Yellow coin</option>
-          <option>Green card</option>
-          <option>Blue card</option>
-          <option>Purple card</option>
-      </select>
+        <h3>2.) Add rules:</h3>
 
-      <button>+(#1)</button> is worth 
+        <select name="equality" id="equality-dropdown">
+            <option>=</option>
+            <option>&gt;</option>
+            <option>&lt;</option>
+        </select>
 
-      <input type="number" placeholder="How many points?"/>
+        <input type="number" placeholder="Number of pieces"/>
 
-      <button>+(#2)</button>
+        <select name="column-list" id="column-list-dropdown">
+            <option>Red coin</option>
+            <option>Orange coin</option>
+            <option>Yellow coin</option>
+            <option>Green card</option>
+            <option>Blue card</option>
+            <option>Purple card</option>
+        </select>
 
-      <h4>+(#1) toggles (in place):</h4>
+        <button>+(#1)</button> is worth 
 
-      and <select name="equality" id="equality-dropdown">
-              <option>=</option>
-              <option>&gt;</option>
-              <option>&lt;</option>
-          </select>
+        <input type="number" placeholder="How many points?"/>
 
-          <input type="number" placeholder="Number of pieces"/>
+        <button>+(#2)</button>
 
-          <select name="column-list" id="column-list-dropdown">
-                  <option>Red coin</option>
-                  <option>Orange coin</option>
-                  <option>Yellow coin</option>
-                  <option>Green card</option>
-                  <option>Blue card</option>
-                  <option>Purple card</option>
-          </select>
+        <h4>+(#1) toggles (in place):</h4>
 
-          <button>+(#1)</button>
+        and <select name="equality" id="equality-dropdown">
+                <option>=</option>
+                <option>&gt;</option>
+                <option>&lt;</option>
+            </select>
 
-      <h4>+(#2) toggles (in place):</h4>
+            <input type="number" placeholder="Number of pieces"/>
 
-          and
+            <select name="column-list" id="column-list-dropdown">
+                    <option>Red coin</option>
+                    <option>Orange coin</option>
+                    <option>Yellow coin</option>
+                    <option>Green card</option>
+                    <option>Blue card</option>
+                    <option>Purple card</option>
+            </select>
 
-          <select name="column-list" id="column-list-dropdown">
-                  <option>Red coin</option>
-                  <option>Orange coin</option>
-                  <option>Yellow coin</option>
-                  <option>Green card</option>
-                  <option>Blue card</option>
-                  <option>Purple card</option>
-          </select>
+            <button>+(#1)</button>
 
-          <select>
-              <option>+</option>
-              <option>-</option>
-              <option>*</option>
-              <option>/</option>
-              <option>^</option>
-              <option>etc...</option>
-          </select>
+        <h4>+(#2) toggles (in place):</h4>
 
-          <input type="number" placeholder="Number of pieces"/>
+            and
 
-          <button>+(#2)</button>
+            <select name="column-list" id="column-list-dropdown">
+                    <option>Red coin</option>
+                    <option>Orange coin</option>
+                    <option>Yellow coin</option>
+                    <option>Green card</option>
+                    <option>Blue card</option>
+                    <option>Purple card</option>
+            </select>
 
-          <button onClick={e => props.onButtonClick('home')}>Add Rule</button>
+            <select>
+                <option>+</option>
+                <option>-</option>
+                <option>*</option>
+                <option>/</option>
+                <option>^</option>
+                <option>etc...</option>
+            </select>
 
-    </div>
-  );
+            <input type="number" placeholder="Number of pieces"/>
+
+            <button>+(#2)</button>
+
+            <button onClick={e => props.onButtonClick('home')}>Add Rule</button>
+
+      </div>
+    );
+  }
 }
