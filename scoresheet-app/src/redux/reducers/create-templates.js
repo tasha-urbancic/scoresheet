@@ -1,8 +1,8 @@
-import {CHANGE_TEMPLATE_NAME, ADD_COLUMN} from '../constants/create-templates';
+import {CHANGE_TEMPLATE_NAME, UPDATE_CURRENT_COLUMN, ADD_COLUMN} from '../constants/create-templates';
 
 // templateColumn: []
 
-export default (state = { templateName: '', templateColumn: '' }, action) => {
+export default (state = { templateName: '', templateCurrentColumn: '', templateColumns: [] }, action) => {
 
   console.log('actions', action);
 
@@ -12,11 +12,16 @@ export default (state = { templateName: '', templateColumn: '' }, action) => {
         ...state,
         templateName: action.templateName
       }
+    case UPDATE_CURRENT_COLUMN:
+      return {
+        ...state,
+        templateCurrentColumn: action.templateCurrentColumn
+        // templateColumn: [...state, action.templateColumn]
+      }
     case ADD_COLUMN:
       return {
         ...state,
-        templateColumn: [...state, action.templateColumn]
-        // templateColumn: [...state, action.templateColumn]
+        templateColumns: [...state.templateColumns, action.currentColumn]
       }
     default:
       return state;

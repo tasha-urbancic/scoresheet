@@ -13,6 +13,7 @@ import { Provider } from 'react-redux';
 
 import pages from './redux/reducers/pages';
 import createTemplates from './redux/reducers/create-templates';
+import {composeWithDevTools} from 'redux-devtools-extension';
 
 import App from './App.jsx';
 import '../../node_modules/bootstrap/dist/css/bootstrap.css';
@@ -23,7 +24,9 @@ const totalReducer = combineReducers({
   createTemplates
 })
 
-const store = createStore(totalReducer, applyMiddleware(logger));
+const store = createStore(totalReducer, composeWithDevTools(
+  applyMiddleware(logger)
+));
 
 console.log(store.getState());
 
