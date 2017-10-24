@@ -7,7 +7,11 @@ import {changeTemplateName, addColumn} from "../redux/actions/create-templates";
 
 import TemplateRender from '../components/TemplateRender.jsx';
 import HomePage from "../components/HomePage.jsx";
+<<<<<<< HEAD
 
+=======
+import PlayGamePage from "../containers/PlayGamePage.jsx";
+>>>>>>> features/template-display
 // import TemplateList from '../components/TemplateList.jsx';
 
 const mapStateToProps = state => {
@@ -27,16 +31,26 @@ const mapDispatchToProps = {
 };
 
 function Content(props) {
+<<<<<<< HEAD
 
   if (props.page === 'home') {
     return (
       <div>
         {/* {props.page}<br></br>
         {props.gameid} */}
+=======
+  return (
+    <div>
+      {/* {props.page}
+      <br />
+      {props.gameid} */}
+      {props.page === "home" ? (
+>>>>>>> features/template-display
         <HomePage
           onButtonClick={props.changePage}
           onKeyDown={props.changeGameID}
         />
+<<<<<<< HEAD
       </div>
     );
   } else if (props.page === 'newScoresheet') {
@@ -53,6 +67,14 @@ function Content(props) {
     )
   }
 
+=======
+      ) : (
+        ""
+      )}
+      {props.page === "game" ? <PlayGamePage /> : ""}
+    </div>
+  );
+>>>>>>> features/template-display
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Content);
