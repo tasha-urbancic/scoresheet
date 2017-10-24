@@ -16,7 +16,3 @@ class App extends Component {
   }
 }
 export default App;
-
-{/* <ReactBootstrap.Button bsStyle="success" bsSize="small">
-Something
-</ReactBootstrap.Button> */}
