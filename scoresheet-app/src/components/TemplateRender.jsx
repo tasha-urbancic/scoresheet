@@ -6,7 +6,6 @@ import React, { Component } from 'react';
 import AddRelationship from './AddRelationship.jsx';
 import ScoresheetStructure from '../containers/ScoresheetStructure.jsx';
 
-
 export default function TemplateRender(props) {
   let templateName = '';
   return (
