@@ -19,7 +19,7 @@ export default class PlayGame extends Component {
     constructor(props) {
       super(props);
       this.state= {
-        // rules: [{ ...defaultRule }, { ...defaultRule }]
+        currentPlayer: ''
       }
     }
   
@@ -27,6 +27,29 @@ export default class PlayGame extends Component {
 
     return (
       <div>
+
+      <h3>New Player:</h3>
+      <input placeholder="Enter new player name:"
+        value={this.state.currentPlayer}
+        onChange={e => {
+          this.setState({ currentPlayer: e.target.value });
+          console.log(this.state.currentPlayer);
+        }}
+        onKeyDown={e => {
+          if (e.keyCode === 13) {  
+            this.props.addPlayer(this.state.currentPlayer);
+            this.setState({currentPlayer:''});
+          }
+        }} 
+      >
+      </input>
+      <button onClick={e => {
+        this.props.addPlayer(this.state.currentPlayer);
+        this.setState({currentPlayer: ''});
+      }}>
+      Add Player
+      </button>
+
         <table>
           <thead>
             <tr>
@@ -51,7 +74,6 @@ export default class PlayGame extends Component {
             })}
           </tbody>
         </table>
-
         <button>Compute Winner</button>
 
       </div>
