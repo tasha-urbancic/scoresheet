@@ -20,38 +20,32 @@ export default class TemplateRender extends Component {
     return (
       <div>
 
+        <h3>Name your template:</h3>
+        <input placeholder="Enter template name"
+          value={this.state.templateName}
+          onChange={e => {
+              this.setState({templateName: e.target.value});
+          }}
+          onKeyDown={e => {
+              if (e.keyCode === 13) {  
+                this.props.renameTemplate(this.state.templateName);
+                this.setState({templateName: ''});
+              }
+          }} 
+        >
+        </input>
+        <button onClick={e => {
+          this.props.renameTemplate(this.state.templateName);
+          this.setState({templateName: ''});
+        }}>
+        Add
+        </button>
+
         {this.props.templateName !== '' &&
           <p>
-            The name of your template is {this.props.templateName} 
+            The name of your template is {this.props.templateName}.
           </p>
         }
-
-        {this.props.templateName === '' &&
-          <div>
-            <h3>Name your template:</h3>
-            <input placeholder="Enter template name"
-              value={this.state.templateName}
-              onChange={e => {
-                  this.setState({templateName: e.target.value});
-              }}
-              onKeyDown={e => {
-                  if (e.keyCode === 13) {  
-                    this.props.renameTemplate(this.state.templateName);
-                    this.setState({templateName: ''});
-                  }
-              }} 
-            >
-            </input>
-            <button onClick={e => {
-              this.props.renameTemplate(this.state.templateName);
-              this.setState({templateName: ''});
-            }}>
-            Add
-            </button>
-          </div>
-        }
-        <br />
-
 
         <ScoresheetStructure />
         <br />
