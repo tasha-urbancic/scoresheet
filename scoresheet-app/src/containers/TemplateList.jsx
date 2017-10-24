@@ -2,34 +2,36 @@ import React, { Component } from 'react';
 
 import { connect } from 'react-redux';
 
-// import { changePage, changeGameID } from "../redux/actions/pages";
+import { dataFetch } from '../redux/actions/grab-data';
 
-// const mapStateToProps = state => {
-//   return {
-//     //
-//   };
-// };
+const mapStateToProps = state => {
+  return {
+    templates: state.templates
+  };
+};
 
-// const mapDispatchToProps = {
-//   //
-// };
+const mapDispatchToProps = {
+  dataFetch
+};
 
-const templates = ['Settlers of Catan', 'Seven Wonders', 'Unearth'];
+// const templates = ['Settlers of Catan', 'Seven Wonders', 'Unearth'];
 
-export default function TemplateList(props) {
+const TemplateList = props => {
+  // props.dataFetch();
+  console.log(props.templates);
   return (
     <table>
       <thead>
         <tr>
-          <th>Games:</th>
+          <th>Games: </th>
           <th />
         </tr>
       </thead>
       <tbody>
-        {templates.map(template => {
+        {props.templates.map(template => {
           return (
             <tr>
-              <td>{template}</td>
+              <td>{template.name}</td>
               <td>
                 <button>Start Game</button>
               </td>
@@ -39,6 +41,6 @@ export default function TemplateList(props) {
       </tbody>
     </table>
   );
-}
+};
 
-// export default connect(mapStateToProps, mapDispatchToProps)(TemplateList);
+export default connect(mapStateToProps, mapDispatchToProps)(TemplateList);
