@@ -14,8 +14,8 @@ import { Provider } from 'react-redux';
 
 import pages from './redux/reducers/pages';
 import createTemplates from './redux/reducers/create-templates';
-import templates from './redux/reducers/grab-data';
-import { fetchData } from './redux/actions/grab-data';
+import templates from './redux/reducers/templates';
+import { dataFetch } from './redux/actions/grab-data';
 
 import App from './App.jsx';
 import '../../node_modules/bootstrap/dist/css/bootstrap.css';
@@ -33,7 +33,7 @@ const store = createStore(
   applyMiddleware(thunk)
 );
 
-// store.dispatch(fetchData);
+store.dispatch(dataFetch());
 
 console.log(store.getState());
 
