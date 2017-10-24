@@ -3,12 +3,15 @@ import React, { Component } from 'react';
 // export default function SetupScoresheetStructure(this.props) {
 
 export default class SetupScoresheetStructure extends Component {
+
   constructor(props) {
     super(props);
     this.state= {
-      columnName: ''
+      columnName: '',
+      extraNotes: ''
     }
   }
+
   render() {
     return (
       <div>
@@ -43,13 +46,25 @@ export default class SetupScoresheetStructure extends Component {
         })}
         </ul>
         
-      
-        {/* <input placeholder="Enter column name..." /><br />
-        <button>Add</button><br /> */}
 
         <h4>Add notes:</h4>
-        <textarea placeholder="Extra rules go here..."></textarea>
-        <button>Add</button>
+        <textarea placeholder="Extra rules go here..." value={this.state.extraNotes}
+          onChange={e => {
+            this.setState({extraNotes: e.target.value});
+          }} 
+          onKeyDown={e => {
+            if (e.keyCode === 13) {
+              this.props.addNoteToTemplate(this.state.extraNotes);
+              this.setState({extraNotes: ''});
+            }
+          }}
+        ></textarea>
+        <button onClick={e => {
+          this.props.addNoteToTemplate(this.state.extraNotes);
+          this.setState({extraNotes: ''});
+        }}>
+        Add
+        </button>
     
       </div>
     );

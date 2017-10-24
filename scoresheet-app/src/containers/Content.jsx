@@ -15,18 +15,14 @@ const mapStateToProps = state => {
   return {
     page: state.pages.page,
     gameid: state.pages.gameid,
-    templateName: state.createTemplates.templateName,
-    templateCurrentColumn: state.createTemplates.templateCurrentColumn,
-    templateColumns: state.createTemplates.templateColumns
+    templateName: state.createTemplates.templateName
   };
 };
 
 const mapDispatchToProps = {
   changePage,
   changeGameID,
-  changeTemplateName,
-  updateCurrentColumn,
-  addColumn
+  changeTemplateName
 };
 
 function Content(props) {
