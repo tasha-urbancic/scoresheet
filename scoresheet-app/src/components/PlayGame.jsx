@@ -1,10 +1,3 @@
-// gameplay page html goes here
-
-// include navbar component
-
-// include template_render component
-import React from "react";
-
 const testGame = {
   name: "Test Game",
   pieces: [

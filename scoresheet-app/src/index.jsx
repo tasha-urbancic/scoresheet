@@ -16,6 +16,7 @@ import pages from './redux/reducers/pages';
 import createTemplates from './redux/reducers/create-templates';
 import templates from './redux/reducers/templates';
 import { dataFetch } from './redux/actions/grab-data';
+import {composeWithDevTools} from 'redux-devtools-extension';
 
 import App from './App.jsx';
 import '../../node_modules/bootstrap/dist/css/bootstrap.css';
@@ -29,11 +30,14 @@ const totalReducer = combineReducers({
 
 const store = createStore(
   totalReducer,
-  applyMiddleware(logger),
-  applyMiddleware(thunk)
+  applyMiddleware(thunk),
+  composeWithDevTools(
+  applyMiddleware(logger)
+)
 );
 
 store.dispatch(dataFetch());
+
 
 console.log(store.getState());
 

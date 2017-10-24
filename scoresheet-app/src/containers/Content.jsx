@@ -1,14 +1,13 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 // import { changePage, changeGameID, changeTemplateName } from "../redux/actions/pages";
-import { changePage, changeGameID } from '../redux/actions/pages';
-import {
-  changeTemplateName,
-  addColumn
-} from '../redux/actions/create-templates';
+
+import { changePage, changeGameID} from "../redux/actions/pages";
+import {changeTemplateName, updateCurrentColumn, addColumn} from "../redux/actions/create-templates";
 
 import TemplateRender from '../components/TemplateRender.jsx';
-import HomePage from '../components/HomePage.jsx';
+import HomePage from "../components/HomePage.jsx";
+import PlayGamePage from "../containers/PlayGamePage.jsx";
 
 // import TemplateList from '../components/TemplateList.jsx';
 
@@ -16,16 +15,14 @@ const mapStateToProps = state => {
   return {
     page: state.pages.page,
     gameid: state.pages.gameid,
-    templateName: state.createTemplates.templateName,
-    templateColumns: state.createTemplates.templateColumn
+    templateName: state.createTemplates.templateName
   };
 };
 
 const mapDispatchToProps = {
   changePage,
   changeGameID,
-  changeTemplateName,
-  addColumn
+  changeTemplateName
 };
 
 function Content(props) {
@@ -35,18 +32,22 @@ function Content(props) {
         {/* {props.page}<br></br>
         {props.gameid} */}
         <HomePage
-          onButtonClick={props.changePage}
+          changePage={props.changePage}
           onKeyDown={props.changeGameID}
         />
       </div>
     );
   } else if (props.page === 'newScoresheet') {
     return (
-      <TemplateRender
-        onButtonClick={props.changePage}
+      <TemplateRender 
+        changePage={props.changePage}
         renameTemplate={props.changeTemplateName}
-        addColumn={props.addColumn}
+        templateName={props.templateName}
       />
+    );
+  } else if (props.page === "game") {
+    return (
+      <PlayGamePage />
     );
   } else {
     return <div />;
