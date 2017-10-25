@@ -1,6 +1,6 @@
-const express = require("express");
+const express = require('express');
 const router = express.Router();
-const data = require("./data.json");
+const data = require('./data.json');
 
 // API request for all templates data (homepage)
 router.get('/', (req, res) => {
