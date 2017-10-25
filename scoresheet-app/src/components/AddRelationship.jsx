@@ -40,12 +40,19 @@ export default class AddRelationship extends Component {
                       {j !== 0 &&
                         <p>and</p>
                       }
-<<<<<<< HEAD
-                    }>
-                        <option>=</option>
-                        <option>&gt;</option>
-                        <option>&lt;</option>
-                    </select>
+
+                      <select name='equality' id='equality-dropdown' onChange={ e => {
+                          const rules = [...this.state.rules];
+                          rules[i].pieces[j].equality = e.target.value;
+                          this.setState({
+                              rules
+                          });
+                        }
+                      }>
+                          <option value='='>=</option>
+                          <option value='&gt;'>&gt;</option>
+                          <option value='&lt;'>&lt;</option>
+                      </select>
 
                     <input type="number" placeholder="Number of pieces" onChange={ e => {
                         const rules = [...this.state.rules];
