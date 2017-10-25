@@ -26,7 +26,7 @@ app.use('/api', routes);
 
 app.get('/*', (req, res) => {
   // 'Attempting to get /*, let\'s see how this goes:';
-  res.sendFile('../../scoresheet-app/src/index.jsx  ');
+  res.sendFile('../../index.html');
   // ('It did not break during the app.get from server.js');
 });
 
