@@ -79,7 +79,7 @@ export default class AddRelationship extends Component {
                 )
               })}
 
-              <button onClick={e => {
+              <button className='btn btn-default' onClick={e => {
                   const rules = [...this.state.rules];
                   rules[i].pieces = [...rules[i].pieces, defaultPiece];
                   this.setState({
@@ -150,7 +150,7 @@ export default class AddRelationship extends Component {
                 )
               })}
 
-            <button onClick={ e => {
+            <button className='btn btn-default' onClick={ e => {
                 const rules = [...this.state.rules];
                 rules[i].additional_operations = [...rules[i].additional_operations, defaultOperation];
                 this.setState({
@@ -167,14 +167,14 @@ export default class AddRelationship extends Component {
               
         })}
 
-        <button onClick={e => {
+        <button className='btn btn-default' onClick={e => {
             const rules = [...this.state.rules];
             this.setState({rules: [...rules, defaultRule]});
           }
         }>Add Rule</button>
 
         
-        <button onClick={ e => {
+        <button className='btn btn-default' onClick={ e => {
             // write a writeRulesIntoTemplate action in redux state
             this.props.writeRulesIntoTemplate(this.state.rules);
           }

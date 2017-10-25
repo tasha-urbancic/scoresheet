@@ -34,32 +34,36 @@ export default class PlayGame extends Component {
   
   render() {
     return (
-      <div>
+      <div className="container" id='game'>
 
-      <h3>New Player:</h3>
-      <input placeholder="Enter new player name:"
-        value={this.state.currentPlayer}
-        onChange={e => {
-          this.setState({ currentPlayer: e.target.value });
-        }}
-        onKeyDown={e => {
-          if (e.keyCode === 13) {
+        <form className="form-inline">
+          <label className="sr-only" for="inlineFormInput">New Player</label>
+          <input type="text" 
+            className="form-control mb-2 mr-sm-2 mb-sm-0"
+            placeholder="enter new player"
+            value={this.state.currentPlayer}
+            onChange={e => {
+              this.setState({ currentPlayer: e.target.value });
+            }}
+            onKeyDown={e => {
+              if (e.keyCode === 13) {
+                this.state.allPlayers.push(this.state.currentPlayer);
+                this.props.updatePlayers(this.state.allPlayers);
+                this.setState({currentPlayer:''});
+              }
+            }} 
+          >
+          </input>
+          <button type="submit" className='btn btn-default' onClick={e => {
             this.state.allPlayers.push(this.state.currentPlayer);
             this.props.updatePlayers(this.state.allPlayers);
             this.setState({currentPlayer:''});
-          }
-        }} 
-      >
-      </input>
-      <button onClick={e => {
-        this.state.allPlayers.push(this.state.currentPlayer);
-        this.props.updatePlayers(this.state.allPlayers);
-        this.setState({currentPlayer:''});
-      }}>
-      Add Player
-      </button>
+          }}>
+          Add
+          </button>
+        </form>
 
-        <table>
+        <table className="table table-bordered">
 
           <thead>
             <tr>
@@ -92,7 +96,7 @@ export default class PlayGame extends Component {
 
         </table>
 
-        <button>Compute Winner</button>
+        <button className='btn btn-default'>Compute Winner</button>
 
       </div>
     )

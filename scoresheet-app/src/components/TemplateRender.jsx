@@ -19,7 +19,7 @@ export default class TemplateRender extends Component {
 
   render() {
     return (
-      <div>
+      <div id='create-template'>
 
         <h3>Name your template:</h3>
         <input placeholder="Enter template name"
@@ -35,7 +35,7 @@ export default class TemplateRender extends Component {
           }} 
         >
         </input>
-        <button onClick={e => {
+        <button className='btn btn-default' onClick={e => {
           this.props.renameTemplate(this.state.templateName);
           this.setState({templateName: ''});
         }}>
@@ -50,7 +50,7 @@ export default class TemplateRender extends Component {
 
         <ScoresheetStructure />
         <br />
-        <button>Submit Structure</button>
+        <button className='btn btn-default'>Submit Structure</button>
         <RelationshipDefinitions />
         <br />
       </div>
