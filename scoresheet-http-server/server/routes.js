@@ -7,13 +7,17 @@ router.get('/', (req, res) => {
   res.status(200).json(data);
 });
 
+router.get('/templates', (req, res) => {
+  res.status(200).json(data);
+});
+
 // API request for Create New Template form data
 router.get('/templates/new', (req, res) => {
   res.status(200).json({ data });
 });
 
 // API request for new game start
-router.get('/game/:id', (req, res) => {
+router.get('/templates/:templateId/games/:id', (req, res) => {
   const id = req.params.id * 1;
   const template = data.templates.find(template => template.id === id);
   res.status(200).json({ template });

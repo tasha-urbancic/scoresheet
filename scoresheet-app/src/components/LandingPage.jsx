@@ -1,0 +1,21 @@
+import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
+
+export default class LandingPage extends Component {
+  
+  render() {
+
+    return (
+      <div>
+        <h1>WELCOME TO OUR WEBSITE!</h1>
+        <button type="button" class="btn btn-outline-primary">
+          <Link to='/templates'>START PLAYING</Link>
+        </button>
+
+        <button type="button" class="btn btn-outline-primary">
+          <Link to="/templates/new">Create New Template</Link>
+        </button>
+      </div>
+    )
+  }
+}

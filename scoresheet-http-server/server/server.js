@@ -1,8 +1,10 @@
 const PORT = process.env.PORT || 8080;
 const ENV = process.env.ENV || 'development';
-const app = require('express')();
+const express = require('express');
+const app = express();
 const bodyParser = require('body-parser');
 const cors = require('cors');
+const path = require('path');
 
 const knexConfig = require('../knexfile');
 const knex = require('knex')(knexConfig[ENV]);
@@ -17,7 +19,8 @@ app.use(function(req, res, next) {
   );
   next();
 });
-// app.use(express.static("public"));
+
+app.use(express.static("scoresheet-app/build"));
 app.use(bodyParser.json());
 
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -25,9 +28,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use('/api', routes);
 
 app.get('/*', (req, res) => {
-  // 'Attempting to get /*, let\'s see how this goes:';
-  res.sendFile('../../index.html');
-  // ('It did not break during the app.get from server.js');
+  res.sendFile(path.resolve(__dirname, '../../index.html'));
 });
 
 app.listen(PORT, () => {

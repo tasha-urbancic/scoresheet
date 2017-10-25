@@ -22,7 +22,6 @@ import { Provider } from 'react-redux';
 // the tutorial
 import { BrowserRouter as Router } from 'react-router-dom';
 
-import pages from './redux/reducers/pages';
 import createTemplates from './redux/reducers/create-templates';
 import templates from './redux/reducers/templates';
 import { dataFetch } from './redux/actions/grab-data';
@@ -33,14 +32,12 @@ import '../../node_modules/bootstrap/dist/css/bootstrap.css';
 import '../../node_modules/bootstrap/dist/css/bootstrap-theme.css';
 
 const totalReducer = combineReducers({
-  pages,
   createTemplates,
   templates
 });
 
 const store = createStore(
   totalReducer,
-
   composeWithDevTools(applyMiddleware(thunk), applyMiddleware(logger))
 );
 
@@ -51,7 +48,6 @@ console.log(store.getState());
 ReactDOM.render(
   <Provider store={store}>
     <Router>
-      {/* <Route path="/:filter?" component={App} /> */}
       <App />
     </Router>
   </Provider>,

@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
-
 import { connect } from 'react-redux';
-
 import { dataFetch } from '../redux/actions/grab-data';
+import { Link } from 'react-router-dom';
 
 const mapStateToProps = state => {
   return {
@@ -33,7 +32,11 @@ const TemplateList = props => {
             <tr>
               <td>{template.name}</td>
               <td>
-                <button>Start Game</button>
+                <button>
+                  <Link to='/templates/:templateId/games/:id'>
+                    Start Game
+                  </Link>
+                </button>
               </td>
             </tr>
           );
