@@ -5,16 +5,12 @@ import { Link } from 'react-router-dom';
 
 const mapStateToProps = state => {
   return {
-    templates: state.templates,
-    page: state.pages.page,
-    gameid: state.pages.gameid,
+    templates: state.templates
   };
 };
 
 const mapDispatchToProps = {
-  dataFetch,
-  changePage,
-  changeGameID,
+  dataFetch
 };
 
 const TemplateList = props => {

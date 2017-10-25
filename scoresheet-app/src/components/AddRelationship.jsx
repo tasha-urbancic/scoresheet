@@ -41,55 +41,6 @@ export default class AddRelationship extends Component {
                         <p>and</p>
                       }
 
-                      <select name='equality' id='equality-dropdown' onChange={ e => {
-                          const rules = [...this.state.rules];
-                          rules[i].pieces[j].equality = e.target.value;
-                          this.setState({
-                              rules
-                          });
-                        }
-                      }>
-                          <option value='='>=</option>
-                          <option value='&gt;'>&gt;</option>
-                          <option value='&lt;'>&lt;</option>
-                      </select>
-
-                    <input type="number" placeholder="Number of pieces" onChange={ e => {
-                        const rules = [...this.state.rules];
-                        rules[i].pieces[j].number = e.target.value;
-                        this.setState({
-                            rules
-                        });
-                      }
-                    }/>
-
-                    <select name="column-list" id="column-list-dropdown" onChange={ e => {
-                        const rules = [...this.state.rules];
-                        rules[i].pieces[j].piece = e.target.value;
-                        this.setState({
-                            rules
-                        });
-                      }
-                    }>
-                      {this.props.templateColumns.map(function(columnName, i){
-                        return <option>{columnName}</option>;
-                      })}
-                    </select>
-                  </div>
-                )
-              })}
-
-              <button className='btn btn-default' onClick={e => {
-                  const rules = [...this.state.rules];
-                  rules[i].pieces = [...rules[i].pieces, defaultPiece];
-                  this.setState({
-                    rules
-                  });
-                }
-              }>
-              Add New Piece
-              </button>
-=======
                       <select name="equality" id="equality-dropdown" onChange={ e => {
                           const rules = [...this.state.rules];
                           rules[i].pieces[j].equality = e.target.value;
@@ -138,7 +89,6 @@ export default class AddRelationship extends Component {
                 }>
                 Add New Piece
                 </button>
->>>>>>> feature/add-relationsip-bootstrap
 
               <p>is worth</p>
               <input type="number" placeholder="How many points?" onChange={ e => {
@@ -200,44 +150,28 @@ export default class AddRelationship extends Component {
                 )
               })}
 
-<<<<<<< HEAD
-            <button className='btn btn-default' onClick={ e => {
-=======
-            <button type="button" className="btn btn-success" onClick={ e => {
->>>>>>> feature/add-relationsip-bootstrap
-                const rules = [...this.state.rules];
-                rules[i].additional_operations = [...rules[i].additional_operations, defaultOperation];
-                this.setState({
-                  rules
-                });
-              }
-            }>
-            Add New Operation
-            </button>
+              <button type="button" className="btn btn-success" onClick={ e => {
+                  const rules = [...this.state.rules];
+                  rules[i].additional_operations = [...rules[i].additional_operations, defaultOperation];
+                  this.setState({
+                    rules
+                  });
+                }
+              }>
+              Add New Operation
+              </button>
 
             </div>
-
           )
-              
         })}
 
-<<<<<<< HEAD
-        <button className='btn btn-default' onClick={e => {
-=======
         <button type="button" className="btn btn-success" onClick={e => {
->>>>>>> feature/add-relationsip-bootstrap
             const rules = [...this.state.rules];
             this.setState({rules: [...rules, defaultRule]});
           }
         }>Add Rule</button>
 
-        
-<<<<<<< HEAD
-        <button className='btn btn-default' onClick={ e => {
-=======
         <button type="button" className="btn btn-success" onClick={ e => {
->>>>>>> feature/add-relationsip-bootstrap
-            // write a writeRulesIntoTemplate action in redux state
             this.props.writeRulesIntoTemplate(this.state.rules);
           }
         }>Submit Relationships</button>

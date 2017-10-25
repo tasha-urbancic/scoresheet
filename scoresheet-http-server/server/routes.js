@@ -22,8 +22,5 @@ router.get('/templates/:templateId/games/:id', (req, res) => {
   const template = data.templates.find(template => template.id === id);
   res.status(200).json({ template });
 });
-// router.get("game/:id", (req, res) => {});
-
-// router.get("createtemplate", (req, res) => {});
 
 module.exports = router;
