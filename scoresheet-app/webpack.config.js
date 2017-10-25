@@ -4,9 +4,9 @@ module.exports = {
   devtool: 'eval-source-map',
   entry: ['webpack-dev-server/client?http://localhost:3000', './scoresheet-app/src/index.jsx'],
   output: {
-    path: path.join(__dirname, 'dist'),
+    path: path.join(__dirname, 'build'),
     filename: 'bundle.js',
-    publicPath: '/build/'
+    publicPath: '/'
   },
   module: {
     rules: [

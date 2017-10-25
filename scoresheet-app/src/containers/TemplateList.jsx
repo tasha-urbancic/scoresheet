@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { dataFetch } from '../redux/actions/grab-data';
-import FilterLink from "../containers/FilterLink.jsx";
-import { changePage, changeGameID} from "../redux/actions/pages";
+import { Link } from 'react-router-dom';
 
 const mapStateToProps = state => {
   return {
@@ -18,43 +17,33 @@ const mapDispatchToProps = {
   changeGameID,
 };
 
-// const templates = ['Settlers of Catan', 'Seven Wonders', 'Unearth'];
-
 const TemplateList = props => {
-
   return (
     <div className="container">
-
-      <p className="text-center">Making board games fun again!</p>
-      
       <table className="table table-hover">
-
         <thead>
           <tr>
-            <th>All scoresheets: </th>
+            <th>Games: </th>
             <th />
           </tr>
         </thead>
-
         <tbody>
           {props.templates.map(template => {
             return (
               <tr>
                 <td className="col-xs-10">{template.name}</td>
                 <td className="col-xs-2">
-                  <button className='btn btn-default' onClick={e => props.changePage('game')}>Start Game</button>
+                  <button className='btn btn-default'>
+                    <Link to='/templates/:templateId/games/:id'>
+                      Start Game
+                    </Link>
+                  </button>
                 </td>
               </tr>
             );
           })}
         </tbody>
-
       </table>
-
-      <button className='btn btn-default' onClick={e => props.changePage('newScoresheet')}>
-        <FilterLink filter="createtemplate">Make a new ScoreSheet</FilterLink>
-      </button>
-
     </div>
   );
 };

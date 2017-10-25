@@ -1,60 +1,49 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-// import { changePage, changeGameID, changeTemplateName } from "../redux/actions/pages";
-
-import { changePage, changeGameID} from "../redux/actions/pages";
-import {changeTemplateName, updateCurrentColumn, addColumn} from "../redux/actions/create-templates";
-import {addPlayer} from "../redux/actions/game-page";
-
+import { Switch, Route, Link } from 'react-router-dom';
+import { changeGameID } from '../redux/actions/pages';
+import {
+  changeTemplateName,
+  updateCurrentColumn,
+  addColumn
+} from '../redux/actions/create-templates';
 import TemplateRender from '../components/TemplateRender.jsx';
-import HomePage from "../components/HomePage.jsx";
-import PlayGamePage from "../containers/PlayGamePage.jsx";
-
-// import TemplateList from '../components/TemplateList.jsx';
+import HomePage from '../components/HomePage.jsx';
+import PlayGamePage from '../containers/PlayGamePage.jsx';
 
 const mapStateToProps = state => {
   return {
-    page: state.pages.page,
-    gameid: state.pages.gameid,
     templateName: state.createTemplates.templateName
   };
 };
 
 const mapDispatchToProps = {
-  changePage,
-  changeGameID,
   changeTemplateName
 };
+class Content extends Component {
+  
+  homePage = () => (
+    <HomePage
+      onKeyDown={this.props.changeGameID}
+    />
+  )
 
-function Content(props) {
-  if (props.page === 'home') {
+  templateRender = () => (
+    <TemplateRender
+      renameTemplate={this.props.changeTemplateName}
+      templateName={this.props.templateName}
+    />
+  )
+
+  render() {
     return (
-      <div>
-        {/* {props.page}<br></br>
-        {props.gameid} */}
-        <HomePage
-          changePage={props.changePage}
-          onKeyDown={props.changeGameID}
-        />
-      </div>
+      <main>
+        <Route exact path="/templates" component={ this.homePage }/>
+        <Route path="/templates/new" component={this.templateRender}/>
+        <Route path="/templates/:templateId/games/:id" component={PlayGamePage}/>
+      </main>
     );
-  } else if (props.page === 'newScoresheet') {
-    return (
-      <TemplateRender 
-        changePage={props.changePage}
-        renameTemplate={props.changeTemplateName}
-        templateName={props.templateName}
-      />
-    );
-  } else if (props.page === "game") {
-    return (
-      <PlayGamePage 
-        addPlayer={props.addPlayer}
-      />
-    );
-  } else {
-    return <div />;
-  }
-}
+  };
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(Content);
