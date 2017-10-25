@@ -37,27 +37,31 @@ export default class PlayGame extends Component {
       <div>
 
       <h3>New Player:</h3>
-      <input placeholder="Enter new player name:"
-        value={this.state.currentPlayer}
-        onChange={e => {
-          this.setState({ currentPlayer: e.target.value });
-        }}
-        onKeyDown={e => {
-          if (e.keyCode === 13) {
+
+        <div class="input-group">
+          <input placeholder="Enter new player name:"
+            value={this.state.currentPlayer}
+            onChange={e => {
+              this.setState({ currentPlayer: e.target.value });
+            }}
+            onKeyDown={e => {
+              if (e.keyCode === 13) {
+                this.state.allPlayers.push(this.state.currentPlayer);
+                this.props.updatePlayers(this.state.allPlayers);
+                this.setState({currentPlayer:''});
+              }
+            }} 
+          >
+          </input>
+
+          <button onClick={e => {
             this.state.allPlayers.push(this.state.currentPlayer);
             this.props.updatePlayers(this.state.allPlayers);
             this.setState({currentPlayer:''});
-          }
-        }} 
-      >
-      </input>
-      <button onClick={e => {
-        this.state.allPlayers.push(this.state.currentPlayer);
-        this.props.updatePlayers(this.state.allPlayers);
-        this.setState({currentPlayer:''});
-      }}>
-      Add Player
-      </button>
+          }}>
+          Add Player
+          </button>
+        </div>
 
         <table>
 
@@ -80,8 +84,8 @@ export default class PlayGame extends Component {
                   <td>{player}</td>
                   {this.state.fields.map((piece, j) => {
                     return (
-                      <td contentEditable="true" 
-                      />
+                      <td contentEditable="true">
+                      </td>
                     )
                   })}
                   <td>0</td>
