@@ -1,30 +1,38 @@
 import React, { Component } from 'react';
 
-const testGame = {
-  name: "Test Game",
-  pieces: [
-    "yellow card",
-    "red card",
-    "orange card",
-    "blue coin",
-    "green coin",
-    "purple coin"
-  ]
-};
+const defaultPieces = [
+  "yellow card",
+  "red card",
+  "orange card",
+  "blue coin",
+  "green coin",
+  "purple coin"
+];
 
-const players = ["mary", "max", "rebecca", "felix"];
+// let temp = [];
+// this.state.allPlayers.map(i => {
+//   let temp2 = [];
+//   this.state.fields.map(j => {
+//     temp2.push(0);
+//   });
+//   temp.push(temp);
+// })
+
+// const players = ["mary", "max", "rebecca", "felix"];
 
 export default class PlayGame extends Component {
   
-    constructor(props) {
-      super(props);
-      this.state= {
-        currentPlayer: ''
-      }
+  constructor(props) {
+    super(props);
+    this.state= {
+      currentPlayer: '',
+      allPlayers: [],
+      fields: defaultPieces,
+      gameValues: []
     }
+  }
   
   render() {
-
     return (
       <div>
 
@@ -33,50 +41,75 @@ export default class PlayGame extends Component {
         value={this.state.currentPlayer}
         onChange={e => {
           this.setState({ currentPlayer: e.target.value });
-          console.log(this.state.currentPlayer);
         }}
         onKeyDown={e => {
-          if (e.keyCode === 13) {  
-            this.props.addPlayer(this.state.currentPlayer);
+          if (e.keyCode === 13) {
+            this.state.allPlayers.push(this.state.currentPlayer);
+            this.props.updatePlayers(this.state.allPlayers);
             this.setState({currentPlayer:''});
           }
         }} 
       >
       </input>
       <button onClick={e => {
-        this.props.addPlayer(this.state.currentPlayer);
-        this.setState({currentPlayer: ''});
+        this.state.allPlayers.push(this.state.currentPlayer);
+        this.props.updatePlayers(this.state.allPlayers);
+        this.setState({currentPlayer:''});
       }}>
       Add Player
       </button>
 
         <table>
+
           <thead>
             <tr>
               <td>Players</td>
-              {testGame.pieces.map(i => {
-                return <td>{i}</td>;
+
+              {this.state.fields.map(piece => {
+                return <td>{piece}</td>;
               })}
+
               <td>Total Score</td>
             </tr>
           </thead>
+
           <tbody>
-            {players.map(i => {
+            {this.props.allPlayers.map((player, i) => {
               return (
                 <tr>
-                  <td>{i}</td>
-                  {testGame.pieces.map(i => {
-                    return <td contentEditable="true" />;
+                  <td>{player}</td>
+                  {this.state.fields.map((piece, j) => {
+                    return (
+                      <td contentEditable="true" 
+                      />
+                    )
                   })}
                   <td>0</td>
                 </tr>
               );
             })}
           </tbody>
+
         </table>
+
         <button>Compute Winner</button>
 
       </div>
     )
   }
 }
+
+// table: {
+//   piece: {
+//     name: 
+//   }
+// }
+
+/* onChange={ e => {
+  const gameValues = [...this.state.gameValues];
+  gameValues[i][j] = e.target.value;
+  this.setState({
+      gameValues
+  });
+  console.log('this.state.gameValues: ', this.state.gameValues);
+}} */

@@ -1,7 +1,6 @@
 
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import {} from "../redux/actions/create-templates";
 import AddRelationship from "../components/AddRelationship.jsx";
 import {updateCurrentColumn, writeRulesIntoTemplate} from "../redux/actions/create-templates";
 
@@ -17,7 +16,7 @@ const mapDispatchToProps = {
   writeRulesIntoTemplate
 };
 
-function ScoresheetStructure(props) {
+function RelationshipDefinitions(props) {
 
   return (
     <AddRelationship
@@ -27,4 +26,4 @@ function ScoresheetStructure(props) {
 
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(ScoresheetStructure);
+export default connect(mapStateToProps, mapDispatchToProps)(RelationshipDefinitions);

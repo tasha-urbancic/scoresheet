@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 
 import { changePage, changeGameID} from "../redux/actions/pages";
 import {changeTemplateName, updateCurrentColumn, addColumn} from "../redux/actions/create-templates";
+import {addPlayer} from "../redux/actions/game-page";
 
 import TemplateRender from '../components/TemplateRender.jsx';
 import HomePage from "../components/HomePage.jsx";
@@ -47,7 +48,9 @@ function Content(props) {
     );
   } else if (props.page === "game") {
     return (
-      <PlayGamePage />
+      <PlayGamePage 
+        addPlayer={props.addPlayer}
+      />
     );
   } else {
     return <div />;

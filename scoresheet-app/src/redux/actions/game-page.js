@@ -1,8 +1,8 @@
-import { ADD_PLAYER } from '../constants/game-page';
+import { UPDATE_PLAYERS } from '../constants/game-page';
 
-export function addPlayer(allPlayers) {
+export function updatePlayers(allPlayers) {
   return {
-    type: ADD_PLAYER,
+    type: UPDATE_PLAYERS,
     allPlayers
   };
 }
