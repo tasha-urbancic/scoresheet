@@ -1,14 +1,12 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Switch, Route, Link } from 'react-router-dom';
-
 import { changeGameID } from '../redux/actions/pages';
 import {
   changeTemplateName,
   updateCurrentColumn,
   addColumn
 } from '../redux/actions/create-templates';
-
 import TemplateRender from '../components/TemplateRender.jsx';
 import HomePage from '../components/HomePage.jsx';
 import PlayGamePage from '../containers/PlayGamePage.jsx';
@@ -40,11 +38,9 @@ class Content extends Component {
   render() {
     return (
       <main>
-
         <Route exact path="/templates" component={ this.homePage }/>
         <Route path="/templates/new" component={this.templateRender}/>
         <Route path="/templates/:templateId/games/:id" component={PlayGamePage}/>
-
       </main>
     );
   };

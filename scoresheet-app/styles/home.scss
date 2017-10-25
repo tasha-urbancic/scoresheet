@@ -1,15 +1,36 @@
+
+$primary-color: #2c7452;
+$font-stack: Helvetica, sans-serif;
+$logo-height: 20px;
+
+a,
+a:hover {
+  color: black;
+  text-decoration: none;
+}
+
+.navbar-default .navbar-nav > li > a {
+  color: white;
+}
+
 h1 {
   color: rebeccapurple;
 }
 
 .navbar {
-  background: #2c7452;
+  background: $primary-color;
   color: black;
-  height: 80px;
-  border-radius: 0;
 }
 
 .navbar img {
-  height: 70px;
+  height: $logo-height;
   width: auto;
+  margin-top: $logo-height*0.75;
 }
+
+.template-list,
+#game,
+#create-template {
+  margin-top: $logo-height*3;
+}
+

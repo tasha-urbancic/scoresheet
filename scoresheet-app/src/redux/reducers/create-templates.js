@@ -1,10 +1,6 @@
 import {CHANGE_TEMPLATE_NAME, UPDATE_CURRENT_COLUMN, ADD_COLUMN, ADD_NOTE_TO_TEMPLATE, WRITE_RULES_INTO_TEMPLATE} from '../constants/create-templates';
 
-// templateColumn: []
-
 export default (state = { templateName: '', templateCurrentColumn: '', templateColumns: [], templateNote: '', templateRules: [] }, action) => {
-
-  console.log('actions', action);
 
   switch (action.type) {
     case CHANGE_TEMPLATE_NAME:

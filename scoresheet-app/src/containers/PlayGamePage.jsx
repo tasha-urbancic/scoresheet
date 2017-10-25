@@ -1,24 +1,24 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-// import {} from "../redux/actions/game-page";
+import {updatePlayers} from "../redux/actions/game-page";
 import PlayGame from "../components/PlayGame.jsx";
 
 const mapStateToProps = state => {
   return {
-    // templateCurrentColumn: state.createTemplates.templateCurrentColumn,
-    // templateColumns: state.createTemplates.templateColumns,
-    // templateNote: state.createTemplates.templateNote
+    allPlayers: state.gamePage.allPlayers
   };
 };
 
 const mapDispatchToProps = {
-  // updateCurrentColumn,
-  // addColumn,
-  // addNoteToTemplate
+  updatePlayers
 };
 
-export default function ScoreSheet(props) {
+function PlayGamePage(props) {
   return (
-    <PlayGame />
+    <PlayGame 
+    {...props}
+    />
   );
 }
+
+export default connect(mapStateToProps, mapDispatchToProps)(PlayGamePage);

@@ -6,7 +6,7 @@ import FilterLink from '../containers/FilterLink.jsx';
 export default function HomePage(props) {
   return (
     <div>
-      <p>Making board games fun again!</p>
+      <p className="text-center">Making board games fun again!</p>
       <div className="template-list">
         <TemplateList />
       </div>
