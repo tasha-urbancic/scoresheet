@@ -60,7 +60,7 @@ export default class PlayGame extends Component {
                   if (e.keyCode === 13) {
                     this.state.allPlayers.push({
                       name: this.state.currentPlayer,
-                      values: createZeroArray(this.state.defaultPieces.length)
+                      values: createZeroArray(this.state.fields.length)
                     });
 
                     this.props.updatePlayers(this.state.allPlayers);
@@ -86,6 +86,12 @@ export default class PlayGame extends Component {
                 Add
               </button>
             </div>
+
+            <ul>
+              {this.state.allPlayers.map(function(playerObj, i) {
+                return <li key={i}>{playerObj.name}</li>;
+              })}
+            </ul>
 
             <button
               onClick={e => {
@@ -113,10 +119,10 @@ export default class PlayGame extends Component {
               </thead>
 
               <tbody>
-                {this.props.allPlayers.map((player, i) => {
+                {this.props.allPlayers.map((playerObj, i) => {
                   return (
                     <tr>
-                      <td>{player}</td>
+                      <td>{playerObj.name}</td>
                       {this.state.fields.map((piece, j) => {
                         return (
                           <td
