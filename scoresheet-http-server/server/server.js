@@ -22,13 +22,13 @@ app.use(bodyParser.json());
 
 app.use(bodyParser.urlencoded({ extended: true }));
 
-// app.get('/*', (req, res) => {
-//   // 'Attempting to get /*, let\'s see how this goes:';
-//   res.sendFile(path.join(__dirname, 'index.jsx'));
-//   // ('It did not break during the app.get from server.js');
-// });
-
 app.use('/api', routes);
+
+app.get('/*', (req, res) => {
+  // 'Attempting to get /*, let\'s see how this goes:';
+  res.sendFile('../../scoresheet-app/src/index.jsx  ');
+  // ('It did not break during the app.get from server.js');
+});
 
 app.listen(PORT, () => {
   console.log('HTTP Server listening on port ' + PORT);
