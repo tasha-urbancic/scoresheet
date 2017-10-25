@@ -20,6 +20,14 @@ const defaultPieces = [
 
 // const players = ["mary", "max", "rebecca", "felix"];
 
+function createZeroArray(num) {
+  let arr = []
+  for (var i=0; i<num; i++){
+    arr.push(0);
+  }
+  return arr;
+}
+
 export default class PlayGame extends Component {
   
   constructor(props) {
@@ -28,91 +36,103 @@ export default class PlayGame extends Component {
       currentPlayer: '',
       allPlayers: [],
       fields: defaultPieces,
-      gameValues: []
+      namesCompleted: false
     }
   }
   
   render() {
     return (
       <div className="container" id='game'>
-        <form className="form-inline">
-          <label className="sr-only" for="inlineFormInput">New Player</label>
-          <input type="text" 
-            className="form-control mb-2 mr-sm-2 mb-sm-0"
-            placeholder="enter new player"
-            value={this.state.currentPlayer}
-            onChange={e => {
-              this.setState({ currentPlayer: e.target.value });
-            }}
-            onKeyDown={e => {
-              if (e.keyCode === 13) {
-                this.state.allPlayers.push(this.state.currentPlayer);
+
+        {!this.state.namesCompleted &&
+
+          <div>
+            <form className="form-inline">
+              <label className="sr-only" for="inlineFormInput">New Player</label>
+              <input type="text" 
+                className="form-control mb-2 mr-sm-2 mb-sm-0"
+                placeholder="enter new player"
+                value={this.state.currentPlayer}
+                onChange={e => {
+                  this.setState({ currentPlayer: e.target.value });
+                }}
+                onKeyDown={e => {
+                  if (e.keyCode === 13) {
+                    this.state.allPlayers.push({name: this.state.currentPlayer, values: createZeroArray(this.state.defaultPieces.length)});
+
+                    this.props.updatePlayers(this.state.allPlayers);
+
+                    this.setState({currentPlayer:''});
+                  }
+                }} 
+              >
+              </input>
+              <button type="submit" className='btn btn-default' onClick={e => {
+                this.state.allPlayers.push({name: this.state.currentPlayer, values: createZeroArray(this.state.defaultPieces.length)});
+
                 this.props.updatePlayers(this.state.allPlayers);
+
                 this.setState({currentPlayer:''});
-              }
-            }} 
-          >
-          </input>
-          <button type="submit" className='btn btn-default' onClick={e => {
-            this.state.allPlayers.push(this.state.currentPlayer);
-            this.props.updatePlayers(this.state.allPlayers);
-            this.setState({currentPlayer:''});
-          }}>
-          Add
-          </button>
-        </form>
+              }}>
+              Add
+              </button>
 
-        <table className="table table-bordered">
+            </form>
 
-          <thead>
-            <tr>
-              <td>Players</td>
+            <button onClick={e => {
+              this.setState({namesCompleted: true});
+            }}>Start Game</button>
 
-              {this.state.fields.map(piece => {
-                return <td>{piece}</td>;
-              })}
+          </div>
 
-              <td>Total Score</td>
-            </tr>
-          </thead>
+        }
 
-          <tbody>
-            {this.props.allPlayers.map((player, i) => {
-              return (
+        {this.state.namesCompleted &&
+
+          <div>
+            <table className="table table-bordered">
+
+              <thead>
                 <tr>
-                  <td>{player}</td>
-                  {this.state.fields.map((piece, j) => {
-                    return (
-                      <td contentEditable="true">
-                      </td>
-                    )
+                  <td>Players</td>
+
+                  {this.state.fields.map(piece => {
+                    return <td>{piece}</td>;
                   })}
-                  <td>0</td>
+
+                  <td>Total Score</td>
                 </tr>
-              );
-            })}
-          </tbody>
+              </thead>
 
-        </table>
+              <tbody>
+                {this.props.allPlayers.map((player, i) => {
+                  return (
+                    <tr>
+                      <td>{player}</td>
+                      {this.state.fields.map((piece, j) => {
+                        return (
+                          <td contentEditable="true" onChange={e => {
+                            let allPlayers = [...this.state.allPlayers];
+                            allPlayers[i].values[j] = e.target.value;
+                            this.setState({allPlayers});
+                          }}> {this.state.allPlayers[i].values[j]}
+                          </td>
+                        )
+                      })}
+                      <td>0</td>
+                    </tr>
+                  );
+                })}
+              </tbody>
 
-        <button className='btn btn-default'>Compute Winner</button>
+            </table>
+
+            <button className='btn btn-default'>Compute Winner</button>
+          </div>
+        
+        }
 
       </div>
     )
   }
 }
-
-// table: {
-//   piece: {
-//     name: 
-//   }
-// }
-
-/* onChange={ e => {
-  const gameValues = [...this.state.gameValues];
-  gameValues[i][j] = e.target.value;
-  this.setState({
-      gameValues
-  });
-  console.log('this.state.gameValues: ', this.state.gameValues);
-}} */
