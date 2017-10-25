@@ -21,16 +21,10 @@ export default class TemplateRender extends Component {
     return (
       <div className="container-fluid">
 
-
-
-
         <div className='row'>
           <div className="col-md-8 col-md-offset-2">
 
-
-
             <form className="form-horizontal">
-
 
                 <div className="form-group">
                   <label for="templateName" className="col-sm-3 control-label">Name your template:</label>
@@ -69,15 +63,19 @@ export default class TemplateRender extends Component {
             </form>
           </div>
         </div>
-        <div className="row">
+        <div className="row well">
           <div className="col-md-8 col-md-offset-2">
-            <ScoresheetStructure />
-            <button className="btn btn-success">Submit Structure</button>
+            <form className="form-horizontal"> 
+              <ScoresheetStructure />
+              <button className="btn btn-success">Submit Structure</button>
+            </form>
           </div>
         </div>
-        <div className="row">            
+        <div className="row well">            
           <div className="col-md-8 col-md-offset-2">
-            <RelationshipDefinitions />
+            <form className="form-horizontal"> 
+              <RelationshipDefinitions />
+            </form>
           </div>   
         </div>
 
