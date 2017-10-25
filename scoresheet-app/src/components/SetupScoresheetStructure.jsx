@@ -31,7 +31,7 @@ export default class SetupScoresheetStructure extends Component {
           }}>
         </input>
 
-        <button onClick={e => {
+        <button className='btn btn-default' onClick={e => {
           this.props.addColumn(this.props.templateCurrentColumn);
           this.props.updateCurrentColumn('');
         }} >
@@ -59,7 +59,7 @@ export default class SetupScoresheetStructure extends Component {
             }
           }}
         ></textarea>
-        <button onClick={e => {
+        <button className='btn btn-default' onClick={e => {
           this.props.addNoteToTemplate(this.state.extraNotes);
           this.setState({extraNotes: ''});
         }}>

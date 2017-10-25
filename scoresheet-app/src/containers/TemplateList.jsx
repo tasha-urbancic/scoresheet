@@ -25,15 +25,13 @@ const TemplateList = props => {
   return (
     <div className="container">
 
-      <button className='btn btn-default' onClick={e => props.changePage('newScoresheet')}>
-        <FilterLink filter="createtemplate">Make a new ScoreSheet</FilterLink>
-      </button>
+      <p className="text-center">Making board games fun again!</p>
       
       <table className="table table-hover">
 
         <thead>
           <tr>
-            <th>Games: </th>
+            <th>All scoresheets: </th>
             <th />
           </tr>
         </thead>
@@ -42,8 +40,8 @@ const TemplateList = props => {
           {props.templates.map(template => {
             return (
               <tr>
-                <td class="col-xs-10">{template.name}</td>
-                <td class="col-xs-2">
+                <td className="col-xs-10">{template.name}</td>
+                <td className="col-xs-2">
                   <button className='btn btn-default' onClick={e => props.changePage('game')}>Start Game</button>
                 </td>
               </tr>
@@ -52,6 +50,11 @@ const TemplateList = props => {
         </tbody>
 
       </table>
+
+      <button className='btn btn-default' onClick={e => props.changePage('newScoresheet')}>
+        <FilterLink filter="createtemplate">Make a new ScoreSheet</FilterLink>
+      </button>
+
     </div>
   );
 };

@@ -80,7 +80,6 @@ export default class TemplateRender extends Component {
             <RelationshipDefinitions />
           </div>   
         </div>
-
       </div>
     );
   }
