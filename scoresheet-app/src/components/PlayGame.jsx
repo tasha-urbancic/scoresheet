@@ -35,7 +35,6 @@ export default class PlayGame extends Component {
   render() {
     return (
       <div className="container" id='game'>
-
         <form className="form-inline">
           <label className="sr-only" for="inlineFormInput">New Player</label>
           <input type="text" 
@@ -84,8 +83,8 @@ export default class PlayGame extends Component {
                   <td>{player}</td>
                   {this.state.fields.map((piece, j) => {
                     return (
-                      <td contentEditable="true" 
-                      />
+                      <td contentEditable="true">
+                      </td>
                     )
                   })}
                   <td>0</td>

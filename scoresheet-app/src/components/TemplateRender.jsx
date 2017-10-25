@@ -19,40 +19,67 @@ export default class TemplateRender extends Component {
 
   render() {
     return (
-      <div id='create-template'>
+      <div className="container-fluid">
 
-        <h3>Name your template:</h3>
-        <input placeholder="Enter template name"
-          value={this.state.templateName}
-          onChange={e => {
-              this.setState({templateName: e.target.value});
-          }}
-          onKeyDown={e => {
-              if (e.keyCode === 13) {  
-                this.props.renameTemplate(this.state.templateName);
-                this.setState({templateName: ''});
-              }
-          }} 
-        >
-        </input>
-        <button className='btn btn-default' onClick={e => {
-          this.props.renameTemplate(this.state.templateName);
-          this.setState({templateName: ''});
-        }}>
-        Add
-        </button>
 
-        {this.props.templateName !== '' &&
-          <p>
-            The name of your template is {this.props.templateName}.
-          </p>
-        }
 
-        <ScoresheetStructure />
-        <br />
-        <button className='btn btn-default'>Submit Structure</button>
-        <RelationshipDefinitions />
-        <br />
+
+        <div className='row'>
+          <div className="col-md-8 col-md-offset-2">
+
+
+
+            <form className="form-horizontal">
+
+
+                <div className="form-group">
+                  <label for="templateName" className="col-sm-3 control-label">Name your template:</label>
+                  <div className="col-sm-5">
+                    <input type="text" className="form-control" placeholder="Enter template name" id="templateName"
+                      value={this.state.templateName}
+                      onChange={e => {
+                          this.setState({templateName: e.target.value});
+                      }}
+                      onKeyDown={e => {
+                          if (e.keyCode === 13) {  
+                            this.props.renameTemplate(this.state.templateName);
+                            this.setState({templateName: ''});
+                          }
+                      }} 
+                    >
+                    </input>
+                  </div>
+                  <div className="col-sm-4">
+                    <button type="button" className="btn btn-success" onClick={e => {
+                      this.props.renameTemplate(this.state.templateName);
+                      this.setState({templateName: ''});
+                    }}>
+                    Add
+                    </button>
+                  </div>
+                </div>
+
+
+                {this.props.templateName !== '' &&
+                  <p>
+                    The name of your template is {this.props.templateName}.
+                  </p>
+                }
+              
+            </form>
+          </div>
+        </div>
+        <div className="row">
+          <div className="col-md-8 col-md-offset-2">
+            <ScoresheetStructure />
+            <button className="btn btn-success">Submit Structure</button>
+          </div>
+        </div>
+        <div className="row">            
+          <div className="col-md-8 col-md-offset-2">
+            <RelationshipDefinitions />
+          </div>   
+        </div>
       </div>
     );
   }
