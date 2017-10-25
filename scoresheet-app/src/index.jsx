@@ -32,7 +32,6 @@ import App from "./App.jsx";
 import "../../node_modules/bootstrap/dist/css/bootstrap.css";
 import "../../node_modules/bootstrap/dist/css/bootstrap-theme.css";
 
-
 const totalReducer = combineReducers({
   pages,
   createTemplates,
@@ -52,7 +51,8 @@ console.log(store.getState());
 ReactDOM.render(
   <Provider store={store}>
     <Router>
-      <Route path="/:filter?" component={App} />
+      {/* <Route path="/:filter?" component={App} /> */}
+      <App />
     </Router>
   </Provider>,
   document.getElementById("react-root")

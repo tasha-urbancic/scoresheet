@@ -1,11 +1,16 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
+import React, { Component } from "react";
+import { connect } from "react-redux";
+import { BrowserRouter as Route } from "react-router-dom";
 // import { changePage, changeGameID, changeTemplateName } from "../redux/actions/pages";
 
-import { changePage, changeGameID} from "../redux/actions/pages";
-import {changeTemplateName, updateCurrentColumn, addColumn} from "../redux/actions/create-templates";
+import { changePage, changeGameID } from "../redux/actions/pages";
+import {
+  changeTemplateName,
+  updateCurrentColumn,
+  addColumn
+} from "../redux/actions/create-templates";
 
-import TemplateRender from '../components/TemplateRender.jsx';
+import TemplateRender from "../components/TemplateRender.jsx";
 import HomePage from "../components/HomePage.jsx";
 import PlayGamePage from "../containers/PlayGamePage.jsx";
 
@@ -26,9 +31,23 @@ const mapDispatchToProps = {
 };
 
 function Content(props) {
-  if (props.page === 'home') {
+  // return (
+  //   <div>
+  //     <h1>Hello!</h1>
+  //     <Route path="/" component={() => <h1>This is the homepage</h1>} />
+  //     {/* <Route
+  //       path="/createtemplate"
+  //       component={() => <h1>This is the createtemplate page!</h1>}
+  //     /> */}
+  //     <h3>why is this so broken</h3>
+  //   </div>
+  // );
+  if (props.page === "home") {
     return (
       <div>
+        <p>Above route</p>
+        <Route path="/" />
+        <p>Below route</p>
         {/* {props.page}<br></br>
         {props.gameid} */}
         <HomePage
@@ -37,20 +56,22 @@ function Content(props) {
         />
       </div>
     );
-  } else if (props.page === 'newScoresheet') {
+  } else if (props.page === "newScoresheet") {
     return (
-      <TemplateRender 
-        changePage={props.changePage}
-        renameTemplate={props.changeTemplateName}
-        templateName={props.templateName}
-      />
+      <div>
+        <Route path="/createtemplate" />
+        <TemplateRender
+          changePage={props.changePage}
+          renameTemplate={props.changeTemplateName}
+          templateName={props.templateName}
+        />
+      </div>
     );
   } else if (props.page === "game") {
-    return (
-      <PlayGamePage />
-    );
+    return <PlayGamePage />;
   } else {
-    return <div />;
+    console.log("returning empty page");
+    return <div>empty page</div>;
   }
 }
 

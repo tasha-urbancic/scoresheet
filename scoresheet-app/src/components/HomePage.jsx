@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router";
 
 import TemplateList from "../containers/TemplateList.jsx";
 
@@ -7,13 +8,13 @@ import FilterLink from "../containers/FilterLink.jsx";
 export default function HomePage(props) {
   return (
     <div>
-
       <p>Making board games fun again!</p>
-      <button onClick={e => props.changePage('newScoresheet')}>
+      <button onClick={e => props.changePage("newScoresheet")}>
         <FilterLink filter="createtemplate">Make a new ScoreSheet</FilterLink>
       </button>
-      <button onClick={e => props.changePage('game')}>Start Game</button>
-
+      {/* This should probably be rendered in TemplateList */}
+      <button onClick={e => props.changePage("game")}>Start Game</button>
+      {/* <Link to="/createtemplate">CREATE!</Link> */}
       <div className="template-list">
         <TemplateList />
       </div>
