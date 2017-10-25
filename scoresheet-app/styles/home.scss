@@ -1,15 +1,21 @@
+
+$primary-color: #2c7452;
+$font-stack: Helvetica, sans-serif;
+$nav-bar-height: 100px;
+$logo-size: 150px;
+
 h1 {
   color: rebeccapurple;
 }
 
 .navbar {
-  background: #2c7452;
+  background: $primary-color;
   color: black;
-  height: 80px;
-  border-radius: 0;
+  height: $nav-bar-height;
 }
 
 .navbar img {
-  height: 70px;
+  height: $logo-size;
   width: auto;
 }
+
