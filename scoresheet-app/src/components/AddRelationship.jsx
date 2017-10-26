@@ -19,162 +19,189 @@ export default class AddRelationship extends Component {
   constructor(props) {
     super(props);
     this.state= {
-      rules: [{ ...defaultRule }, { ...defaultRule }]
+      rules: [{ ...defaultRule }]
     }
   }
 
   render() {
     return (
       <div>
-          <h4>Add rules:</h4>
+        <label for="templateName" className="col-sm-12 control-label">
+        Add rules:
+        </label>
 
           {this.state.rules.map((rule, i) => {
 
             return (
             
               <div>
+                
+                  {rule.pieces.map((piece, j) => {
+                    return (
+                      <div className="form-group">
+                          
+                          
+                        <div className="col-sm-1">{j !== 0 ? 'and' : null}</div>
+                          
+                          
+                          <div className="col-sm-1">
+                            <select  className="form-control" name="equality" id="equality-dropdown" onChange={ e => {
+                                const rules = [...this.state.rules];
+                                rules[i].pieces[j].equality = e.target.value;
+                                this.setState({
+                                    rules
+                                });
+                              }
+                            }>
+                                <option value="=">=</option>
+                                <option value="&gt;">&gt;</option>
+                                <option value="&lt;">&lt;</option>
+                            </select>
+                          </div>
 
-                {rule.pieces.map((piece, j) => {
+                          <div className="col-sm-5">
+                            <input className="form-control" type="number" placeholder="Number of pieces" onChange={ e => {
+                                const rules = [...this.state.rules];
+                                rules[i].pieces[j].number = e.target.value;
+                                this.setState({
+                                    rules
+                                });
+                              }
+                            }/>
+                          </div>
+
+                          <div className="col-sm-5">
+                            <select className="form-control" name="column-list" id="column-list-dropdown" placeholder="Select a piece" onChange={ e => {
+                                const rules = [...this.state.rules];
+                                rules[i].pieces[j].piece = e.target.value;
+                                this.setState({
+                                    rules
+                                });
+                              }
+                            }>
+                              {this.props.templateColumns.map(function(columnName, i){
+                                return <option>{columnName}</option>;
+                              })}
+                            </select>
+                        </div>
+                      </div>
+                    )
+                  })}
+                  <div className = "form-group">
+                    <div className="col-sm-12">
+                      <button type="button" className="btn btn-success" onClick={e => {
+                          const rules = [...this.state.rules];
+                          rules[i].pieces = [...rules[i].pieces, defaultPiece];
+                          this.setState({
+                            rules
+                          });
+                        }
+                      }>
+                      Add New Piece
+                      </button>
+                  </div>
+                </div>
+
+              <div className="form-group">
+                
+                <div className="col-sm-2 text-center">
+                  <label for="templateName" className="control-label ">
+                    is worth
+                  </label>
+                </div>
+
+                <div className="col-sm-10">
+                  <input className="form-control" type="number" placeholder="How many points?" onChange={ e => {
+                      const rules = [...this.state.rules];
+                      rules[i].value = e.target.value;
+                      this.setState({
+                        rules
+                      });
+                    }
+                  }/>
+                </div>
+
+              </div>
+
+                {rule.additional_operations.map((operation, k) => {
                   return (
-                    <div>
-                      {j !== 0 &&
-                        <p>and</p>
-                      }
 
-                      <select name="equality" id="equality-dropdown" onChange={ e => {
-                          const rules = [...this.state.rules];
-                          rules[i].pieces[j].equality = e.target.value;
-                          this.setState({
-                              rules
-                          });
-                        }
-                      }>
-                          <option value="=">=</option>
-                          <option value="&gt;">&gt;</option>
-                          <option value="&lt;">&lt;</option>
-                      </select>
+                      <div className="form-group">
+                      <div className="col-sm-1">{k !== 0 ? 'and' : null}</div>
 
-                      <input type="number" placeholder="Number of pieces" onChange={ e => {
-                          const rules = [...this.state.rules];
-                          rules[i].pieces[j].number = e.target.value;
-                          this.setState({
-                              rules
-                          });
-                        }
-                      }/>
+                        <div className="col-sm-3">
+                          <select className="form-control" name="column-list" id="column-list-dropdown" onChange={ e => {
+                              const rules = [...this.state.rules];
+                              rules[i].additional_opperations[k].piece = e.target.value;
+                              this.setState({
+                                rules
+                              });
+                            }
+                          }>
+                            {this.props.templateColumns.map(function(columnName, i){
+                              return <option>{columnName}</option>;
+                            })}
+                          </select>
+                        </div>
 
-                      <select name="column-list" id="column-list-dropdown" placeholder="Select a piece" onChange={ e => {
-                          const rules = [...this.state.rules];
-                          rules[i].pieces[j].piece = e.target.value;
-                          this.setState({
-                              rules
-                          });
-                        }
-                      }>
-                        {this.props.templateColumns.map(function(columnName, i){
-                          return <option>{columnName}</option>;
-                        })}
-                      </select>
-                    </div>
+                        <div className="col-sm-4">
+                          <select className="form-control" onChange={ e => {
+                              const rules = [...this.state.rules];
+                              rules[i].additional_opperations[k].operation = e.target.value;
+                              this.setState({
+                                rules
+                              });
+                            }
+                          }>
+                              <option value="+">+</option>
+                              <option value="-">-</option>
+                              <option value="*">*</option>
+                              <option value="/">/</option>
+                              <option value="*">^</option>
+                          </select>
+                        </div>
+
+                        <div className="col-sm-4">
+                          <input className="form-control" type="number" placeholder="Number of pieces" onChange={ e => {
+                              const rules = [...this.state.rules];
+                              rules[i].additional_opperations[k].number = e.target.value;
+                              this.setState({
+                                rules
+                              });
+                            }
+                          }/>
+                        </div>
+                      
+                      </div>
                   )
                 })}
 
-                <button type="button" className="btn btn-success" onClick={e => {
+                <button type="button" className="btn btn-success" onClick={ e => {
                     const rules = [...this.state.rules];
-                    rules[i].pieces = [...rules[i].pieces, defaultPiece];
+                    rules[i].additional_operations = [...rules[i].additional_operations, defaultOperation];
                     this.setState({
                       rules
                     });
                   }
                 }>
-                Add New Piece
+                Add New Operation
                 </button>
-
-              <p>is worth</p>
-              <input type="number" placeholder="How many points?" onChange={ e => {
-                  const rules = [...this.state.rules];
-                  rules[i].value = e.target.value;
-                  this.setState({
-                    rules
-                  });
-                }
-              }/>
-
-              {rule.additional_operations.map((operation, k) => {
-                return (
-                  
-                  <div>
-
-                    {k !== 0 &&
-                      <p>and</p>
-                    }
-
-                    <select name="column-list" id="column-list-dropdown" onChange={ e => {
-                        const rules = [...this.state.rules];
-                        rules[i].additional_opperations[k].piece = e.target.value;
-                        this.setState({
-                          rules
-                        });
-                      }
-                    }>
-                      {this.props.templateColumns.map(function(columnName, i){
-                        return <option>{columnName}</option>;
-                      })}
-                    </select>
-
-                    <select onChange={ e => {
-                        const rules = [...this.state.rules];
-                        rules[i].additional_opperations[k].operation = e.target.value;
-                        this.setState({
-                          rules
-                        });
-                      }
-                    }>
-                        <option>+</option>
-                        <option>-</option>
-                        <option>*</option>
-                        <option>/</option>
-                        <option>^</option>
-                    </select>
-
-                    <input type="number" placeholder="Number of pieces" onChange={ e => {
-                        const rules = [...this.state.rules];
-                        rules[i].additional_opperations[k].number = e.target.value;
-                        this.setState({
-                          rules
-                        });
-                      }
-                    }/>
-                  
-                  </div>
-                )
-              })}
-
-              <button type="button" className="btn btn-success" onClick={ e => {
-                  const rules = [...this.state.rules];
-                  rules[i].additional_operations = [...rules[i].additional_operations, defaultOperation];
-                  this.setState({
-                    rules
-                  });
-                }
-              }>
-              Add New Operation
-              </button>
-
             </div>
           )
         })}
-
-        <button type="button" className="btn btn-success" onClick={e => {
-            const rules = [...this.state.rules];
-            this.setState({rules: [...rules, defaultRule]});
-          }
-        }>Add Rule</button>
-
-        <button type="button" className="btn btn-success" onClick={ e => {
-            this.props.writeRulesIntoTemplate(this.state.rules);
-          }
-        }>Submit Relationships</button>
+        <div className="form-group">
+          <button type="button" className="btn btn-success" onClick={e => {
+              const rules = [...this.state.rules];
+              this.setState({rules: [...rules, defaultRule]});
+            }
+          }>Add Rule</button>
+        </div>
+        <div className="form-group">
+          <button type="button" className="btn btn-success" onClick={ e => {
+              this.props.writeRulesIntoTemplate(this.state.rules);
+            }
+          }>Submit Relationships</button>
+        </div>
 
       </div>
     )
