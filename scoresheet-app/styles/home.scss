@@ -1,75 +1,74 @@
 $primary-color: #2c7452;
-$font-stack: Helvetica,
-sans-serif;
+$font-stack: Helvetica, sans-serif;
 $logo-height: 20px;
 a,
 a:hover {
-    color: black;
-    text-decoration: none;
+  color: black;
+  text-decoration: none;
 }
 
-.navbar-default .navbar-nav>li>a {
-    color: white;
+.navbar-default .navbar-nav > li > a {
+  color: white;
 }
 
 .navbar {
-    background: $primary-color;
-    color: black;
+  background: $primary-color;
+  color: black;
 }
 
 .navbar img {
-    height: $logo-height;
-    width: auto;
-    margin-top: $logo-height*0.75;
+  height: $logo-height;
+  width: auto;
+  margin-top: $logo-height*0.75;
 }
 
 .template-list,
 #game,
 #create-template,
 #landing-page {
-    margin-top: $logo-height*3;
+  margin-top: $logo-height*3;
 }
 
 .table-input {
-    border: none;
+  border: none;
 }
 
 .btn-dark {
-    color: #fff;
-    border: none;
-    border-radius: 0;
-    background-color: $primary-color;
+  color: #fff;
+  border: none;
+  border-radius: 0;
+  background-color: $primary-color;
 }
 
 .btn-dark:hover,
 .btn-dark:focus,
 .btn-dark:active {
-    color: #fff;
-    background-color: $primary-color;
+  color: #fff;
+  background-color: $primary-color;
 }
 
 .btn-light {
-    color: white;
-    border: none;
-    border-radius: 0;
-    background-color: $primary-color;
+  color: white;
+  border: none;
+  border-radius: 0;
+  background-color: $primary-color;
 }
 
 .btn-light:hover,
 .btn-light:focus,
 .btn-light:active {
-    color: white;
-    background-color: $primary-color;
+  color: white;
+  background-color: $primary-color;
 }
 
 .landing-page {
-    // position: relative;
-    // display: table;
-    width: 100%;
-    height: 100%;
-    background: url(../docs/imgs/final3.png) no-repeat center center scroll;
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    -o-background-size: cover;
-    background-size: cover;
+  // position: relative;
+  // display: table;
+  width: 100%;
+  height: 100%;
+  background: url(../docs/imgs/final3.png) no-repeat center center scroll;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
 }

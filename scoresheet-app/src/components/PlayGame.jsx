@@ -1,24 +1,13 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
 
 const defaultPieces = [
-  'yellow card',
-  'red card',
-  'orange card',
-  'blue coin',
-  'green coin',
-  'purple coin'
+  "yellow card",
+  "red card",
+  "orange card",
+  "blue coin",
+  "green coin",
+  "purple coin"
 ];
-
-// let temp = [];
-// this.state.allPlayers.map(i => {
-//   let temp2 = [];
-//   this.state.fields.map(j => {
-//     temp2.push(0);
-//   });
-//   temp.push(temp);
-// })
-
-// const players = ["mary", "max", "rebecca", "felix"];
 
 function createZeroArray(num) {
   let arr = [];
@@ -32,7 +21,7 @@ export default class PlayGame extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      currentPlayer: '',
+      currentPlayer: "",
       allPlayers: [],
       fields: defaultPieces,
       namesCompleted: false
@@ -64,7 +53,7 @@ export default class PlayGame extends Component {
                     });
 
                     this.props.updatePlayers(this.state.allPlayers);
-                    this.setState({ currentPlayer: '' });
+                    this.setState({ currentPlayer: "" });
                   }
                 }}
               />
@@ -78,7 +67,7 @@ export default class PlayGame extends Component {
                   });
 
                   this.props.updatePlayers(this.state.allPlayers);
-                  this.setState({ currentPlayer: '' });
+                  this.setState({ currentPlayer: "" });
                 }}
               >
                 Add
@@ -147,6 +136,8 @@ export default class PlayGame extends Component {
             <button className="btn btn-default">Compute Winner</button>
           </div>
         )}
+        <script src="/socket.io/socket.io.js" />
+        <script>var socket = io();</script>
       </div>
     );
   }
