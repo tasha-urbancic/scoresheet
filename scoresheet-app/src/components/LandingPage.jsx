@@ -10,7 +10,7 @@ export default class LandingPage extends Component {
             <h1>Welcome to our website</h1>
             <br />
             <button className="btn btn-dark btn-lg js-scroll-trigger">
-              <Link to="/templates/new">Start Playing</Link>
+              <Link to="/templates">Start Playing</Link>
             </button>
           </div>
         </header>

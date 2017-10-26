@@ -5,31 +5,35 @@ const queries = require('../queries');
 
 // API request for all templates data (homepage)
 router.get('/', (req, res) => {
-  // res.status(200).json(data);
+  res.status(200).json(data);
 });
 
 router.get('/templates', (req, res) => {
   res.status(200).json(data);
+  // queries.getTemplates().then(templates => {
+  //   res.status(200).json(templates);
+  // });
 });
 
-// API request for Create New Template form data
-router.get('/templates/new', (req, res) => {
-  res.status(200).json({ data });
+// take create-template data and write it into the database as a new template
+router.post('/templates/new', (req, res) => {
+  // res.status(200).json({ data });
 });
+
+// create new game with a template id passed in and pass back a generated game_id
+// reroutes you to get game for that game_id
+router.post('/games/new', (req, res) => {});
 
 // API request for new game start
 router.get('/templates/:templateId/games/:id', (req, res) => {
   // const templateId = req.params.templateId;
   const templateId = 1;
-  // const id = req.params.id * 1;
-
-  // queries.getFields(templateId).then(fields => {
-  //   res.status(200).json(fields);
-  // });
-
-  queries.getTemplates().then(template => {
+  queries.getTemplateRelationshipsOperations(templateId).then(template => {
     res.status(200).json(template);
   });
 });
+
+//save fields to database associated with game_id
+router.post('/templates/:templateId/games/:id', (req, res) => {});
 
 module.exports = router;

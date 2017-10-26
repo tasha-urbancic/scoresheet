@@ -136,7 +136,7 @@ export default class PlayGame extends Component {
               </tbody>
             </table>
 
-            <button className="btn btn-default">Compute Winner</button>
+            <button className="btn btn-default">End Game</button>
           </div>
         )}
         <script src="/socket.io/socket.io.js" />

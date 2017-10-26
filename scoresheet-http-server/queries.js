@@ -15,10 +15,39 @@ module.exports = {
       .select()
       .where('templates.id', templateId);
   },
-  // getTemplateRules: function(templateId) {
-  //   return knex('templates').where('templates.id', templateId);
-  // },
+  getTemplateRelationshipsPieces: function(templateId) {
+    return knex('relationships')
+      .join('templates', 'relationships.template_id', 'templates.id')
+      .where('templates.id', templateId)
+      .join(
+        'individual_piece_relationships',
+        'relationships.id',
+        'individual_piece_relationships.relationship_id'
+      )
+      .join(
+        'pieces',
+        'individual_piece_relationships.id',
+        'pieces.individual_piece_relationship_id'
+      )
+      .join('fields', 'pieces.field_id', 'fields.id');
+  },
+  getTemplateRelationshipsOperations: function(templateId) {
+    return knex('relationships')
+      .join('templates', 'relationships.template_id', 'templates.id')
+      .where('templates.id', templateId)
+      .join(
+        'individual_piece_relationships',
+        'relationships.id',
+        'individual_piece_relationships.relationship_id'
+      )
+      .join(
+        'operations',
+        'individual_piece_relationships.id',
+        'operations.individual_piece_relationship_id'
+      )
+      .join('fields', 'operations.field_id', 'fields.id');
+  },
   getTemplates: function() {
-    return knex('templates').select('name');
+    return knex('name').from('templates');
   }
 };
