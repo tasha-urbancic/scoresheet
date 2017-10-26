@@ -64,7 +64,6 @@ export default class PlayGame extends Component {
                     });
 
                     this.props.updatePlayers(this.state.allPlayers);
-
                     this.setState({ currentPlayer: '' });
                   }
                 }}
@@ -75,11 +74,10 @@ export default class PlayGame extends Component {
                 onClick={e => {
                   this.state.allPlayers.push({
                     name: this.state.currentPlayer,
-                    values: createZeroArray(this.state.defaultPieces.length)
+                    values: createZeroArray(this.state.fields.length)
                   });
 
                   this.props.updatePlayers(this.state.allPlayers);
-
                   this.setState({ currentPlayer: '' });
                 }}
               >
@@ -104,7 +102,7 @@ export default class PlayGame extends Component {
         )}
 
         {this.state.namesCompleted && (
-          <div>
+          <div className="container">
             <table className="table table-bordered">
               <thead>
                 <tr>
@@ -125,15 +123,16 @@ export default class PlayGame extends Component {
                       <td>{playerObj.name}</td>
                       {this.state.fields.map((piece, j) => {
                         return (
-                          <td
-                            contentEditable="true"
-                            onChange={e => {
-                              let allPlayers = [...this.state.allPlayers];
-                              allPlayers[i].values[j] = e.target.value;
-                              this.setState({ allPlayers });
-                            }}
-                          >
-                            {this.state.allPlayers[i].values[j]}
+                          <td>
+                            <input
+                              value={this.state.allPlayers[i].values[j]}
+                              onChange={e => {
+                                let allPlayers = [...this.state.allPlayers];
+                                allPlayers[i].values[j] = e.target.value;
+                                this.setState({ allPlayers });
+                                this.props.updatePlayers(allPlayers);
+                              }}
+                            />
                           </td>
                         );
                       })}
