@@ -3,7 +3,7 @@ import { addTemplate } from './templates';
 
 export function dataFetch() {
   return dispatch => {
-    fetch('http://localhost:8080/api/', {
+    fetch('http://localhost:8080/api/templates', {
       method: 'GET',
       headers: { 'Content-Type': 'application/json' },
       mode: 'cors'
