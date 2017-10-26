@@ -11,6 +11,9 @@ import TemplateRender from '../components/TemplateRender.jsx';
 import HomePage from '../components/HomePage.jsx';
 import PlayGamePage from '../containers/PlayGamePage.jsx';
 
+import NavBar from '../components/NavBar.jsx';
+import Footer from '../components/Footer.jsx';
+
 const mapStateToProps = state => {
   return {
     templateName: state.createTemplates.templateName
@@ -21,29 +24,28 @@ const mapDispatchToProps = {
   changeTemplateName
 };
 class Content extends Component {
-  
-  homePage = () => (
-    <HomePage
-      onKeyDown={this.props.changeGameID}
-    />
-  )
+  homePage = () => <HomePage onKeyDown={this.props.changeGameID} />;
 
   templateRender = () => (
     <TemplateRender
       renameTemplate={this.props.changeTemplateName}
       templateName={this.props.templateName}
     />
-  )
+  );
 
   render() {
     return (
       <main>
-        <Route exact path="/templates" component={ this.homePage }/>
-        <Route path="/templates/new" component={this.templateRender}/>
-        <Route path="/templates/:templateId/games/:id" component={PlayGamePage}/>
+        <NavBar />
+        <Route exact path="/templates" component={this.homePage} />
+        <Route path="/templates/new" component={this.templateRender} />
+        <Route
+          path="/templates/:templateId/games/:id"
+          component={PlayGamePage}
+        />
       </main>
     );
-  };
-};
+  }
+}
 
 export default connect(mapStateToProps, mapDispatchToProps)(Content);
