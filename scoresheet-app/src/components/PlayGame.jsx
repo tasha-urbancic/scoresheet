@@ -125,6 +125,7 @@ export default class PlayGame extends Component {
                         return (
                           <td>
                             <input
+                              className="table-input"
                               value={this.state.allPlayers[i].values[j]}
                               onChange={e => {
                                 let allPlayers = [...this.state.allPlayers];
