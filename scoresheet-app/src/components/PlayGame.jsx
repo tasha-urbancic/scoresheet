@@ -2,6 +2,7 @@ const templateId = 1;
 import React, { Component } from 'react';
 import openSocket from 'socket.io-client';
 const io = openSocket('http://localhost:8080');
+import NavBar from '../components/NavBar.jsx';
 
 const defaultPieces = [
   'yellow card',
