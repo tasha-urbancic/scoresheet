@@ -38,6 +38,10 @@ io.on('connection', client => {
   client.on('disconnect', () => {
     console.log('user has disconnected');
   });
+  client.on('input event', socket => {
+    console.log('input input input!', socket.newInput);
+    client.broadcast.to(socket.room).emit('receive code', socket)
+  });
 });
 
 app.get('/*', (req, res) => {

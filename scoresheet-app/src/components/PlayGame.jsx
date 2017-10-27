@@ -34,20 +34,39 @@ export default class PlayGame extends Component {
 
   componentDidMount() {
     // trigger join room
-    console.log('PROPS: ', this.props);
+    //console.log('PROPS: ', this.props);
     let urlArray = this.props.location.pathname.split('/');
     let gameID = urlArray[urlArray.length - 1];
-    console.log('GAME ID: ', gameID);
+    //console.log('GAME ID: ', gameID);
     io.emit('room', { room: gameID });
   }
 
   componentWillUnmount() {
     // trigger leave room
-    console.log('PROPS ON LEAVE: ', this.props);
+    //console.log('PROPS ON LEAVE: ', this.props);
     let urlArray = this.props.location.pathname.split('/');
     let gameID = urlArray[urlArray.length - 1];
-    console.log('GAME ID ON LEAVE: ', gameID);
+    //console.log('GAME ID ON LEAVE: ', gameID);
     io.emit('leave', { room: gameID });
+  }
+
+  addInputToState(newText) {
+    this.setState({code: newText, user: username})
+    console.log('PROPS ON INPUT: ', this.props);
+    let urlArray = this.props.location.pathname.split('/');
+    let gameID = urlArray[urlArray.length - 1];
+    console.log("USER ", username, " WROTE SOMETHING!");
+    console.log('GAME ID ON INPUT: ', gameID);
+    io.emit('input event', {
+      room: gameID,
+      user: username,
+      newInput: newText
+    }) 
+  }
+
+  updateCodeFromSockets(payload) {
+    this.setState({newInput: payload.newInput})
+    console.log("PAYLOAD", payload.newInput)
   }
 
   render() {
@@ -145,6 +164,11 @@ export default class PlayGame extends Component {
                                   allPlayers[i].values[j] = e.target.value;
                                   this.setState({ allPlayers });
                                   this.props.updatePlayers(allPlayers);
+                                }}
+                                onBlur={e => {
+                                  this.addInputToState(this.props.allPlayers[i].values, this.props.allPlayers[i]);
+                                  console.log("PLAYER: ", this.props.allPlayers[i], "WROTE: ");
+                                  console.log("ONBLUR PROPS: ", this.props.allPlayers[i].values);
                                 }}
                               />
                             </td>
