@@ -1,6 +1,7 @@
-import React, { Component } from 'react';
-
 const templateId = 1;
+import React, { Component } from "react";
+import openSocket from "socket.io-client";
+const io = openSocket("http://localhost:8080");
 
 const defaultPieces = [
   'yellow card',
@@ -28,6 +29,24 @@ export default class PlayGame extends Component {
       fields: defaultPieces,
       namesCompleted: false
     };
+  }
+
+  componentDidMount() {
+    // trigger join room
+    console.log("PROPS: ", this.props);
+    let urlArray = this.props.location.pathname.split("/");
+    let gameID = urlArray[urlArray.length - 1];
+    console.log("GAME ID: ", gameID);
+    io.emit("room", { room: gameID });
+  }
+
+  componentWillUnmount() {
+    // trigger leave room
+    console.log("PROPS ON LEAVE: ", this.props);
+    let urlArray = this.props.location.pathname.split("/");
+    let gameID = urlArray[urlArray.length - 1];
+    console.log("GAME ID ON LEAVE: ", gameID);
+    io.emit("leave", { room: gameID });
   }
 
   render() {
@@ -138,8 +157,6 @@ export default class PlayGame extends Component {
             <button className="btn btn-default">End Game</button>
           </div>
         )}
-        <script src="/socket.io/socket.io.js" />
-        <script>var socket = io();</script>
       </div>
     );
   }

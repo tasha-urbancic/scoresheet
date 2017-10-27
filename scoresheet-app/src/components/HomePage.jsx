@@ -1,7 +1,6 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import TemplateList from '../containers/TemplateList.jsx';
-import FilterLink from '../containers/FilterLink.jsx';
+import React from "react";
+import { Link } from "react-router-dom";
+import TemplateList from "../containers/TemplateList.jsx";
 
 export default function HomePage(props) {
   return (

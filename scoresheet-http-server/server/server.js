@@ -6,16 +6,13 @@ const io = require('socket.io')(http);
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const path = require('path');
-
 const queries = require('../queries');
-// const ENV = process.env.ENV || "development";
-// const knexConfig = require("../knexfile");
-// const knex = require("knex")(knexConfig[ENV]);
-
 const routes = require('./routes');
-
 app.use(function(req, res, next) {
-  res.header('Access-Control-Allow-Origin', '*');
+
+res.header("Access-Control-Allow-Origin", "http://localhost:3000");
+res.header("Access-Control-Allow-Credentials", true);
+
   res.header(
     'Access-Control-Allow-Headers',
     'Origin, X-Requested-With, Content-Type, Accept'
@@ -29,15 +26,23 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use('/api', routes);
 
-app.get('/*', (req, res) => {
-  res.sendFile(path.resolve(__dirname, '../../index.html'));
+io.on("connection", client => {
+  console.log("user has connected");
+  client.on("room", socket => {
+    client.join(socket.room);
+    console.log("user is joining", socket.room);
+  });
+  client.on("leave", socket => {
+    client.leave(socket.room);
+    console.log("user is leaving", socket.room);
+  });
+  client.on("disconnect", () => {
+    console.log("user has disconnected");
+  });
 });
 
-io.on('connection', socket => {
-  console.log('a user connected');
-  socket.on('disconnect', () => {
-    console.log('user disconnected');
-  });
+app.get("/*", (req, res) => {
+  res.sendFile(path.resolve(__dirname, "../../index.html"));
 });
 
 http.listen(PORT, () => {
