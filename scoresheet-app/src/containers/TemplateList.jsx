@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { dataFetch } from '../redux/actions/grab-data';
+// import { dataFetch } from '../redux/actions/grab-data';
 import { Link } from 'react-router-dom';
 
 const mapStateToProps = state => {
@@ -9,9 +9,9 @@ const mapStateToProps = state => {
   };
 };
 
-const mapDispatchToProps = {
-  dataFetch
-};
+// const mapDispatchToProps = {
+//   dataFetch
+// };
 
 const TemplateList = props => {
   return (
@@ -29,10 +29,8 @@ const TemplateList = props => {
               <tr>
                 <td className="col-xs-10">{template.name}</td>
                 <td className="col-xs-2">
-                  <button className='btn btn-default'>
-                    <Link to='/games/:id'>
-                      Start Game
-                    </Link>
+                  <button className="btn btn-default" onClick={e => {}}>
+                    <Link to="/games/:id">Start Game</Link>
                   </button>
                 </td>
               </tr>
@@ -44,4 +42,4 @@ const TemplateList = props => {
   );
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(TemplateList);
+export default connect(mapStateToProps)(TemplateList);

@@ -6,3 +6,5 @@ export function updatePlayers(allPlayers) {
     allPlayers
   };
 }
+
+export function startGame(templateID)
