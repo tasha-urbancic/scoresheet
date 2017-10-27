@@ -1,18 +1,17 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import { Switch, Route, Link } from 'react-router-dom';
-import { changeGameID } from '../redux/actions/pages';
+import React, { Component } from "react";
+import { connect } from "react-redux";
+import { Switch, Route, Link } from "react-router-dom";
+import { changeGameID } from "../redux/actions/pages";
 import {
   changeTemplateName,
   updateCurrentColumn,
   addColumn
-} from '../redux/actions/create-templates';
-import TemplateRender from '../components/TemplateRender.jsx';
-import HomePage from '../components/HomePage.jsx';
-import PlayGamePage from '../containers/PlayGamePage.jsx';
+} from "../redux/actions/create-templates";
+import TemplateRender from "../components/TemplateRender.jsx";
+import HomePage from "../components/HomePage.jsx";
+import PlayGamePage from "../containers/PlayGamePage.jsx";
 
-import NavBar from '../components/NavBar.jsx';
-import Footer from '../components/Footer.jsx';
+import NavBar from "../components/NavBar.jsx";
 
 const mapStateToProps = state => {
   return {
