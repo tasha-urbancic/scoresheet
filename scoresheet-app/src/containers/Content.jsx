@@ -35,10 +35,7 @@ class Content extends Component {
       <main>
         <Route exact path="/templates" component={this.homePage} />
         <Route path="/templates/new" component={this.templateRender} />
-        <Route
-          path="/templates/:templateId/games/:id"
-          component={PlayGamePage}
-        />
+        <Route path="/games/:id" component={PlayGamePage} />
       </main>
     );
   }

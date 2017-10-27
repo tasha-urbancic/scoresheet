@@ -6,10 +6,3 @@ export function addTemplate(template) {
     template
   };
 }
-
-// export function deleteTemplate(id) {
-//   return {
-//     type: DELETE_TEMPLATE,
-//     id
-//   };
-// }

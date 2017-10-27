@@ -20,7 +20,7 @@ app.use(function(req, res, next) {
 });
 
 app.use(express.static('scoresheet-app/build'));
-app.use(bodyParser.json());
+app.use(bodyParser.json({ extended: true }));
 app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use('/api', routes);
