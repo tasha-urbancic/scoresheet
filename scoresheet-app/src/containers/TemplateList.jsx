@@ -30,7 +30,7 @@ const TemplateList = props => {
                 <td className="col-xs-10">{template.name}</td>
                 <td className="col-xs-2">
                   <button className='btn btn-default'>
-                    <Link to='/templates/:templateId/games/:id'>
+                    <Link to='/games/:id'>
                       Start Game
                     </Link>
                   </button>
