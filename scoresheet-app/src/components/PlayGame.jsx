@@ -1,14 +1,15 @@
+const templateId = 1;
 import React, { Component } from "react";
 import openSocket from "socket.io-client";
 const io = openSocket("http://localhost:8080");
 
 const defaultPieces = [
-  "yellow card",
-  "red card",
-  "orange card",
-  "blue coin",
-  "green coin",
-  "purple coin"
+  'yellow card',
+  'red card',
+  'orange card',
+  'blue coin',
+  'green coin',
+  'purple coin'
 ];
 
 function createZeroArray(num) {
@@ -23,7 +24,7 @@ export default class PlayGame extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      currentPlayer: "",
+      currentPlayer: '',
       allPlayers: [],
       fields: defaultPieces,
       namesCompleted: false
@@ -73,7 +74,7 @@ export default class PlayGame extends Component {
                     });
 
                     this.props.updatePlayers(this.state.allPlayers);
-                    this.setState({ currentPlayer: "" });
+                    this.setState({ currentPlayer: '' });
                   }
                 }}
               />
@@ -87,7 +88,7 @@ export default class PlayGame extends Component {
                   });
 
                   this.props.updatePlayers(this.state.allPlayers);
-                  this.setState({ currentPlayer: "" });
+                  this.setState({ currentPlayer: '' });
                 }}
               >
                 Add
@@ -153,7 +154,7 @@ export default class PlayGame extends Component {
               </tbody>
             </table>
 
-            <button className="btn btn-default">Compute Winner</button>
+            <button className="btn btn-default">End Game</button>
           </div>
         )}
       </div>
