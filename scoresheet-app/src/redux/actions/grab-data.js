@@ -21,18 +21,26 @@ export function getTemplates() {
   };
 }
 
-export function startNewGame(templateID) {
+export function postNewGame(templateID) {
+  console.log(templateID);
+  // console.log('barf', JSON.stringify(templateID));
   return dispatch => {
     fetch('http://localhost:8080/api/games/new', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
+      body: { templateID },
       mode: 'cors'
     })
-      .then(res => res.json())
+      .then(res => {
+        console.log('resssss ', res);
+        console.log('resssss stringify ', res);
+        res.json();
+      })
       .then(data => {
+        console.log(data);
         data.map(gameInfo => {
-          console.log('adding gameInfo', gameInfo);
-          dispatch(startGame(gameInfo));
+          console.log('adding gameInfo', gameInfo[0]);
+          dispatch(saveGameInfo(gameInfo[0]));
         });
       })
       .catch(error => {

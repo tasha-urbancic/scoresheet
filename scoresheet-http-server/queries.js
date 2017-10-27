@@ -8,7 +8,7 @@ module.exports = {
   createNewGameInstance: function(templateId) {
     return knex('games')
       .insert({ template_id: templateId })
-      .returning('id', 'template_id');
+      .returning(['id', 'template_id']);
   },
   getFields: function(templateId) {
     return knex('templates')

@@ -1,1 +1,2 @@
 export const UPDATE_PLAYERS = 'UPDATE_PLAYERS';
+export const SAVE_GAME_INFO = 'SAVE_GAME_INFO';

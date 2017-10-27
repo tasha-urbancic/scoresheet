@@ -21,7 +21,7 @@ import pages from './redux/reducers/pages';
 import createTemplates from './redux/reducers/create-templates';
 import templates from './redux/reducers/templates';
 import gamePage from './redux/reducers/game-page';
-import { getTemplates } from './redux/actions/grab-data';
+import { getTemplates, postNewGame } from './redux/actions/grab-data';
 import { composeWithDevTools } from 'redux-devtools-extension';
 
 import App from './App.jsx';

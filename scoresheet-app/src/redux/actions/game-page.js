@@ -1,4 +1,4 @@
-import { UPDATE_PLAYERS } from '../constants/game-page';
+import { UPDATE_PLAYERS, SAVE_GAME_INFO } from '../constants/game-page';
 
 export function updatePlayers(allPlayers) {
   return {
@@ -7,4 +7,9 @@ export function updatePlayers(allPlayers) {
   };
 }
 
-export function startGame(templateID)
+export function saveGameInfo(gameInfo) {
+  return {
+    type: SAVE_GAME_INFO,
+    gameInfo
+  };
+}
