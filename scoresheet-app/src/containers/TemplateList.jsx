@@ -7,7 +7,8 @@ const mapStateToProps = state => {
   return {
     templates: state.templates,
     gameId: state.gamePage.gameInfo.id,
-    templateId: state.gamePage.gameInfo.template_id
+    creatingGame: state.gamePage.creatingGame
+    // templateId: state.gamePage
   };
 };
 
@@ -20,7 +21,8 @@ const mapDispatchToProps = dispatch => ({
 });
 
 const TemplateList = props => {
-  if (props.gameId) return <Redirect to={`games/${props.gameId}`} />;
+  if (props.gameId && props.creatingGame)
+    return <Redirect to={`games/${props.gameId}`} />;
   return (
     <div className="container">
       <table className="table table-hover">
