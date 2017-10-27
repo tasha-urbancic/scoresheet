@@ -22,13 +22,17 @@ router.post('/templates/new', (req, res) => {
 
 // create new game with a template id passed in and pass back a generated game_id
 // reroutes you to get game for that game_id
-router.post('/games/new', (req, res) => {});
+router.post('/games/new', (req, res) => {
+  const templateId = 1;
+  queries.createNewGameInstance(templateId).then(game => {
+    res.status(200).json(game);
+  });
+});
 
 // API request for new game start
-router.get('/templates/:templateId/games/:id', (req, res) => {
+router.get('/games/:id', (req, res) => {
   // const templateId = req.params.templateId;
   const templateId = 1;
-
   // check that operations table isnt blank first
   queries.allTemplateOperations(templateId).then(operations => {
     if (operations.length !== 0) {
@@ -60,6 +64,6 @@ router.get('/templates/:templateId/games/:id', (req, res) => {
 });
 
 //save fields to database associated with game_id
-router.post('/templates/:templateId/games/:id', (req, res) => {});
+router.post('/games/:id', (req, res) => {});
 
 module.exports = router;
