@@ -24,9 +24,9 @@ router.post('/templates/new', (req, res) => {
 // reroutes you to get game for that game_id
 router.post('/games/new', (req, res) => {
   // const templateId = 1;
-  console.log(req.body);
+  console.log(req.body.templateID);
   const templateId = req.body.templateID;
-  queries.createNewGameInstance(templateId).then(game => {
+  queries.createNewGameInstance(templateId).then(([game]) => {
     res.status(200).json(game);
   });
 });
