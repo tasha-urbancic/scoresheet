@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const data = require('./data.json');
+const queries = require('../queries');
 
 // API request for all templates data (homepage)
 router.get('/', (req, res) => {
@@ -8,19 +9,57 @@ router.get('/', (req, res) => {
 });
 
 router.get('/templates', (req, res) => {
-  res.status(200).json(data);
+  // res.status(200).json(data);
+  queries.getTemplates().then(templates => {
+    res.status(200).json(templates);
+  });
 });
 
-// API request for Create New Template form data
-router.get('/templates/new', (req, res) => {
-  res.status(200).json({ data });
+// take create-template data and write it into the database as a new template
+router.post('/templates/new', (req, res) => {
+  // res.status(200).json({ data });
 });
+
+// create new game with a template id passed in and pass back a generated game_id
+// reroutes you to get game for that game_id
+router.post('/games/new', (req, res) => {});
 
 // API request for new game start
 router.get('/templates/:templateId/games/:id', (req, res) => {
-  const id = req.params.id * 1;
-  const template = data.templates.find(template => template.id === id);
-  res.status(200).json({ template });
+  // const templateId = req.params.templateId;
+  const templateId = 1;
+
+  // check that operations table isnt blank first
+  queries.allTemplateOperations(templateId).then(operations => {
+    if (operations.length !== 0) {
+      queries.getFields(templateId).then(fields => {
+        queries.getTemplateInfo(templateId).then(templateInfo => {
+          queries.getTemplateRelationshipsPieces(templateId).then(pieces => {
+            queries
+              .getTemplateRelationshipsOperations(templateId)
+              .then(operations => {
+                res
+                  .status(200)
+                  .json({ fields, templateInfo, pieces, operations });
+              });
+          });
+        });
+      });
+    } else {
+      queries.getFields(templateId).then(fields => {
+        queries.getTemplateInfo(templateId).then(templateInfo => {
+          queries.getTemplateRelationshipsPieces(templateId).then(pieces => {
+            res
+              .status(200)
+              .json({ fields, templateInfo, pieces, operations: [] });
+          });
+        });
+      });
+    }
+  });
 });
+
+//save fields to database associated with game_id
+router.post('/templates/:templateId/games/:id', (req, res) => {});
 
 module.exports = router;

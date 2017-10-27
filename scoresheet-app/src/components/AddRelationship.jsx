@@ -1,26 +1,21 @@
 import React, { Component } from 'react';
 
-const defaultPiece = { equality: '=', number: 1, piece: ''};
+const defaultPiece = { equality: '=', number: 1, piece: '' };
 const defaultValue = 1;
-const defaultOperation = { piece: '', operation: '*', number: 1};
+const defaultOperation = { piece: '', operation: '*', number: 1 };
 
 const defaultRule = {
-  pieces: [
-    {...defaultPiece}
-  ],
+  pieces: [{ ...defaultPiece }],
   value: defaultValue,
-  additional_operations: [
-    {...defaultOperation}
-  ]
-}
+  additional_operations: [{ ...defaultOperation }]
+};
 
 export default class AddRelationship extends Component {
-
   constructor(props) {
     super(props);
-    this.state= {
+    this.state = {
       rules: [{ ...defaultRule }]
-    }
+    };
   }
 
   render() {
@@ -187,7 +182,7 @@ export default class AddRelationship extends Component {
                 Add New Operation
                 </button>
             </div>
-          )
+          );
         })}
         <div className="form-group">
           <button type="button" className="btn btn-success" onClick={e => {
@@ -202,8 +197,7 @@ export default class AddRelationship extends Component {
             }
           }>Submit Relationships</button>
         </div>
-
       </div>
-    )
+    );
   }
 }

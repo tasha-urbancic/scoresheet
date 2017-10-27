@@ -2,15 +2,19 @@
   "templates": [
     {
       "id": 1,
-      "name": "Settlers of Catan"
+      "name": "Settlers of Catan",
+      "footer": "blah blah"
     },
     {
       "id": 2,
-      "name": "Seven Wonders"
+      "name": "Seven Wonders",
+      "footer": "blah blah"
     },
     {
       "id": 3,
-      "name": "Unearth"
+      "name": "Unearth",
+      "footer": "blah blah"
     }
-  ]
+  ],
+  "relationships": []
 }

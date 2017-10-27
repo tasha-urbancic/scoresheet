@@ -1,4 +1,7 @@
-import React, { Component } from 'react';
+const templateId = 1;
+import React, { Component } from "react";
+import openSocket from "socket.io-client";
+const io = openSocket("http://localhost:8080");
 
 const defaultPieces = [
   'yellow card',
@@ -8,17 +11,6 @@ const defaultPieces = [
   'green coin',
   'purple coin'
 ];
-
-// let temp = [];
-// this.state.allPlayers.map(i => {
-//   let temp2 = [];
-//   this.state.fields.map(j => {
-//     temp2.push(0);
-//   });
-//   temp.push(temp);
-// })
-
-// const players = ["mary", "max", "rebecca", "felix"];
 
 function createZeroArray(num) {
   let arr = [];
@@ -37,6 +29,24 @@ export default class PlayGame extends Component {
       fields: defaultPieces,
       namesCompleted: false
     };
+  }
+
+  componentDidMount() {
+    // trigger join room
+    console.log("PROPS: ", this.props);
+    let urlArray = this.props.location.pathname.split("/");
+    let gameID = urlArray[urlArray.length - 1];
+    console.log("GAME ID: ", gameID);
+    io.emit("room", { room: gameID });
+  }
+
+  componentWillUnmount() {
+    // trigger leave room
+    console.log("PROPS ON LEAVE: ", this.props);
+    let urlArray = this.props.location.pathname.split("/");
+    let gameID = urlArray[urlArray.length - 1];
+    console.log("GAME ID ON LEAVE: ", gameID);
+    io.emit("leave", { room: gameID });
   }
 
   render() {
@@ -64,7 +74,6 @@ export default class PlayGame extends Component {
                     });
 
                     this.props.updatePlayers(this.state.allPlayers);
-
                     this.setState({ currentPlayer: '' });
                   }
                 }}
@@ -75,11 +84,10 @@ export default class PlayGame extends Component {
                 onClick={e => {
                   this.state.allPlayers.push({
                     name: this.state.currentPlayer,
-                    values: createZeroArray(this.state.defaultPieces.length)
+                    values: createZeroArray(this.state.fields.length)
                   });
 
                   this.props.updatePlayers(this.state.allPlayers);
-
                   this.setState({ currentPlayer: '' });
                 }}
               >
@@ -104,7 +112,7 @@ export default class PlayGame extends Component {
         )}
 
         {this.state.namesCompleted && (
-          <div>
+          <div className="container">
             <table className="table table-bordered">
               <thead>
                 <tr>
@@ -125,15 +133,17 @@ export default class PlayGame extends Component {
                       <td>{playerObj.name}</td>
                       {this.state.fields.map((piece, j) => {
                         return (
-                          <td
-                            contentEditable="true"
-                            onChange={e => {
-                              let allPlayers = [...this.state.allPlayers];
-                              allPlayers[i].values[j] = e.target.value;
-                              this.setState({ allPlayers });
-                            }}
-                          >
-                            {this.state.allPlayers[i].values[j]}
+                          <td>
+                            <input
+                              className="table-input"
+                              value={this.state.allPlayers[i].values[j]}
+                              onChange={e => {
+                                let allPlayers = [...this.state.allPlayers];
+                                allPlayers[i].values[j] = e.target.value;
+                                this.setState({ allPlayers });
+                                this.props.updatePlayers(allPlayers);
+                              }}
+                            />
                           </td>
                         );
                       })}
@@ -144,7 +154,7 @@ export default class PlayGame extends Component {
               </tbody>
             </table>
 
-            <button className="btn btn-default">Compute Winner</button>
+            <button className="btn btn-default">End Game</button>
           </div>
         )}
       </div>

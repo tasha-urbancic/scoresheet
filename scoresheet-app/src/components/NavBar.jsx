@@ -1,6 +1,7 @@
 // navbar render html here
 
 import React from "react";
+import { Link } from "react-router-dom";
 
 export default function NavBar(props) {
   return (
@@ -9,17 +10,15 @@ export default function NavBar(props) {
         <div id="navbar" className="nav nav-pills flex-column flex-sm-row">
           <ul className="nav navbar-nav">
             <li>
-              <img src="/scoresheet-app/src/img-files/logo-first-draft.png" />
+              <Link to="/">
+                <img src="/scoresheet-app/src/img-files/logo-first-draft.png" />
+              </Link>
             </li>
             <li className="nav-item">
-              <a className="nav-link active" href="#!">
-                Play Games
-              </a>
+              <Link to="/templates">Play Games</Link>
             </li>
             <li className="nav-item">
-              <a className="nav-link active" href="#!">
-                Create New
-              </a>
+              <Link to="/templates/new">Create New</Link>
             </li>
           </ul>
           <form
