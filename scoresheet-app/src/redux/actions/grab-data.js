@@ -1,5 +1,5 @@
 import { addTemplate } from './templates';
-// import { startGame } from './start-game';
+import { saveGameInfo, creatingGame, clearCreatingGame } from './game-page';
 
 export function getTemplates() {
   return dispatch => {
@@ -22,26 +22,29 @@ export function getTemplates() {
 }
 
 export function postNewGame(templateID) {
-  console.log(templateID);
   // console.log('barf', JSON.stringify(templateID));
   return dispatch => {
+    dispatch(creatingGame());
     fetch('http://localhost:8080/api/games/new', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: { templateID },
-      mode: 'cors'
+      mode: 'cors',
+      body: JSON.stringify({ templateID: templateID })
     })
       .then(res => {
-        console.log('resssss ', res);
-        console.log('resssss stringify ', res);
-        res.json();
+        return res.json();
       })
       .then(data => {
         console.log(data);
-        data.map(gameInfo => {
-          console.log('adding gameInfo', gameInfo[0]);
-          dispatch(saveGameInfo(gameInfo[0]));
-        });
+        dispatch(saveGameInfo(data));
+        return Promise.resolve();
+        // data.map(gameInfo => {
+        //   console.log('adding gameInfo', gameInfo);
+        //   dispatch(saveGameInfo(gameInfo));
+        // });
+      })
+      .then(() => {
+        dispatch(clearCreatingGame());
       })
       .catch(error => {
         console.log(error);
