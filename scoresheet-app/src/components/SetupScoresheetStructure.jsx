@@ -13,97 +13,97 @@ export default class SetupScoresheetStructure extends Component {
 
   render() {
     return (
-    <div>
-      <div className="form-group">
-        <label for="templateName" className="col-sm-12 control-label">
-        Add columns:
-        </label>
-      </div>
+      <div>
+        <div className="form-group">
+          <label htmlFor="templateName" className="col-sm-12 control-label">
+            Add columns:
+          </label>
+        </div>
 
-      <div className="form-group">
-        
-        <label for="templateName" className="col-sm-3 control-label">
-          Enter column names:
-        </label>
-        <div className="col-sm-5">
-          <input
-            type="text"
-            className="form-control"
-            placeholder="column name"
-            value={this.props.templateCurrentColumn}
-            onChange={e => {
-              this.props.updateCurrentColumn(e.target.value);
-            }}
-            onKeyDown={e => {
-              if (e.keyCode === 13) {
+        <div className="form-group">
+          <label htmlFor="templateName" className="col-sm-3 control-label">
+            Enter column names:
+          </label>
+          <div className="col-sm-5">
+            <input
+              type="text"
+              className="form-control"
+              placeholder="column name"
+              value={this.props.templateCurrentColumn}
+              onChange={e => {
+                this.props.updateCurrentColumn(e.target.value);
+              }}
+              onKeyDown={e => {
+                if (e.keyCode === 13) {
+                  this.props.addColumn(this.props.templateCurrentColumn);
+                  this.props.updateCurrentColumn('');
+                }
+              }}
+            />
+          </div>
+          <div className="col-sm-4">
+            <button
+              type="button"
+              className="btn btn-success"
+              onClick={e => {
                 this.props.addColumn(this.props.templateCurrentColumn);
                 this.props.updateCurrentColumn('');
-              }
-            }}
-          />
-        </div>
-        <div className="col-sm-4">
-          <button
-            type="button"
-            className="btn btn-success"
-            onClick={e => {
-              this.props.addColumn(this.props.templateCurrentColumn);
-              this.props.updateCurrentColumn('');
-            }}
-          >
-            Add
-          </button>
-        </div>
-      </div>
-
-        
-      <div className="form-group">
-        <div className="col-sm-12">
-          <ul className="col-sm-4 list-group special-list">
-            {this.props.templateColumns.map(function(columnName, i) {
-              return <li className="list-group-item" key={i}>{columnName}</li>;
-            })}
-          </ul>
+              }}
+            >
+              Add
+            </button>
+          </div>
         </div>
 
-      </div>
+        <div className="form-group">
+          <div className="col-sm-12">
+            <ul className="col-sm-4 list-group special-list">
+              {this.props.templateColumns.map(function(columnName, i) {
+                return (
+                  <li className="list-group-item" key={i}>
+                    {columnName}
+                  </li>
+                );
+              })}
+            </ul>
+          </div>
+        </div>
 
-      <div className="form-group">
-
-        <label for="templateName" className="col-sm-3 control-label">
-          Add notes:
-        </label>
-        <div className="col-sm-5">
-          <textarea
-            type="text"
-            className="form-control"
-            placeholder="Extra rules go here..."
-            value={this.state.extraNotes}
-            onChange={e => {
-              this.setState({ extraNotes: e.target.value });
-            }}
-            onKeyDown={e => {
-              if (e.keyCode === 13) {
+        <div className="form-group">
+          <label htmlFor="templateName" className="col-sm-3 control-label">
+            Add notes:
+          </label>
+          <div className="col-sm-5">
+            <textarea
+              type="text"
+              className="form-control"
+              placeholder="Extra rules go here..."
+              value={this.state.extraNotes}
+              onChange={e => {
+                this.setState({ extraNotes: e.target.value });
+              }}
+              onKeyDown={e => {
+                if (e.keyCode === 13) {
+                  this.props.addNoteToTemplate(this.state.extraNotes);
+                  this.setState({ extraNotes: '' });
+                }
+              }}
+            />
+          </div>
+          <div className="col-sm-4">
+            <button
+              type="button"
+              className="btn btn-success"
+              onClick={e => {
                 this.props.addNoteToTemplate(this.state.extraNotes);
                 this.setState({ extraNotes: '' });
-              }
-            }}
-          />
-        </div>
-        <div className="col-sm-4">
-          <button
-            type="button"
-            className="btn btn-success"
-            onClick={e => {
-              this.props.addNoteToTemplate(this.state.extraNotes);
-              this.setState({ extraNotes: '' });
-            }}
-          >
-            Add
-          </button>
+              }}
+            >
+              Add
+            </button>
+          </div>
         </div>
       </div>
-    </div>
     );
   }
 }
