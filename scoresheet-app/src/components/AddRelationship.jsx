@@ -36,10 +36,14 @@ export default class AddRelationship extends Component {
                       <div className="form-group">
                           
                           
-                        <div className="col-sm-1">{j !== 0 ? 'and' : null}</div>
+                        <div className="col-sm-2">
+                          <p for="templateName" className="control-label">
+                            {j !== 0 ? 'and' : null}
+                          </p>
+                        </div>
                           
                           
-                          <div className="col-sm-1">
+                          <div className="col-sm-2">
                             <select  className="form-control" name="equality" id="equality-dropdown" onChange={ e => {
                                 const rules = [...this.state.rules];
                                 rules[i].pieces[j].equality = e.target.value;
@@ -54,8 +58,8 @@ export default class AddRelationship extends Component {
                             </select>
                           </div>
 
-                          <div className="col-sm-5">
-                            <input className="form-control" type="number" placeholder="Number of pieces" onChange={ e => {
+                          <div className="col-sm-4">
+                            <input className="form-control" placeholder="Number of pieces" onChange={ e => {
                                 const rules = [...this.state.rules];
                                 rules[i].pieces[j].number = e.target.value;
                                 this.setState({
@@ -65,7 +69,7 @@ export default class AddRelationship extends Component {
                             }/>
                           </div>
 
-                          <div className="col-sm-5">
+                          <div className="col-sm-3">
                             <select className="form-control" name="column-list" id="column-list-dropdown" placeholder="Select a piece" onChange={ e => {
                                 const rules = [...this.state.rules];
                                 rules[i].pieces[j].piece = e.target.value;
@@ -79,6 +83,12 @@ export default class AddRelationship extends Component {
                               })}
                             </select>
                         </div>
+
+                        <div className="col-sm-1">
+                            <div>
+                            </div>
+                        </div>
+
                       </div>
                     )
                   })}
@@ -100,9 +110,9 @@ export default class AddRelationship extends Component {
               <div className="form-group">
                 
                 <div className="col-sm-2 text-center">
-                  <label for="templateName" className="control-label ">
+                  <p for="templateName" className="control-label">
                     is worth
-                  </label>
+                  </p>
                 </div>
 
                 <div className="col-sm-10">
@@ -122,7 +132,7 @@ export default class AddRelationship extends Component {
                   return (
 
                       <div className="form-group">
-                      <div className="col-sm-1">{k !== 0 ? 'and' : null}</div>
+                        <div className="col-sm-1">{k !== 0 ? 'and' : null}</div>
 
                         <div className="col-sm-3">
                           <select className="form-control" name="column-list" id="column-list-dropdown" onChange={ e => {
@@ -170,32 +180,41 @@ export default class AddRelationship extends Component {
                       </div>
                   )
                 })}
-
-                <button type="button" className="btn btn-success" onClick={ e => {
-                    const rules = [...this.state.rules];
-                    rules[i].additional_operations = [...rules[i].additional_operations, defaultOperation];
-                    this.setState({
-                      rules
-                    });
-                  }
-                }>
-                Add New Operation
-                </button>
+                <div className="form-group">
+                  <div className="col-sm-12">
+                    <button type="button" className="btn btn-success" onClick={ e => {
+                        const rules = [...this.state.rules];
+                        rules[i].additional_operations = [...rules[i].additional_operations, defaultOperation];
+                        this.setState({
+                          rules
+                        });
+                      }
+                    }>
+                    Add New Operation
+                    </button>
+                  </div>
+                </div>
             </div>
           );
         })}
         <div className="form-group">
-          <button type="button" className="btn btn-success" onClick={e => {
-              const rules = [...this.state.rules];
-              this.setState({rules: [...rules, defaultRule]});
-            }
-          }>Add Rule</button>
+          <div className="col-sm-12">
+            <button type="button" className="btn btn-success" onClick={e => {
+                const rules = [...this.state.rules];
+                this.setState({rules: [...rules, defaultRule]});
+              }
+            }>Add Rule
+            </button>
+          </div>
         </div>
         <div className="form-group">
-          <button type="button" className="btn btn-success" onClick={ e => {
-              this.props.writeRulesIntoTemplate(this.state.rules);
-            }
-          }>Submit Relationships</button>
+          <div className="col-sm-12">
+            <button type="button" className="btn btn-success" onClick={ e => {
+                this.props.writeRulesIntoTemplate(this.state.rules);
+              }
+            }>Submit Relationships
+            </button>
+          </div>
         </div>
       </div>
     );

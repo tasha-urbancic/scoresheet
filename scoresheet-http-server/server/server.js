@@ -26,6 +26,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use('/api', routes);
 
 io.on('connection', client => {
+  
   console.log('user has connected');
   client.on('room', socket => {
     client.join(socket.room);
@@ -39,7 +40,7 @@ io.on('connection', client => {
     console.log('user has disconnected');
   });
   client.on('input event', socket => {
-    console.log('input input input!', socket.newInput);
+    console.log('input input input!', socket.newInput, socket.player, socket.room);
     client.broadcast.to(socket.room).emit('receive code', socket)
   });
 });

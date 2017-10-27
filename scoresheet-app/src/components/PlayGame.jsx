@@ -50,22 +50,24 @@ export default class PlayGame extends Component {
     io.emit('leave', { room: gameID });
   }
 
-  addInputToState(newText) {
-    this.setState({code: newText, user: username})
+  addInputToState(newText, player) {
+    this.setState({newText: newText, player: player})
     console.log('PROPS ON INPUT: ', this.props);
     let urlArray = this.props.location.pathname.split('/');
     let gameID = urlArray[urlArray.length - 1];
-    console.log("USER ", username, " WROTE SOMETHING!");
+    console.log("USER ", player, " WROTE SOMETHING!");
     console.log('GAME ID ON INPUT: ', gameID);
     io.emit('input event', {
       room: gameID,
-      user: username,
-      newInput: newText
+      player: player,
+      newText: newText
     }) 
   }
 
-  updateCodeFromSockets(payload) {
-    this.setState({newInput: payload.newInput})
+  updateNewInputFromSockets(payload) {
+    let newInput = payload.newInput;
+    let player = payload.player;
+    this.setState({player : newInput})
     console.log("PAYLOAD", payload.newInput)
   }
 
