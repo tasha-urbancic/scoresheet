@@ -9,10 +9,10 @@ router.get('/', (req, res) => {
 });
 
 router.get('/templates', (req, res) => {
-  res.status(200).json(data);
-  // queries.getTemplates().then(templates => {
-  //   res.status(200).json(templates);
-  // });
+  // res.status(200).json(data);
+  queries.getTemplates().then(templates => {
+    res.status(200).json(templates);
+  });
 });
 
 // take create-template data and write it into the database as a new template
@@ -28,8 +28,34 @@ router.post('/games/new', (req, res) => {});
 router.get('/templates/:templateId/games/:id', (req, res) => {
   // const templateId = req.params.templateId;
   const templateId = 1;
-  queries.getTemplateRelationshipsOperations(templateId).then(template => {
-    res.status(200).json(template);
+
+  // check that operations table isnt blank first
+  queries.allTemplateOperations(templateId).then(operations => {
+    if (operations.length !== 0) {
+      queries.getFields(templateId).then(fields => {
+        queries.getTemplateInfo(templateId).then(templateInfo => {
+          queries.getTemplateRelationshipsPieces(templateId).then(pieces => {
+            queries
+              .getTemplateRelationshipsOperations(templateId)
+              .then(operations => {
+                res
+                  .status(200)
+                  .json({ fields, templateInfo, pieces, operations });
+              });
+          });
+        });
+      });
+    } else {
+      queries.getFields(templateId).then(fields => {
+        queries.getTemplateInfo(templateId).then(templateInfo => {
+          queries.getTemplateRelationshipsPieces(templateId).then(pieces => {
+            res
+              .status(200)
+              .json({ fields, templateInfo, pieces, operations: [] });
+          });
+        });
+      });
+    }
   });
 });
 

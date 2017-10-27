@@ -10,7 +10,7 @@ export function dataFetch() {
     })
       .then(res => res.json())
       .then(data => {
-        data.templates.map(template => {
+        data.map(template => {
           console.log('adding template', template);
           dispatch(addTemplate(template));
         });

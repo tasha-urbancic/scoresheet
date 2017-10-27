@@ -26,7 +26,6 @@ export default class PlayGame extends Component {
       currentPlayer: '',
       allPlayers: [],
       fields: defaultPieces,
-
       namesCompleted: false
     };
   }
