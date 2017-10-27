@@ -9,9 +9,8 @@ const path = require('path');
 const queries = require('../queries');
 const routes = require('./routes');
 app.use(function(req, res, next) {
-
-res.header("Access-Control-Allow-Origin", "http://localhost:3000");
-res.header("Access-Control-Allow-Credentials", true);
+  res.header('Access-Control-Allow-Origin', 'http://localhost:3000');
+  res.header('Access-Control-Allow-Credentials', true);
 
   res.header(
     'Access-Control-Allow-Headers',
@@ -26,23 +25,23 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use('/api', routes);
 
-io.on("connection", client => {
-  console.log("user has connected");
-  client.on("room", socket => {
+io.on('connection', client => {
+  console.log('user has connected');
+  client.on('room', socket => {
     client.join(socket.room);
-    console.log("user is joining", socket.room);
+    console.log('user is joining', socket.room);
   });
-  client.on("leave", socket => {
+  client.on('leave', socket => {
     client.leave(socket.room);
-    console.log("user is leaving", socket.room);
+    console.log('user is leaving', socket.room);
   });
-  client.on("disconnect", () => {
-    console.log("user has disconnected");
+  client.on('disconnect', () => {
+    console.log('user has disconnected');
   });
 });
 
-app.get("/*", (req, res) => {
-  res.sendFile(path.resolve(__dirname, "../../index.html"));
+app.get('/*', (req, res) => {
+  res.sendFile(path.resolve(__dirname, '../../index.html'));
 });
 
 http.listen(PORT, () => {

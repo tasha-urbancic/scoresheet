@@ -1,17 +1,15 @@
-import React, { Component } from "react";
-import { connect } from "react-redux";
-import { Switch, Route, Link } from "react-router-dom";
-import { changeGameID } from "../redux/actions/pages";
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { Switch, Route, Link } from 'react-router-dom';
+import { changeGameID } from '../redux/actions/pages';
 import {
   changeTemplateName,
   updateCurrentColumn,
   addColumn
-} from "../redux/actions/create-templates";
-import TemplateRender from "../components/TemplateRender.jsx";
-import HomePage from "../components/HomePage.jsx";
-import PlayGamePage from "../containers/PlayGamePage.jsx";
-
-import NavBar from "../components/NavBar.jsx";
+} from '../redux/actions/create-templates';
+import TemplateRender from '../components/TemplateRender.jsx';
+import HomePage from '../components/HomePage.jsx';
+import PlayGamePage from '../containers/PlayGamePage.jsx';
 
 const mapStateToProps = state => {
   return {
@@ -35,7 +33,6 @@ class Content extends Component {
   render() {
     return (
       <main>
-        <NavBar />
         <Route exact path="/templates" component={this.homePage} />
         <Route path="/templates/new" component={this.templateRender} />
         <Route
