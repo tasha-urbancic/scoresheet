@@ -58,7 +58,7 @@ export default class AddRelationship extends Component {
                             </select>
                           </div>
 
-                          <div className="col-sm-4">
+                          <div className="col-sm-3">
                             <input className="form-control" placeholder="Number of pieces" onChange={ e => {
                                 const rules = [...this.state.rules];
                                 rules[i].pieces[j].number = e.target.value;
@@ -69,7 +69,7 @@ export default class AddRelationship extends Component {
                             }/>
                           </div>
 
-                          <div className="col-sm-3">
+                          <div className="col-sm-4">
                             <select className="form-control" name="column-list" id="column-list-dropdown" placeholder="Select a piece" onChange={ e => {
                                 const rules = [...this.state.rules];
                                 rules[i].pieces[j].piece = e.target.value;
@@ -83,11 +83,11 @@ export default class AddRelationship extends Component {
                               })}
                             </select>
                         </div>
-
+{/* 
                         <div className="col-sm-1">
                             <div>
                             </div>
-                        </div>
+                        </div> */}
 
                       </div>
                     )
