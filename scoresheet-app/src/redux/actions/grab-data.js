@@ -1,5 +1,5 @@
 import { addTemplate } from './templates';
-import { startGame } from './start-game';
+// import { startGame } from './start-game';
 
 export function getTemplates() {
   return dispatch => {
