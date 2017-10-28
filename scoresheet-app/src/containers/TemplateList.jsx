@@ -1,7 +1,7 @@
-import React, { Component } from "react";
-import { connect } from "react-redux";
-import { postNewGame } from "../redux/actions/grab-data";
-import { Link, Redirect } from "react-router-dom";
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { postNewGame } from '../redux/actions/grab-data';
+import { Link, Redirect } from 'react-router-dom';
 
 const mapStateToProps = state => {
   return {
@@ -15,7 +15,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => ({
   postNewGame: id => {
     const newGameThunk = postNewGame(id);
-    console.log("New Game Thunk", newGameThunk);
+    console.log('New Game Thunk', newGameThunk);
     dispatch(newGameThunk);
   }
 });
@@ -23,7 +23,7 @@ class TemplateList extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      searchString: ""
+      searchString: ''
     };
   }
   render() {
@@ -31,7 +31,7 @@ class TemplateList extends Component {
     if (props.gameId && props.creatingGame)
       return <Redirect to={`games/${props.gameId}`} />;
     return (
-      <div className="container">
+      <div className="container" id="template-list-container">
         <form className="" role="search" method="get" id="searchform" action="">
           <div className="form-group">
             <input

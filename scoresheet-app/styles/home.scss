@@ -1,6 +1,10 @@
 $primary-color: #2c7452;
-$font-stack: Helvetica, sans-serif;
+$font-stack: Arial, Helvetica, sans-serif;
 $logo-height: 20px;
+body {
+  font-family: $font-stack;
+}
+
 a,
 a:hover {
   color: black;
@@ -21,11 +25,16 @@ a:hover {
   width: auto;
 }
 
-.template-list,
+#template-list-container,
+#game {
+  background-color: white;
+}
+
+#template-list,
 #game,
 #create-template,
 #landing-page {
-  margin-top: $logo-height*3;
+  margin-top: $logo-height*4;
 }
 
 ul.special-list {
@@ -48,7 +57,7 @@ ul.special-list {
 
 html {
   background: linear-gradient(160deg, $primary-color 17%, white 45%);
-  height: 1000px;
+  height: 2000px;
 }
 
 body {
