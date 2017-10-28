@@ -19,7 +19,6 @@ a:hover {
 .navbar img {
   height: $logo-height;
   width: auto;
-  margin-top: $logo-height*0.75;
 }
 
 .template-list,
@@ -31,10 +30,6 @@ a:hover {
 
 ul.special-list {
   box-shadow: none;
-}
-
-.table-input {
-  border: none;
 }
 
 .btn-dark {
@@ -75,4 +70,13 @@ body {
   height: 100px;
   width: auto;
   display: inline-block;
+}
+
+.enter-name {
+  margin: 4em 0em;
+  margin-left: 15px;
+}
+
+.table-input {
+  border: none;
 }

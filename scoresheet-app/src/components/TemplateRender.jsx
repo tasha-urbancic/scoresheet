@@ -2,17 +2,17 @@
 // to be exported to the view template page, and
 // the gameplay page
 
-import React, { Component } from 'react';
-import AddRelationship from './AddRelationship.jsx';
-import ScoresheetStructure from '../containers/ScoresheetStructure.jsx';
-import RelationshipDefinitions from '../containers/RelationshipDefinitions.jsx';
-import NavBar from '../components/NavBar.jsx';
+import React, { Component } from "react";
+import AddRelationship from "./AddRelationship.jsx";
+import ScoresheetStructure from "../containers/ScoresheetStructure.jsx";
+import RelationshipDefinitions from "../containers/RelationshipDefinitions.jsx";
+import NavBar from "../components/NavBar.jsx";
 
 export default class TemplateRender extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      templateName: ''
+      templateName: ""
     };
   }
 
@@ -25,7 +25,7 @@ export default class TemplateRender extends Component {
             <div className="col-md-8 col-md-offset-2">
               <div className="form-group">
                 <label
-                  htmlhtmlFor="templateName"
+                  htmlFor="templateName"
                   className="col-sm-3 control-label"
                 >
                   Name your template:
@@ -43,7 +43,7 @@ export default class TemplateRender extends Component {
                     onKeyDown={e => {
                       if (e.keyCode === 13) {
                         this.props.renameTemplate(this.state.templateName);
-                        this.setState({ templateName: '' });
+                        this.setState({ templateName: "" });
                       }
                     }}
                   />
@@ -54,14 +54,14 @@ export default class TemplateRender extends Component {
                     className="btn btn-default"
                     onClick={e => {
                       this.props.renameTemplate(this.state.templateName);
-                      this.setState({ templateName: '' });
+                      this.setState({ templateName: "" });
                     }}
                   >
                     Add
                   </button>
                 </div>
               </div>
-              {this.props.templateName !== '' && (
+              {this.props.templateName !== "" && (
                 <div htmlFor="templateName" className="col-sm-12 control-label">
                   <h4>
                     The name of your template is {this.props.templateName}.

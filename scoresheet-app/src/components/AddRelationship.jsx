@@ -1,8 +1,8 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
 
-const defaultPiece = { equality: '=', number: 1, piece: '' };
+const defaultPiece = { equality: "=", number: 1, piece: "" };
 const defaultValue = 1;
-const defaultOperation = { piece: '', operation: '*', number: 1 };
+const defaultOperation = { piece: "", operation: "*", number: 1 };
 
 const defaultRule = {
   pieces: [{ ...defaultPiece }],
@@ -31,7 +31,7 @@ export default class AddRelationship extends Component {
               {rule.pieces.map((piece, j) => {
                 return (
                   <div className="form-group">
-                    <div className="col-sm-1">{j !== 0 ? 'and' : null}</div>
+                    <div className="col-sm-1">{j !== 0 ? "and" : null}</div>
 
                     <div className="col-sm-1">
                       <select
@@ -136,7 +136,7 @@ export default class AddRelationship extends Component {
               {rule.additional_operations.map((operation, k) => {
                 return (
                   <div className="form-group">
-                    <div className="col-sm-1">{k !== 0 ? 'and' : null}</div>
+                    <div className="col-sm-1">{k !== 0 ? "and" : null}</div>
 
                     <div className="col-sm-3">
                       <select

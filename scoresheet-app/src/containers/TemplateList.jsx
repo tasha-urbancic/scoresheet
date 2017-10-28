@@ -1,7 +1,7 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import { postNewGame } from '../redux/actions/grab-data';
-import { Link, Redirect } from 'react-router-dom';
+import React, { Component } from "react";
+import { connect } from "react-redux";
+import { postNewGame } from "../redux/actions/grab-data";
+import { Link, Redirect } from "react-router-dom";
 
 const mapStateToProps = state => {
   return {
@@ -15,7 +15,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => ({
   postNewGame: id => {
     const newGameThunk = postNewGame(id);
-    console.log('New Game Thunk', newGameThunk);
+    console.log("New Game Thunk", newGameThunk);
     dispatch(newGameThunk);
   }
 });
@@ -35,7 +35,7 @@ const TemplateList = props => {
         <tbody>
           {props.templates.map(template => {
             return (
-              <tr>
+              <tr key={template.id}>
                 <td className="col-xs-10">{template.name}</td>
                 <td className="col-xs-2">
                   <button

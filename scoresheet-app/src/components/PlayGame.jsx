@@ -76,7 +76,7 @@ export default class PlayGame extends Component {
 
   render() {
     return (
-      <div>
+      <div id="gamepage">
         <NavBar />
         <div className="container" id="game">
           <div>
@@ -86,8 +86,8 @@ export default class PlayGame extends Component {
               </label>
               <input
                 type="text"
-                className="form-control mb-2 mr-sm-2 mb-sm-0"
-                placeholder="enter new player"
+                className="form-control mb-2 mr-sm-2 mb-sm-0 enter-name"
+                placeholder="Enter new player"
                 value={this.state.currentPlayer}
                 onChange={e => {
                   this.setState({ currentPlayer: e.target.value });
@@ -147,7 +147,7 @@ export default class PlayGame extends Component {
                         return (
                           <td key={piece}>
                             <input
-                              className="table-input"
+                              className="table-input form-control"
                               value={this.state.allPlayers[i].values[j]}
                               onChange={e => {
                                 let allPlayers = [...this.state.allPlayers];
