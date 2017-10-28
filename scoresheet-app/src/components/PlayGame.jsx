@@ -30,6 +30,10 @@ export default class PlayGame extends Component {
       fields: defaultPieces,
       namesCompleted: false
     };
+
+    io.on("sending new state", () => {
+      console.log("new state received");
+    });
   }
 
   componentDidMount() {
@@ -48,6 +52,11 @@ export default class PlayGame extends Component {
     let gameID = urlArray[urlArray.length - 1];
     console.log("GAME ID ON LEAVE: ", gameID);
     io.emit("leave", { room: gameID });
+  }
+
+  updateAllPlayersWithNewInput(tableState) {
+    console.log("table state has changed");
+    io.emit("new input added", { newState: tableState });
   }
 
   render() {
@@ -105,7 +114,7 @@ export default class PlayGame extends Component {
                   <td>Players</td>
 
                   {this.state.fields.map(piece => {
-                    return <td>{piece}</td>;
+                    return <td key={piece}>{piece}</td>;
                   })}
 
                   <td>Total Score</td>
@@ -115,11 +124,11 @@ export default class PlayGame extends Component {
               <tbody>
                 {this.props.allPlayers.map((playerObj, i) => {
                   return (
-                    <tr>
+                    <tr key={playerObj.name}>
                       <td>{playerObj.name}</td>
                       {this.state.fields.map((piece, j) => {
                         return (
-                          <td>
+                          <td key={piece}>
                             <input
                               className="table-input"
                               value={this.state.allPlayers[i].values[j]}
@@ -128,6 +137,7 @@ export default class PlayGame extends Component {
                                 allPlayers[i].values[j] = e.target.value;
                                 this.setState({ allPlayers });
                                 this.props.updatePlayers(allPlayers);
+                                updateAllPlayersWithNewInput();
                               }}
                             />
                           </td>
