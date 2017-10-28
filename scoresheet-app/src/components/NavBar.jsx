@@ -21,24 +21,6 @@ export default function NavBar(props) {
               <Link to="/templates/new">Create New</Link>
             </li>
           </ul>
-          <form
-            className="navbar-form navbar-right"
-            role="search"
-            method="get"
-            id="searchform"
-            action=""
-          >
-            <div className="form-group">
-              <input
-                name="s"
-                id="s"
-                type="text"
-                className="search-query form-control"
-                autoComplete="off"
-                placeholder="Search..."
-              />
-            </div>
-          </form>
         </div>
       </div>
     </div>
