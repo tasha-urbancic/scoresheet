@@ -5,6 +5,11 @@ const knex = require('knex')(knexConfig[ENV]);
 const knexLogger = require('knex-logger');
 
 module.exports = {
+  createNewGameInstance: function(templateId) {
+    return knex('games')
+      .insert({ template_id: templateId })
+      .returning(['id', 'template_id']);
+  },
   getFields: function(templateId) {
     return knex('templates')
       .join('fields', 'templates.id', 'fields.template_id')

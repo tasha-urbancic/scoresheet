@@ -7,12 +7,12 @@ export default class LandingPage extends Component {
       <div id="landing-page">
         <div>
           <img
-            src="../../docs/imgs/logo-first-draft.png"
+            src="/scoresheet-app/docs/imgs/logo-first-draft.png"
             className="landing-page-logo"
           />
         </div>
         <img
-          src="../../docs/imgs/notepad.png"
+          src="/scoresheet-app/docs/imgs/notepad.png"
           className="landing-page-notepad"
         />
         <div className="landing-page-btn">
