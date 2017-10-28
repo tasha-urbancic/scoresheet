@@ -1,16 +1,16 @@
 const templateId = 1;
-import React, { Component } from 'react';
-import openSocket from 'socket.io-client';
-const io = openSocket('http://localhost:8080');
-import NavBar from '../components/NavBar.jsx';
+import React, { Component } from "react";
+import openSocket from "socket.io-client";
+const io = openSocket("http://localhost:8080");
+import NavBar from "../components/NavBar.jsx";
 
 const defaultPieces = [
-  'yellow card',
-  'red card',
-  'orange card',
-  'blue coin',
-  'green coin',
-  'purple coin'
+  "yellow card",
+  "red card",
+  "orange card",
+  "blue coin",
+  "green coin",
+  "purple coin"
 ];
 
 function createZeroArray(num) {
@@ -25,7 +25,7 @@ export default class PlayGame extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      currentPlayer: '',
+      currentPlayer: "",
       allPlayers: [],
       fields: defaultPieces,
       namesCompleted: false
@@ -34,20 +34,20 @@ export default class PlayGame extends Component {
 
   componentDidMount() {
     // trigger join room
-    console.log('PROPS: ', this.props);
-    let urlArray = this.props.location.pathname.split('/');
+    console.log("PROPS: ", this.props);
+    let urlArray = this.props.location.pathname.split("/");
     let gameID = urlArray[urlArray.length - 1];
-    console.log('GAME ID: ', gameID);
-    io.emit('room', { room: gameID });
+    console.log("GAME ID: ", gameID);
+    io.emit("room", { room: gameID });
   }
 
   componentWillUnmount() {
     // trigger leave room
-    console.log('PROPS ON LEAVE: ', this.props);
-    let urlArray = this.props.location.pathname.split('/');
+    console.log("PROPS ON LEAVE: ", this.props);
+    let urlArray = this.props.location.pathname.split("/");
     let gameID = urlArray[urlArray.length - 1];
-    console.log('GAME ID ON LEAVE: ', gameID);
-    io.emit('leave', { room: gameID });
+    console.log("GAME ID ON LEAVE: ", gameID);
+    io.emit("leave", { room: gameID });
   }
 
   render() {
@@ -76,7 +76,7 @@ export default class PlayGame extends Component {
                     });
 
                     this.props.updatePlayers(this.state.allPlayers);
-                    this.setState({ currentPlayer: '' });
+                    this.setState({ currentPlayer: "" });
                   }
                 }}
               />
@@ -90,7 +90,7 @@ export default class PlayGame extends Component {
                   });
 
                   this.props.updatePlayers(this.state.allPlayers);
-                  this.setState({ currentPlayer: '' });
+                  this.setState({ currentPlayer: "" });
                 }}
               >
                 Add
