@@ -7,7 +7,7 @@ const defaultOperation = { piece: '', operation: '*', number: 1 };
 const defaultRule = {
   pieces: [{ ...defaultPiece }],
   value: defaultValue,
-  additional_operations: [{ ...defaultOperation }]
+  additional_operations: []
 };
 
 export default class AddRelationship extends Component {

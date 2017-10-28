@@ -59,6 +59,10 @@ router.post('/templates/new', (req, res) => {
                       console.log('completed piece', arr[0].id);
                     });
                 }, this);
+                console.log(
+                  'length of operations',
+                  rule.additional_operations.length
+                );
                 if (rule.additional_operations.length !== 0) {
                   rule.additional_operations.forEach(function(operation) {
                     const indexMatch = findIndexMatch(
