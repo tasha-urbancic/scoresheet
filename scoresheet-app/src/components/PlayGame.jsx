@@ -10,8 +10,7 @@ const defaultPieces = [
   'orange card',
   'blue coin',
   'green coin',
-  'purple coin',
-  'total'
+  'purple coin'
 ];
 
 function createZeroArray(num) {
@@ -73,7 +72,7 @@ export default class PlayGame extends Component {
                   if (e.keyCode === 13) {
                     this.state.allPlayers.push({
                       name: this.state.currentPlayer,
-                      values: createZeroArray(this.state.fields.length + 1)
+                      values: createZeroArray(this.state.fields.length)
                     });
 
                     this.props.updatePlayers(this.state.allPlayers);
@@ -87,7 +86,7 @@ export default class PlayGame extends Component {
                 onClick={e => {
                   this.state.allPlayers.push({
                     name: this.state.currentPlayer,
-                    values: createZeroArray(this.state.fields.length + 1)
+                    values: createZeroArray(this.state.fields.length)
                   });
 
                   this.props.updatePlayers(this.state.allPlayers);
