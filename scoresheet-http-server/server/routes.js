@@ -45,31 +45,38 @@ router.post('/templates/new', (req, res) => {
               )
               .then(IPRId => {
                 rule.pieces.forEach(function(piece) {
-                  const indexMatch = findIndexMatch(
-                    piece.field_id,
-                    arrayOfFields
-                  );
+                  const indexMatch = findIndexMatch(piece.piece, arrayOfFields);
                   const fieldId = arrayOfFieldIndicies[indexMatch];
-                  queries.createNewPieceInstance(
-                    IPRId[0].id,
-                    fieldId,
-                    piece.equality,
-                    piece.number
-                  );
+                  console.log('fieldId piece', fieldId);
+                  queries
+                    .createNewPieceInstance(
+                      IPRId[0].id,
+                      fieldId,
+                      piece.equality,
+                      piece.number
+                    )
+                    .then(arr => {
+                      console.log('completed piece', arr[0].id);
+                    });
                 }, this);
                 if (rule.additional_operations.length !== 0) {
                   rule.additional_operations.forEach(function(operation) {
                     const indexMatch = findIndexMatch(
-                      operation.field_id,
+                      operation.piece,
                       arrayOfFields
                     );
                     const fieldId = arrayOfFieldIndicies[indexMatch];
-                    queries.createNewOperationInstance(
-                      IPRId[0].id,
-                      fieldId,
-                      operation.operation,
-                      operation.number
-                    );
+                    console.log('fieldId operations', fieldId);
+                    queries
+                      .createNewOperationInstance(
+                        IPRId[0].id,
+                        fieldId,
+                        operation.operation,
+                        operation.number
+                      )
+                      .then(arr => {
+                        console.log('completed operation', arr[0].id);
+                      });
                   }, this);
                 }
               });
@@ -130,8 +137,8 @@ module.exports = router;
 
 function findIndexMatch(name, arrNames) {
   for (var i = 0; i < arrNames.length; i++) {
-    if (arrNames === name) {
-      return parseInt(i);
+    if (arrNames[i] === name) {
+      return i;
     }
   }
 }

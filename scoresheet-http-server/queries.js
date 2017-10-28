@@ -26,20 +26,24 @@ module.exports = {
       .returning(['id']);
   },
   createNewPieceInstance: function(IPRId, fieldId, equality, number) {
-    return knex('pieces').insert({
-      individual_piece_relationship_id: IPRId,
-      field_id: fieldId,
-      equality: equality,
-      number: number
-    });
+    return knex('pieces')
+      .insert({
+        individual_piece_relationship_id: IPRId,
+        field_id: fieldId,
+        equality: equality,
+        number: number
+      })
+      .returning(['id']);
   },
   createNewOperationInstance: function(IPRId, fieldId, operation, number) {
-    return knex('operations').insert({
-      individual_piece_relationship_id: IPRId,
-      field_id: fieldId,
-      operation: operation,
-      number: number
-    });
+    return knex('operations')
+      .insert({
+        individual_piece_relationship_id: IPRId,
+        field_id: fieldId,
+        operator: operation,
+        number: number
+      })
+      .returning(['id']);
   },
   createNewGameInstance: function(templateId) {
     return knex('games')
