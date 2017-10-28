@@ -64,6 +64,16 @@ export default class PlayGame extends Component {
     io.emit("new input added", { room: gameID, newState: tableState });
   }
 
+  calculateScore(playerToUpdate) {
+    console.log(playerToUpdate);
+    let totalScore = 0;
+    playerToUpdate.forEach(i => {
+      totalScore += i;
+    });
+    console.log(totalScore);
+    return totalScore;
+  }
+
   render() {
     return (
       <div>
@@ -86,7 +96,8 @@ export default class PlayGame extends Component {
                   if (e.keyCode === 13) {
                     this.state.allPlayers.push({
                       name: this.state.currentPlayer,
-                      values: createZeroArray(this.state.fields.length)
+                      values: createZeroArray(this.state.fields.length),
+                      score: 0
                     });
                     this.props.updatePlayers(this.state.allPlayers);
                     this.setState({ currentPlayer: "" });
@@ -100,7 +111,8 @@ export default class PlayGame extends Component {
                 onClick={e => {
                   this.state.allPlayers.push({
                     name: this.state.currentPlayer,
-                    values: createZeroArray(this.state.fields.length)
+                    values: createZeroArray(this.state.fields.length),
+                    score: 0
                   });
                   this.props.updatePlayers(this.state.allPlayers);
                   this.setState({ currentPlayer: "" });
@@ -139,7 +151,16 @@ export default class PlayGame extends Component {
                               value={this.state.allPlayers[i].values[j]}
                               onChange={e => {
                                 let allPlayers = [...this.state.allPlayers];
-                                allPlayers[i].values[j] = e.target.value;
+                                allPlayers[i].values[j] =
+                                  Number(e.target.value) || 0;
+                                console.log(
+                                  "this player updated: ",
+                                  allPlayers[i]
+                                );
+                                allPlayers[i].score = this.calculateScore(
+                                  allPlayers[i].values
+                                );
+
                                 this.setState({ allPlayers });
                                 this.props.updatePlayers(allPlayers);
                                 this.updateAllPlayersWithNewInput(allPlayers);
@@ -148,7 +169,7 @@ export default class PlayGame extends Component {
                           </td>
                         );
                       })}
-                      <td>0</td>
+                      <td>{playerObj.score}</td>
                     </tr>
                   );
                 })}
