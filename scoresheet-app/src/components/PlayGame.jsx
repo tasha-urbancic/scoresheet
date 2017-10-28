@@ -31,8 +31,11 @@ export default class PlayGame extends Component {
       namesCompleted: false
     };
 
-    io.on("sending new state", () => {
+    io.on("sending new state", newState => {
       console.log("new state received");
+      console.log(newState);
+      this.setState({ allPlayers: newState.newState });
+      this.props.updatePlayers(newState.newState);
     });
   }
 
@@ -56,7 +59,9 @@ export default class PlayGame extends Component {
 
   updateAllPlayersWithNewInput(tableState) {
     console.log("table state has changed");
-    io.emit("new input added", { newState: tableState });
+    let urlArray = this.props.location.pathname.split("/");
+    let gameID = urlArray[urlArray.length - 1];
+    io.emit("new input added", { room: gameID, newState: tableState });
   }
 
   render() {
@@ -83,9 +88,9 @@ export default class PlayGame extends Component {
                       name: this.state.currentPlayer,
                       values: createZeroArray(this.state.fields.length)
                     });
-
                     this.props.updatePlayers(this.state.allPlayers);
                     this.setState({ currentPlayer: "" });
+                    this.updateAllPlayersWithNewInput(this.state.allPlayers);
                   }
                 }}
               />
@@ -97,9 +102,9 @@ export default class PlayGame extends Component {
                     name: this.state.currentPlayer,
                     values: createZeroArray(this.state.fields.length)
                   });
-
                   this.props.updatePlayers(this.state.allPlayers);
                   this.setState({ currentPlayer: "" });
+                  this.updateAllPlayersWithNewInput(this.state.allPlayers);
                 }}
               >
                 Add
@@ -137,7 +142,7 @@ export default class PlayGame extends Component {
                                 allPlayers[i].values[j] = e.target.value;
                                 this.setState({ allPlayers });
                                 this.props.updatePlayers(allPlayers);
-                                updateAllPlayersWithNewInput();
+                                this.updateAllPlayersWithNewInput(allPlayers);
                               }}
                             />
                           </td>

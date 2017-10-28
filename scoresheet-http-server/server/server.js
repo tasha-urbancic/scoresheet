@@ -33,7 +33,10 @@ io.on("connection", client => {
   });
   client.on("new input added", socket => {
     console.log("socket has received new input from a user");
-    client.broadcast.to(socket.room).emit("sending new state");
+    console.log(socket.newState);
+    client.broadcast
+      .to(socket.room)
+      .emit("sending new state", { newState: socket.newState });
   });
   client.on("leave", socket => {
     client.leave(socket.room);
