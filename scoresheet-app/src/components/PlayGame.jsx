@@ -139,8 +139,6 @@ export default class PlayGame extends Component {
                 })}
               </tbody>
             </table>
-
-            <button className="btn btn-default">End Game</button>
           </div>
         </div>
       </div>
