@@ -44,7 +44,7 @@ export default class SetupScoresheetStructure extends Component {
           <div className="col-sm-4">
             <button
               type="button"
-              className="btn btn-success"
+              className="btn btn-default"
               onClick={e => {
                 this.props.addColumn(this.props.templateCurrentColumn);
                 this.props.updateCurrentColumn('');
@@ -93,7 +93,7 @@ export default class SetupScoresheetStructure extends Component {
           <div className="col-sm-4">
             <button
               type="button"
-              className="btn btn-success"
+              className="btn btn-default"
               onClick={e => {
                 this.props.addNoteToTemplate(this.state.extraNotes);
                 this.setState({ extraNotes: '' });

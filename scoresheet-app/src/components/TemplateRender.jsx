@@ -25,7 +25,7 @@ export default class TemplateRender extends Component {
             <div className="col-md-8 col-md-offset-2">
               <div className="form-group">
                 <label
-                  htmlFor="templateName"
+                  htmlhtmlFor="templateName"
                   className="col-sm-3 control-label"
                 >
                   Name your template:
@@ -51,7 +51,7 @@ export default class TemplateRender extends Component {
                 <div className="col-sm-4">
                   <button
                     type="button"
-                    className="btn btn-success"
+                    className="btn btn-default"
                     onClick={e => {
                       this.props.renameTemplate(this.state.templateName);
                       this.setState({ templateName: '' });
@@ -62,7 +62,7 @@ export default class TemplateRender extends Component {
                 </div>
               </div>
               {this.props.templateName !== '' && (
-                <div for="templateName" className="col-sm-12 control-label">
+                <div htmlFor="templateName" className="col-sm-12 control-label">
                   <h4>
                     The name of your template is {this.props.templateName}.
                   </h4>
@@ -72,18 +72,25 @@ export default class TemplateRender extends Component {
           </div>
           <div className="row well">
             <div className="col-md-8 col-md-offset-2">
-              <div class="form-horizontal">
+              <div className="form-horizontal">
                 <ScoresheetStructure />
               </div>
               <div className="col-sm-12">
-                <button className="btn btn-success">Submit Structure</button>
+                <button className="btn btn-default">Submit Structure</button>
               </div>
             </div>
           </div>
           <div className="row well">
             <div className="col-md-8 col-md-offset-2">
-              <div class="form-horizontal">
+              <div className="form-horizontal">
                 <RelationshipDefinitions />
+              </div>
+            </div>
+          </div>
+          <div className="row well">
+            <div className="col-md-8 col-md-offset-2">
+              <div className="form-horizontal">
+                <button className="btn btn-default">Submit Template</button>
               </div>
             </div>
           </div>

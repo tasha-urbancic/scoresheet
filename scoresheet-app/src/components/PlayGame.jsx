@@ -145,8 +145,3 @@ export default class PlayGame extends Component {
     );
   }
 }
-
-{
-  /* <h3>Template ID: {match.params.templateId}</h3>
-<h3>Game ID: {match.params.id}</h3> */
-}
