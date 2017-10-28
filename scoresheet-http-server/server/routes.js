@@ -17,7 +17,65 @@ router.get('/templates', (req, res) => {
 
 // take create-template data and write it into the database as a new template
 router.post('/templates/new', (req, res) => {
+  templateRules = req.body.templateRules;
+  templateFields = req.body.templateColumns;
+  templateNote = req.body.templateNote;
+  templateName = req.body.templateName;
   // res.status(200).json({ data });
+  queries
+    .createNewTemplateInstance(templateName, templateNote)
+    .then(templateId => {
+      templateId = templateId[0].id;
+      let arrayOfFields = [];
+      let arrayOfFieldIndicies = [];
+      templateFields.forEach(function(field) {
+        queries.createTemplateField(field, templateId).then(arrFields => {
+          arrayOfFields.push(arrFields[0].name);
+          arrayOfFieldIndicies.push(arrFields[0].id);
+        });
+      }, this);
+      templateRules.forEach(function(rule) {
+        queries
+          .createNewRelationshipInstance(templateId)
+          .then(relationshipId => {
+            queries
+              .createNewPieceRelationshipInstance(
+                relationshipId[0].id,
+                rule.value
+              )
+              .then(IPRId => {
+                rule.pieces.forEach(function(piece) {
+                  const indexMatch = findIndexMatch(
+                    piece.field_id,
+                    arrayOfFields
+                  );
+                  const fieldId = arrayOfFieldIndicies[indexMatch];
+                  queries.createNewPieceInstance(
+                    IPRId[0].id,
+                    fieldId,
+                    piece.equality,
+                    piece.number
+                  );
+                }, this);
+                if (rule.additional_operations.length !== 0) {
+                  rule.additional_operations.forEach(function(operation) {
+                    const indexMatch = findIndexMatch(
+                      operation.field_id,
+                      arrayOfFields
+                    );
+                    const fieldId = arrayOfFieldIndicies[indexMatch];
+                    queries.createNewOperationInstance(
+                      IPRId[0].id,
+                      fieldId,
+                      operation.operation,
+                      operation.number
+                    );
+                  }, this);
+                }
+              });
+          });
+      }, this);
+    });
 });
 
 // create new game with a template id passed in and pass back a generated game_id
@@ -69,3 +127,11 @@ router.get('/games/:id', (req, res) => {
 router.post('/games/:id', (req, res) => {});
 
 module.exports = router;
+
+function findIndexMatch(name, arrNames) {
+  for (var i = 0; i < arrNames.length; i++) {
+    if (arrNames === name) {
+      return parseInt(i);
+    }
+  }
+}

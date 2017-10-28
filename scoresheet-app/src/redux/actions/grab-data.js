@@ -22,7 +22,6 @@ export function getTemplates() {
 }
 
 export function postNewGame(templateID) {
-  // console.log('barf', JSON.stringify(templateID));
   return dispatch => {
     dispatch(creatingGame());
     fetch('http://localhost:8080/api/games/new', {
@@ -45,5 +44,21 @@ export function postNewGame(templateID) {
       .catch(error => {
         console.log(error);
       });
+  };
+}
+
+export function postNewTemplate(newTemplate) {
+  return dispatch => {
+    fetch('http://localhost:8080/api/templates/new', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      mode: 'cors',
+      body: JSON.stringify({
+        templateRules: newTemplate.templateRules,
+        templateColumns: newTemplate.templateColumns,
+        templateNote: newTemplate.templateNote,
+        templateName: newTemplate.templateName
+      })
+    });
   };
 }

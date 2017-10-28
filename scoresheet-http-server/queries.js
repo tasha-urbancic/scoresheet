@@ -5,6 +5,42 @@ const knex = require('knex')(knexConfig[ENV]);
 const knexLogger = require('knex-logger');
 
 module.exports = {
+  createNewTemplateInstance: function(templateName, templateNote) {
+    return knex('templates')
+      .insert({ name: templateName, footer: templateNote })
+      .returning(['id']);
+  },
+  createTemplateField: function(field, templateId) {
+    return knex('fields')
+      .insert({ name: field, template_id: templateId })
+      .returning(['name', 'id']);
+  },
+  createNewRelationshipInstance: function(templateId) {
+    return knex('relationships')
+      .insert({ template_id: templateId })
+      .returning(['id']);
+  },
+  createNewPieceRelationshipInstance: function(relationshipId, value) {
+    return knex('individual_piece_relationships')
+      .insert({ relationship_id: relationshipId, value: value })
+      .returning(['id']);
+  },
+  createNewPieceInstance: function(IPRId, fieldId, equality, number) {
+    return knex('pieces').insert({
+      individual_piece_relationship_id: IPRId,
+      field_id: fieldId,
+      equality: equality,
+      number: number
+    });
+  },
+  createNewOperationInstance: function(IPRId, fieldId, operation, number) {
+    return knex('operations').insert({
+      individual_piece_relationship_id: IPRId,
+      field_id: fieldId,
+      operation: operation,
+      number: number
+    });
+  },
   createNewGameInstance: function(templateId) {
     return knex('games')
       .insert({ template_id: templateId })
