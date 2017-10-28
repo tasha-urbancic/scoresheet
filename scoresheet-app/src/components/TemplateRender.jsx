@@ -75,9 +75,9 @@ export default class TemplateRender extends Component {
               <div className="form-horizontal">
                 <ScoresheetStructure />
               </div>
-              <div className="col-sm-12">
+              {/* <div className="col-sm-12">
                 <button className="btn btn-default">Submit Structure</button>
-              </div>
+              </div> */}
             </div>
           </div>
           <div className="row well">
