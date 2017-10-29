@@ -6,7 +6,8 @@ import PlayGame from '../components/PlayGame.jsx';
 const mapStateToProps = state => {
   return {
     allPlayers: state.gamePage.allPlayers,
-    fields: state.gamePage.gameInfo.fields
+    fields: state.gamePage.gameInfo.fields,
+    gameInfo: state.gamePage.gameInfo
   };
 };
 

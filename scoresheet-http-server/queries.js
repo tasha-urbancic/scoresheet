@@ -104,7 +104,7 @@ module.exports = {
         'individual_piece_relationships.relationship_id',
         'operations.field_id',
         'fields.name',
-        'operations.operation',
+        'operations.operator',
         'operations.number'
       );
   },

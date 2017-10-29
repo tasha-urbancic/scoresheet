@@ -448,224 +448,224 @@ exports.seed = function(knex, Promise) {
               individual_piece_relationship_id:
                 individualPieceRelationshipIds[0],
               field_id: fieldIds[0],
-              equality: 'equal',
+              equality: '=',
               number: 1
             },
             {
               individual_piece_relationship_id:
                 individualPieceRelationshipIds[1],
               field_id: fieldIds[1],
-              equality: 'equal',
+              equality: '=',
               number: 1
             },
             {
               individual_piece_relationship_id:
                 individualPieceRelationshipIds[2],
               field_id: fieldIds[2],
-              equality: 'equal',
+              equality: '=',
               number: 1
             },
             {
               individual_piece_relationship_id:
                 individualPieceRelationshipIds[3],
               field_id: fieldIds[3],
-              equality: 'equal',
+              equality: '=',
               number: 1
             },
             {
               individual_piece_relationship_id:
                 individualPieceRelationshipIds[4],
               field_id: fieldIds[4],
-              equality: 'equal',
+              equality: '=',
               number: 1
             },
             {
               individual_piece_relationship_id:
                 individualPieceRelationshipIds[5],
               field_id: fieldIds[0],
-              equality: 'equal',
+              equality: '=',
               number: 2
             },
             {
               individual_piece_relationship_id:
                 individualPieceRelationshipIds[6],
               field_id: fieldIds[1],
-              equality: 'equal',
+              equality: '=',
               number: 2
             },
             {
               individual_piece_relationship_id:
                 individualPieceRelationshipIds[7],
               field_id: fieldIds[2],
-              equality: 'equal',
+              equality: '=',
               number: 2
             },
             {
               individual_piece_relationship_id:
                 individualPieceRelationshipIds[8],
               field_id: fieldIds[3],
-              equality: 'equal',
+              equality: '=',
               number: 2
             },
             {
               individual_piece_relationship_id:
                 individualPieceRelationshipIds[9],
               field_id: fieldIds[4],
-              equality: 'equal',
+              equality: '=',
               number: 2
             },
             {
               individual_piece_relationship_id:
                 individualPieceRelationshipIds[10],
               field_id: fieldIds[0],
-              equality: 'equal',
+              equality: '=',
               number: 3
             },
             {
               individual_piece_relationship_id:
                 individualPieceRelationshipIds[11],
               field_id: fieldIds[1],
-              equality: 'equal',
+              equality: '=',
               number: 3
             },
             {
               individual_piece_relationship_id:
                 individualPieceRelationshipIds[12],
               field_id: fieldIds[2],
-              equality: 'equal',
+              equality: '=',
               number: 3
             },
             {
               individual_piece_relationship_id:
                 individualPieceRelationshipIds[13],
               field_id: fieldIds[3],
-              equality: 'equal',
+              equality: '=',
               number: 3
             },
             {
               individual_piece_relationship_id:
                 individualPieceRelationshipIds[14],
               field_id: fieldIds[4],
-              equality: 'equal',
+              equality: '=',
               number: 3
             },
             {
               individual_piece_relationship_id:
                 individualPieceRelationshipIds[15],
               field_id: fieldIds[0],
-              equality: 'equal',
+              equality: '=',
               number: 4
             },
             {
               individual_piece_relationship_id:
                 individualPieceRelationshipIds[16],
               field_id: fieldIds[1],
-              equality: 'equal',
+              equality: '=',
               number: 4
             },
             {
               individual_piece_relationship_id:
                 individualPieceRelationshipIds[17],
               field_id: fieldIds[2],
-              equality: 'equal',
+              equality: '=',
               number: 4
             },
             {
               individual_piece_relationship_id:
                 individualPieceRelationshipIds[18],
               field_id: fieldIds[3],
-              equality: 'equal',
+              equality: '=',
               number: 4
             },
             {
               individual_piece_relationship_id:
                 individualPieceRelationshipIds[19],
               field_id: fieldIds[4],
-              equality: 'equal',
+              equality: '=',
               number: 4
             },
             {
               individual_piece_relationship_id:
                 individualPieceRelationshipIds[20],
               field_id: fieldIds[0],
-              equality: 'equal',
+              equality: '=',
               number: 5
             },
             {
               individual_piece_relationship_id:
                 individualPieceRelationshipIds[21],
               field_id: fieldIds[1],
-              equality: 'equal',
+              equality: '=',
               number: 5
             },
             {
               individual_piece_relationship_id:
                 individualPieceRelationshipIds[22],
               field_id: fieldIds[2],
-              equality: 'equal',
+              equality: '=',
               number: 5
             },
             {
               individual_piece_relationship_id:
                 individualPieceRelationshipIds[23],
               field_id: fieldIds[3],
-              equality: 'equal',
+              equality: '=',
               number: 5
             },
             {
               individual_piece_relationship_id:
                 individualPieceRelationshipIds[24],
               field_id: fieldIds[4],
-              equality: 'equal',
+              equality: '=',
               number: 5
             },
             {
               individual_piece_relationship_id:
                 individualPieceRelationshipIds[25],
               field_id: fieldIds[0],
-              equality: 'equal',
+              equality: '=',
               number: 1
             },
             {
               individual_piece_relationship_id:
                 individualPieceRelationshipIds[25],
               field_id: fieldIds[1],
-              equality: 'equal',
+              equality: '=',
               number: 1
             },
             {
               individual_piece_relationship_id:
                 individualPieceRelationshipIds[25],
               field_id: fieldIds[2],
-              equality: 'equal',
+              equality: '=',
               number: 1
             },
             {
               individual_piece_relationship_id:
                 individualPieceRelationshipIds[25],
               field_id: fieldIds[3],
-              equality: 'equal',
+              equality: '=',
               number: 1
             },
             {
               individual_piece_relationship_id:
                 individualPieceRelationshipIds[25],
               field_id: fieldIds[4],
-              equality: 'equal',
+              equality: '=',
               number: 1
             },
             {
               individual_piece_relationship_id:
                 individualPieceRelationshipIds[26],
               field_id: fieldIds[5],
-              equality: 'larger-than-equal',
+              equality: '>',
               number: 3
             },
             {
               individual_piece_relationship_id:
                 individualPieceRelationshipIds[27],
               field_id: fieldIds[6],
-              equality: 'equal',
+              equality: '=',
               number: 1
             }
           ])

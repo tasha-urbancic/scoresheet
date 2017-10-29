@@ -112,6 +112,18 @@ body {
   background-color: lighten($primary-color, 5%);
 }
 
+.nav > li > a > img {
+  height: 35px;
+}
+
+.navbar-default .navbar-nav > li > a {
+  font-size: 18px;
+}
+
+.navbar-default .navbar-nav > li > a:hover {
+  color: darken(white, 25%);
+}
+
 .landing-page-notepad {
   height: 450px;
   align-self: flex-end;

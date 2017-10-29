@@ -3,19 +3,12 @@ const templateId = 1;
 import React, { Component } from 'react';
 import openSocket from 'socket.io-client';
 
+import computeTotals from '../computeTotals';
+
 const ipAddress = document.location.origin.split('/')[2].split(':')[0];
 
 const io = openSocket(`http://${ipAddress}:8080`);
 import NavBar from '../components/NavBar.jsx';
-
-// const defaultPieces = [
-//   "yellow card",
-//   "red card",
-//   "orange card",
-//   "blue coin",
-//   "green coin",
-//   "purple coin"
-// ];
 
 function createZeroArray(num) {
   let arr = [];
@@ -30,8 +23,6 @@ export default class PlayGame extends Component {
     super(props);
     this.state = {
       currentPlayer: '',
-      // allPlayers: [],
-      // fields: defaultPieces,
       namesCompleted: false
     };
 
@@ -68,13 +59,19 @@ export default class PlayGame extends Component {
     io.emit('new input added', { room: gameID, newState: tableState });
   }
 
-  calculateScore(playerToUpdate) {
-    console.log(playerToUpdate);
+  calculateScore(playerValues, gameInfo) {
     let totalScore = 0;
-    playerToUpdate.forEach(i => {
-      totalScore += i;
-    });
-    console.log(totalScore);
+    totalScore += computeTotals.piecesTotal(
+      playerValues,
+      gameInfo.fields,
+      gameInfo.pieces
+    );
+    // totalScore += computeTotals.operationsTotal(
+    //   playerValues,
+    //   gameInfo.fields,
+    //   gameInfo.operations
+    // );
+    console.log('totalScore', totalScore);
     return totalScore;
   }
 
@@ -164,7 +161,8 @@ export default class PlayGame extends Component {
                                   allPlayers[i]
                                 );
                                 allPlayers[i].score = this.calculateScore(
-                                  allPlayers[i].values
+                                  allPlayers[i].values,
+                                  this.props.gameInfo
                                 );
 
                                 this.setState({ allPlayers });
