@@ -93,15 +93,27 @@ body {
 
 .landing-page-btn {
   align-self: center;
-  margin-left: 40%;
+  margin-left: 45%;
 }
 
-.white-text {
+.white-text,
+.white-text:hover,
+.white-text:active,
+.white-text:visited,
+.white-text:focus {
   color: white;
 }
 
+.btn.btn-dark.btn-lg.js-scroll-trigger:hover {
+  background-color: lighten($primary-color, 5%);
+}
+
+.white-text:hover {
+  background-color: lighten($primary-color, 5%);
+}
+
 .landing-page-notepad {
-  height: 400px;
+  height: 450px;
   align-self: flex-end;
 }
 
