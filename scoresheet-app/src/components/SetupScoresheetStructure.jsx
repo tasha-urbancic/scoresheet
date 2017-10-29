@@ -15,12 +15,8 @@ export default class SetupScoresheetStructure extends Component {
     return (
       <div>
         <div className="form-group">
-          <label htmlFor="templateName" className="col-sm-12 control-label">
-            Add columns:
-          </label>
-        </div>
-
-        <div className="form-group">
+          <h3>Add fields:</h3>
+          <br />
           <label htmlFor="templateName" className="col-sm-3 control-label">
             Enter column names:
           </label>
@@ -41,7 +37,7 @@ export default class SetupScoresheetStructure extends Component {
               }}
             />
           </div>
-          <div className="col-sm-4">
+          <div className="col-sm-1">
             <button
               type="button"
               className="btn btn-default"
@@ -90,7 +86,7 @@ export default class SetupScoresheetStructure extends Component {
               }}
             />
           </div>
-          <div className="col-sm-4">
+          <div className="col-sm-1">
             <button
               type="button"
               className="btn btn-default"

@@ -2,17 +2,17 @@
 // to be exported to the view template page, and
 // the gameplay page
 
-import React, { Component } from "react";
-import AddRelationship from "./AddRelationship.jsx";
-import ScoresheetStructure from "../containers/ScoresheetStructure.jsx";
-import RelationshipDefinitions from "../containers/RelationshipDefinitions.jsx";
-import NavBar from "../components/NavBar.jsx";
+import React, { Component } from 'react';
+import AddRelationship from './AddRelationship.jsx';
+import ScoresheetStructure from '../containers/ScoresheetStructure.jsx';
+import RelationshipDefinitions from '../containers/RelationshipDefinitions.jsx';
+import NavBar from '../components/NavBar.jsx';
 
 export default class TemplateRender extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      templateName: ""
+      templateName: ''
     };
   }
 
@@ -22,7 +22,9 @@ export default class TemplateRender extends Component {
         <NavBar />
         <div className="container-fluid" id="create-template">
           <div className="row well">
-            <div className="col-md-8 col-md-offset-2">
+            <div className="col-md-8 col-md-offset-3">
+              <h3>Add name:</h3>
+              <br />
               <div className="form-group">
                 <label
                   htmlFor="templateName"
@@ -43,25 +45,25 @@ export default class TemplateRender extends Component {
                     onKeyDown={e => {
                       if (e.keyCode === 13) {
                         this.props.renameTemplate(this.state.templateName);
-                        this.setState({ templateName: "" });
+                        this.setState({ templateName: '' });
                       }
                     }}
                   />
                 </div>
-                <div className="col-sm-4">
+                <div className="col-sm-1">
                   <button
                     type="button"
                     className="btn btn-default"
                     onClick={e => {
                       this.props.renameTemplate(this.state.templateName);
-                      this.setState({ templateName: "" });
+                      this.setState({ templateName: '' });
                     }}
                   >
                     Add
                   </button>
                 </div>
               </div>
-              {this.props.templateName !== "" && (
+              {this.props.templateName !== '' && (
                 <div htmlFor="templateName" className="col-sm-12 control-label">
                   <h4>
                     The name of your template is {this.props.templateName}.
@@ -71,7 +73,7 @@ export default class TemplateRender extends Component {
             </div>
           </div>
           <div className="row well">
-            <div className="col-md-8 col-md-offset-2">
+            <div className="col-md-8 col-md-offset-3">
               <div className="form-horizontal">
                 <ScoresheetStructure />
               </div>
@@ -81,14 +83,14 @@ export default class TemplateRender extends Component {
             </div>
           </div>
           <div className="row well">
-            <div className="col-md-8 col-md-offset-2">
+            <div className="col-md-8 col-md-offset-3">
               <div className="form-horizontal">
                 <RelationshipDefinitions />
               </div>
             </div>
           </div>
           <div className="row well">
-            <div className="col-md-8 col-md-offset-2">
+            <div className="col-md-12 col-md-offset-6">
               <div className="form-horizontal">
                 <button
                   className="btn btn-default"

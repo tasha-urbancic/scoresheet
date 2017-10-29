@@ -5,6 +5,15 @@ body {
   font-family: $font-stack;
 }
 
+#create-template h3 {
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+#create-template h4 {
+  margin-top: 20px;
+}
+
 a,
 a:hover {
   color: black;
@@ -88,4 +97,16 @@ body {
 
 .table-input {
   border: none;
+}
+
+hr {
+  -moz-border-bottom-colors: none;
+  -moz-border-image: none;
+  -moz-border-left-colors: none;
+  -moz-border-right-colors: none;
+  -moz-border-top-colors: none;
+  border-color: #eeeeee -moz-use-text-color #ffffff;
+  border-style: solid none;
+  border-width: 1px 0;
+  margin: 18px 0;
 }
