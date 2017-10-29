@@ -1,8 +1,8 @@
-import React, { Component } from "react";
+import React, { Component } from 'react';
 
-const defaultPiece = { equality: "=", number: 1, piece: "" };
+const defaultPiece = { equality: '=', number: 1, piece: '' };
 const defaultValue = 1;
-const defaultOperation = { piece: "", operation: "*", number: 1 };
+const defaultOperation = { piece: '', operation: '*', number: 1 };
 
 const defaultRule = {
   pieces: [{ ...defaultPiece }],
@@ -34,7 +34,7 @@ export default class AddRelationship extends Component {
                 return (
                   <div className="form-group">
                     <div className="col-sm-11 col-md-offset-1">
-                      <div className="col-sm-1">{j !== 0 ? "and" : null}</div>
+                      <div className="col-sm-1">{j !== 0 ? 'and' : null}</div>
 
                       <div className="col-sm-1">
                         <select
@@ -144,7 +144,7 @@ export default class AddRelationship extends Component {
                 return (
                   <div className="form-group">
                     <div className="col-sm-12 col-md-offset-1">
-                      <div className="col-sm-1">{k !== 0 ? "+" : "+"}</div>
+                      <div className="col-sm-1">{k !== 0 ? '+' : '+'}</div>
 
                       <div className="col-sm-3">
                         <select
@@ -241,7 +241,7 @@ export default class AddRelationship extends Component {
               className="btn btn-default"
               onClick={e => {
                 const rules = [...this.state.rules];
-                this.setState({ rules: [...rules, defaultRule] });
+                this.setState({ rules: [...rules, { ...defaultRule }] });
               }}
             >
               Add Rule
