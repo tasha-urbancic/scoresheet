@@ -1,4 +1,5 @@
 const templateId = 1;
+
 import React, { Component } from "react";
 import openSocket from "socket.io-client";
 
@@ -7,14 +8,14 @@ const ipAddress = document.location.origin.split("/")[2].split(":")[0];
 const io = openSocket(`http://${ipAddress}:8080`);
 import NavBar from "../components/NavBar.jsx";
 
-const defaultPieces = [
-  "yellow card",
-  "red card",
-  "orange card",
-  "blue coin",
-  "green coin",
-  "purple coin"
-];
+// const defaultPieces = [
+//   "yellow card",
+//   "red card",
+//   "orange card",
+//   "blue coin",
+//   "green coin",
+//   "purple coin"
+// ];
 
 function createZeroArray(num) {
   let arr = [];
@@ -28,14 +29,14 @@ export default class PlayGame extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      currentPlayer: "",
+      currentPlayer: '',
       allPlayers: [],
-      fields: defaultPieces,
+      // fields: defaultPieces,
       namesCompleted: false
     };
 
-    io.on("sending new state", newState => {
-      console.log("new state received");
+    io.on('sending new state', newState => {
+      console.log('new state received');
       console.log(newState);
       this.setState({ allPlayers: newState.newState });
       this.props.updatePlayers(newState.newState);
@@ -44,27 +45,27 @@ export default class PlayGame extends Component {
 
   componentDidMount() {
     // trigger join room
-    console.log("PROPS: ", this.props);
-    let urlArray = this.props.location.pathname.split("/");
+    console.log('PROPS: ', this.props);
+    let urlArray = this.props.location.pathname.split('/');
     let gameID = urlArray[urlArray.length - 1];
-    console.log("GAME ID: ", gameID);
-    io.emit("room", { room: gameID });
+    console.log('GAME ID: ', gameID);
+    io.emit('room', { room: gameID });
   }
 
   componentWillUnmount() {
     // trigger leave room
-    console.log("PROPS ON LEAVE: ", this.props);
-    let urlArray = this.props.location.pathname.split("/");
+    console.log('PROPS ON LEAVE: ', this.props);
+    let urlArray = this.props.location.pathname.split('/');
     let gameID = urlArray[urlArray.length - 1];
-    console.log("GAME ID ON LEAVE: ", gameID);
-    io.emit("leave", { room: gameID });
+    console.log('GAME ID ON LEAVE: ', gameID);
+    io.emit('leave', { room: gameID });
   }
 
   updateAllPlayersWithNewInput(tableState) {
-    console.log("table state has changed");
-    let urlArray = this.props.location.pathname.split("/");
+    console.log('table state has changed');
+    let urlArray = this.props.location.pathname.split('/');
     let gameID = urlArray[urlArray.length - 1];
-    io.emit("new input added", { room: gameID, newState: tableState });
+    io.emit('new input added', { room: gameID, newState: tableState });
   }
 
   calculateScore(playerToUpdate) {
@@ -99,11 +100,11 @@ export default class PlayGame extends Component {
                   if (e.keyCode === 13) {
                     this.state.allPlayers.push({
                       name: this.state.currentPlayer,
-                      values: createZeroArray(this.state.fields.length),
+                      values: createZeroArray(this.props.fields.length),
                       score: 0
                     });
                     this.props.updatePlayers(this.state.allPlayers);
-                    this.setState({ currentPlayer: "" });
+                    this.setState({ currentPlayer: '' });
                     this.updateAllPlayersWithNewInput(this.state.allPlayers);
                   }
                 }}
@@ -114,11 +115,11 @@ export default class PlayGame extends Component {
                 onClick={e => {
                   this.state.allPlayers.push({
                     name: this.state.currentPlayer,
-                    values: createZeroArray(this.state.fields.length),
+                    values: createZeroArray(this.props.fields.length),
                     score: 0
                   });
                   this.props.updatePlayers(this.state.allPlayers);
-                  this.setState({ currentPlayer: "" });
+                  this.setState({ currentPlayer: '' });
                   this.updateAllPlayersWithNewInput(this.state.allPlayers);
                 }}
               >
@@ -133,11 +134,11 @@ export default class PlayGame extends Component {
                 <tr>
                   <td>Players</td>
 
-                  {this.state.fields.map(piece => {
-                    return <td key={piece}>{piece}</td>;
+                  {this.props.fields.map(piece => {
+                    return <td key={piece.name}>{piece.name}</td>;
                   })}
 
-                  <td>Total Score</td>
+                  {<td>Total Score</td>}
                 </tr>
               </thead>
 
@@ -146,9 +147,9 @@ export default class PlayGame extends Component {
                   return (
                     <tr key={playerObj.name}>
                       <td>{playerObj.name}</td>
-                      {this.state.fields.map((piece, j) => {
+                      {this.props.fields.map((piece, j) => {
                         return (
-                          <td key={piece}>
+                          <td key={piece.name}>
                             <input
                               className="table-input form-control"
                               value={this.state.allPlayers[i].values[j]}
@@ -157,7 +158,7 @@ export default class PlayGame extends Component {
                                 allPlayers[i].values[j] =
                                   Number(e.target.value) || 0;
                                 console.log(
-                                  "this player updated: ",
+                                  'this player updated: ',
                                   allPlayers[i]
                                 );
                                 allPlayers[i].score = this.calculateScore(

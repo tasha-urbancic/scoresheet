@@ -6,7 +6,7 @@ import { Link, Redirect } from 'react-router-dom';
 const mapStateToProps = state => {
   return {
     templates: state.templates,
-    gameId: state.gamePage.gameInfo.id,
+    gameId: state.gamePage.gameInfo.game.id,
     creatingGame: state.gamePage.creatingGame
     // templateId: state.gamePage
   };
