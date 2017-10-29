@@ -1,8 +1,12 @@
 const templateId = 1;
-import React, { Component } from 'react';
-import openSocket from 'socket.io-client';
-const io = openSocket('http://localhost:8080');
-import NavBar from '../components/NavBar.jsx';
+
+import React, { Component } from "react";
+import openSocket from "socket.io-client";
+
+const ipAddress = document.location.origin.split("/")[2].split(":")[0];
+
+const io = openSocket(`http://${ipAddress}:8080`);
+import NavBar from "../components/NavBar.jsx";
 
 // const defaultPieces = [
 //   "yellow card",

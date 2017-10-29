@@ -75,9 +75,6 @@ export default class TemplateRender extends Component {
               <div className="form-horizontal">
                 <ScoresheetStructure />
               </div>
-              <div className="col-sm-12">
-                <button className="btn btn-default">Submit Structure</button>
-              </div>
             </div>
           </div>
           <div className="row well">
@@ -90,7 +87,15 @@ export default class TemplateRender extends Component {
           <div className="row well">
             <div className="col-md-8 col-md-offset-2">
               <div className="form-horizontal">
-                <button className="btn btn-default">Submit Template</button>
+                <button
+                  className="btn btn-default"
+                  onClick={e => {
+                    console.log('this.props', this.props);
+                    this.props.postNewTemplate(this.props.newTemplate);
+                  }}
+                >
+                  Submit Template
+                </button>
               </div>
             </div>
           </div>

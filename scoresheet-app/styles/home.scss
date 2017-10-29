@@ -1,6 +1,17 @@
 $primary-color: #2c7452;
-$font-stack: Helvetica, sans-serif;
+$font-stack: Arial, Helvetica, sans-serif;
 $logo-height: 20px;
+
+@media (max-width: 768px) {
+  body {
+    padding-top: $logo-height*5;
+  }
+}
+
+body {
+  font-family: $font-stack;
+}
+
 a,
 a:hover {
   color: black;
@@ -21,10 +32,14 @@ a:hover {
   width: auto;
 }
 
-.template-list,
+#template-list-container,
+#game {
+  background-color: white;
+}
+
+#template-list,
 #game,
-#create-template,
-#landing-page {
+#create-template {
   margin-top: $logo-height*3;
 }
 
@@ -46,30 +61,45 @@ ul.special-list {
   background-color: $primary-color;
 }
 
-html {
-  background: linear-gradient(160deg, $primary-color 17%, white 45%);
-  height: 1000px;
-}
-
 body {
   background-color: transparent;
 }
 
 #landing-page {
-  position: relative;
+  background: linear-gradient(160deg, $primary-color 17%, white 45%);
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.landing-page-logo {
+  height: auto;
+  width: 60%;
+  margin-bottom: 14em;
+  margin-left: 10%;
+  margin-right: 30%;
+  margin-top: 5%;
+  align-self: flex-start;
 }
 
 .landing-page-btn {
-  position: absolute;
-  top: 420px;
-  left: 425px;
+  align-self: center;
+  margin-left: 40%;
 }
 
-.landing-page-notepad,
-.landing-page-logo {
-  height: 100px;
-  width: auto;
-  display: inline-block;
+.white-text {
+  color: white;
+}
+
+.landing-page-notepad {
+  height: 400px;
+  align-self: flex-end;
+}
+
+.landing-page-btn-notepad {
+  display: flex;
+  flex-direction: row;
 }
 
 .enter-name {

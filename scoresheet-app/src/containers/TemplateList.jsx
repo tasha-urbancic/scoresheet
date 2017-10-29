@@ -31,7 +31,7 @@ class TemplateList extends Component {
     if (props.gameId && props.creatingGame)
       return <Redirect to={`games/${props.gameId}`} />;
     return (
-      <div className="container">
+      <div className="container" id="template-list-container">
         <form className="" role="search" method="get" id="searchform" action="">
           <div className="form-group">
             <input

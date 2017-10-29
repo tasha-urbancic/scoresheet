@@ -10,16 +10,26 @@ import {
 import TemplateRender from '../components/TemplateRender.jsx';
 import HomePage from '../components/HomePage.jsx';
 import PlayGamePage from '../containers/PlayGamePage.jsx';
+import { postNewTemplate } from '../redux/actions/grab-data';
 
 const mapStateToProps = state => {
   return {
-    templateName: state.createTemplates.templateName
+    templateName: state.createTemplates.templateName,
+    newTemplate: state.createTemplates
   };
 };
 
-const mapDispatchToProps = {
-  changeTemplateName
-};
+const mapDispatchToProps = dispatch => ({
+  postNewTemplate: newTemplate => {
+    const newGameThunk = postNewTemplate(newTemplate);
+    console.log('New Game Thunk', newGameThunk);
+    dispatch(newGameThunk);
+  },
+  changeTemplateName: name => {
+    dispatch(changeTemplateName(name));
+  }
+});
+
 class Content extends Component {
   homePage = () => <HomePage onKeyDown={this.props.changeGameID} />;
 
@@ -27,6 +37,8 @@ class Content extends Component {
     <TemplateRender
       renameTemplate={this.props.changeTemplateName}
       templateName={this.props.templateName}
+      postNewTemplate={this.props.postNewTemplate}
+      newTemplate={this.props.newTemplate}
     />
   );
 

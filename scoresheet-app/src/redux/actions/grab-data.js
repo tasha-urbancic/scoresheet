@@ -1,17 +1,21 @@
-import { addTemplate } from './templates';
-import { saveGameInfo, creatingGame, clearCreatingGame } from './game-page';
+import { addTemplate } from "./templates";
+import { saveGameInfo, creatingGame, clearCreatingGame } from "./game-page";
+
+console.log("stuff: ", document.location);
+
+const ipAddress = document.location.origin.split("/")[2].split(":")[0];
 
 export function getTemplates() {
   return dispatch => {
-    fetch('http://localhost:8080/api/templates', {
-      method: 'GET',
-      headers: { 'Content-Type': 'application/json' },
-      mode: 'cors'
+    fetch(`http://${ipAddress}:8080/api/templates`, {
+      method: "GET",
+      headers: { "Content-Type": "application/json" },
+      mode: "cors"
     })
       .then(res => res.json())
       .then(data => {
         data.map(template => {
-          console.log('adding template', template);
+          console.log("adding template", template);
           dispatch(addTemplate(template));
         });
       })
@@ -22,13 +26,12 @@ export function getTemplates() {
 }
 
 export function postNewGame(templateID) {
-  // console.log('barf', JSON.stringify(templateID));
   return dispatch => {
     dispatch(creatingGame());
-    fetch('http://localhost:8080/api/games/new', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      mode: 'cors',
+    fetch(`http://${ipAddress}:8080/api/games/new`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      mode: "cors",
       body: JSON.stringify({ templateID: templateID })
     })
       .then(res => {
@@ -45,5 +48,21 @@ export function postNewGame(templateID) {
       .catch(error => {
         console.log(error);
       });
+  };
+}
+
+export function postNewTemplate(newTemplate) {
+  return dispatch => {
+    fetch('http://localhost:8080/api/templates/new', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      mode: 'cors',
+      body: JSON.stringify({
+        templateRules: newTemplate.templateRules,
+        templateColumns: newTemplate.templateColumns,
+        templateNote: newTemplate.templateNote,
+        templateName: newTemplate.templateName
+      })
+    });
   };
 }

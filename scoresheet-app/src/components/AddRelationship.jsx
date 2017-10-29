@@ -7,7 +7,7 @@ const defaultOperation = { piece: "", operation: "*", number: 1 };
 const defaultRule = {
   pieces: [{ ...defaultPiece }],
   value: defaultValue,
-  additional_operations: [{ ...defaultOperation }]
+  additional_operations: []
 };
 
 export default class AddRelationship extends Component {
@@ -59,7 +59,7 @@ export default class AddRelationship extends Component {
                         placeholder="Number of pieces"
                         onChange={e => {
                           const rules = [...this.state.rules];
-                          rules[i].pieces[j].number = e.target.value;
+                          rules[i].pieces[j].number = Number(e.target.value);
                           this.setState({
                             rules
                           });
@@ -81,6 +81,7 @@ export default class AddRelationship extends Component {
                           });
                         }}
                       >
+                      <option>Select a piece</option>
                         {this.props.templateColumns.map(function(
                           columnName,
                           i
@@ -124,7 +125,7 @@ export default class AddRelationship extends Component {
                     placeholder="How many points?"
                     onChange={e => {
                       const rules = [...this.state.rules];
-                      rules[i].value = e.target.value;
+                      rules[i].value = Number(e.target.value);
                       this.setState({
                         rules
                       });
@@ -145,7 +146,7 @@ export default class AddRelationship extends Component {
                         id="column-list-dropdown"
                         onChange={e => {
                           const rules = [...this.state.rules];
-                          rules[i].additional_opperations[k].piece =
+                          rules[i].additional_operations[k].piece =
                             e.target.value;
                           this.setState({
                             rules
@@ -166,7 +167,7 @@ export default class AddRelationship extends Component {
                         className="form-control"
                         onChange={e => {
                           const rules = [...this.state.rules];
-                          rules[i].additional_opperations[k].operation =
+                          rules[i].additional_operations[k].operation =
                             e.target.value;
                           this.setState({
                             rules
@@ -188,8 +189,9 @@ export default class AddRelationship extends Component {
                         placeholder="Number of pieces"
                         onChange={e => {
                           const rules = [...this.state.rules];
-                          rules[i].additional_opperations[k].number =
-                            e.target.value;
+                          rules[i].additional_operations[k].number = Number(
+                            e.target.value
+                          );
                           this.setState({
                             rules
                           });
