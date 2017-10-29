@@ -30,10 +30,17 @@ export default class SetupScoresheetStructure extends Component {
                 this.props.updateCurrentColumn(e.target.value);
               }}
               onKeyDown={e => {
-                if (e.keyCode === 13) {
+                let columnNames = this.props.templateColumns
+                let currentColumnName = this.props.templateCurrentColumn
+                let dublicate = 0
+                for (var i = 0; i < columnNames.length; i++){
+                  if (columnNames[i] == currentColumnName){
+                    dublicate++
+                    }}
+                if (dublicate === 0 && e.keyCode === 13 ) {
                   this.props.addColumn(this.props.templateCurrentColumn);
                   this.props.updateCurrentColumn('');
-                }
+                  }
               }}
             />
           </div>
@@ -42,8 +49,17 @@ export default class SetupScoresheetStructure extends Component {
               type="button"
               className="btn btn-default"
               onClick={e => {
-                this.props.addColumn(this.props.templateCurrentColumn);
-                this.props.updateCurrentColumn('');
+                let columnNames = this.props.templateColumns
+                let currentColumnName = this.props.templateCurrentColumn
+                let dublicate = 0
+                for (var i = 0; i < columnNames.length; i++){
+                  if (columnNames[i] == currentColumnName){
+                    dublicate++
+                    }}
+                if (dublicate === 0 && e.keyCode === 13 ) {
+                  this.props.addColumn(this.props.templateCurrentColumn);
+                  this.props.updateCurrentColumn('');
+                  }
               }}
             >
               Add
