@@ -1,6 +1,13 @@
 $primary-color: #2c7452;
 $font-stack: Arial, Helvetica, sans-serif;
 $logo-height: 20px;
+
+@media (max-width: 768px) {
+  body {
+    padding-top: $logo-height*5;
+  }
+}
+
 body {
   font-family: $font-stack;
 }
