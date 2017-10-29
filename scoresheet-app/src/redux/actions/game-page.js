@@ -2,7 +2,8 @@ import {
   UPDATE_PLAYERS,
   SAVE_GAME_INFO,
   CREATING_GAME,
-  CLEAR_CREATING_GAME
+  CLEAR_CREATING_GAME,
+  CLEAR_GAME
 } from '../constants/game-page';
 
 export function updatePlayers(allPlayers) {
@@ -25,4 +26,8 @@ export function creatingGame() {
 
 export function clearCreatingGame() {
   return { type: CLEAR_CREATING_GAME };
+}
+
+export function clearGame() {
+  return { type: CLEAR_GAME };
 }

@@ -2,10 +2,21 @@ import {
   UPDATE_PLAYERS,
   SAVE_GAME_INFO,
   CREATING_GAME,
-  CLEAR_CREATING_GAME
+  CLEAR_CREATING_GAME,
+  CLEAR_GAME
 } from '../constants/game-page';
 
-export default (state = { allPlayers: [], gameInfo: {} }, action) => {
+const defaultState = {
+  allPlayers: [],
+  gameInfo: {
+    fields: [],
+    templateInfo: {},
+    pieces: [],
+    game: {}
+  }
+};
+
+export default (state = defaultState, action) => {
   switch (action.type) {
     case UPDATE_PLAYERS:
       return {
@@ -27,6 +38,8 @@ export default (state = { allPlayers: [], gameInfo: {} }, action) => {
         ...state,
         creatingGame: false
       };
+    case CLEAR_GAME:
+      return defaultState;
     default:
       return state;
   }
