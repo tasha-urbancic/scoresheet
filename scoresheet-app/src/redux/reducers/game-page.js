@@ -5,7 +5,17 @@ import {
   CLEAR_CREATING_GAME
 } from '../constants/game-page';
 
-export default (state = { allPlayers: [], gameInfo: {} }, action) => {
+const defaultState = {
+  allPlayers: [],
+  gameInfo: {
+    fields: [],
+    templateInfo: {},
+    pieces: [],
+    game: {}
+  }
+};
+
+export default (state = defaultState, action) => {
   switch (action.type) {
     case UPDATE_PLAYERS:
       return {
