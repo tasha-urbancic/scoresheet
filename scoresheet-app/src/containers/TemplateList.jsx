@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { postNewGame } from '../redux/actions/grab-data';
+import { clearGame } from '../redux/actions/game-page';
 import { Link, Redirect } from 'react-router-dom';
 
 const mapStateToProps = state => {
@@ -17,8 +18,12 @@ const mapDispatchToProps = dispatch => ({
     const newGameThunk = postNewGame(id);
     console.log('New Game Thunk', newGameThunk);
     dispatch(newGameThunk);
+  },
+  clearGame: () => {
+    dispatch(clearGame());
   }
 });
+
 class TemplateList extends Component {
   constructor(props) {
     super(props);
@@ -71,6 +76,7 @@ class TemplateList extends Component {
                       <button
                         className="btn btn-default"
                         onClick={e => {
+                          props.clearGame();
                           props.postNewGame(template.id);
                         }}
                       >
