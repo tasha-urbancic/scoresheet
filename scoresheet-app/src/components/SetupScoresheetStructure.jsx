@@ -52,16 +52,14 @@ export default class SetupScoresheetStructure extends Component {
         </div>
 
         <div className="form-group">
-          <div className="col-sm-12">
-            <ul className="col-sm-4">
-              {this.props.templateColumns.map(function(columnName, i) {
-                return (
-                  <li key={i}>
-                    {columnName}
-                  </li>
-                );
-              })}
-            </ul>
+          <div className="col-sm-12 col-md-offset-3">
+            {this.props.templateColumns.length !== 0 && (
+              <ul className="col-sm-4">
+                {this.props.templateColumns.map(function(columnName, i) {
+                  return <li>{columnName}</li>;
+                })}
+              </ul>
+            )}
           </div>
         </div>
 
@@ -100,14 +98,11 @@ export default class SetupScoresheetStructure extends Component {
           </div>
         </div>
 
-        <div className="col-sm-12 ">
-          <ul className="col-sm-4 ">
-            <li>
-              Extra Notes:{this.props.templateNote}
-            </li>
-          </ul>
+        <div className="col-sm-12 text-center ">
+          {this.props.templateNote !== '' && (
+            <ul className="col-sm-4 ">Notes: {this.props.templateNote}</ul>
+          )}
         </div>
-
       </div>
     );
   }
