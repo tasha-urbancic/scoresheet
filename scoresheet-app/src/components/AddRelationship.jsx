@@ -1,8 +1,8 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
 
-const defaultPiece = { equality: '=', number: 1, piece: '' };
+const defaultPiece = { equality: "=", number: 1, piece: "" };
 const defaultValue = 1;
-const defaultOperation = { piece: '', operation: '*', number: 1 };
+const defaultOperation = { piece: "", operation: "*", number: 1 };
 
 const defaultRule = {
   pieces: [{ ...defaultPiece }],
@@ -14,7 +14,8 @@ export default class AddRelationship extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      rules: [{ ...defaultRule }]
+      rules: [{ ...defaultRule }],
+      hasError: false
     };
   }
 
@@ -22,6 +23,9 @@ export default class AddRelationship extends Component {
     return (
       <div>
         <h3>Add rules:</h3>
+        <div className="alert alert-danger" aria-hidden="true" role="alert">
+          Please add one rule for each piece.
+        </div>
         <br />
         {this.state.rules.map((rule, i) => {
           return (
@@ -30,7 +34,7 @@ export default class AddRelationship extends Component {
                 return (
                   <div className="form-group">
                     <div className="col-sm-11 col-md-offset-1">
-                      <div className="col-sm-1">{j !== 0 ? 'and' : null}</div>
+                      <div className="col-sm-1">{j !== 0 ? "and" : null}</div>
 
                       <div className="col-sm-1">
                         <select
@@ -140,7 +144,7 @@ export default class AddRelationship extends Component {
                 return (
                   <div className="form-group">
                     <div className="col-sm-12 col-md-offset-1">
-                      <div className="col-sm-1">{k !== 0 ? '+' : '+'}</div>
+                      <div className="col-sm-1">{k !== 0 ? "+" : "+"}</div>
 
                       <div className="col-sm-3">
                         <select
@@ -253,7 +257,7 @@ export default class AddRelationship extends Component {
                 this.props.writeRulesIntoTemplate(this.state.rules);
               }}
             >
-              Submit Relationships
+              Submit Rules
             </button>
           </div>
         </div>
