@@ -1,12 +1,12 @@
 const templateId = 1;
 
-import React, { Component } from "react";
-import openSocket from "socket.io-client";
+import React, { Component } from 'react';
+import openSocket from 'socket.io-client';
 
-const ipAddress = document.location.origin.split("/")[2].split(":")[0];
+const ipAddress = document.location.origin.split('/')[2].split(':')[0];
 
 const io = openSocket(`http://${ipAddress}:8080`);
-import NavBar from "../components/NavBar.jsx";
+import NavBar from '../components/NavBar.jsx';
 
 // const defaultPieces = [
 //   "yellow card",
@@ -30,7 +30,7 @@ export default class PlayGame extends Component {
     super(props);
     this.state = {
       currentPlayer: '',
-      allPlayers: [],
+      // allPlayers: [],
       // fields: defaultPieces,
       namesCompleted: false
     };
@@ -98,14 +98,15 @@ export default class PlayGame extends Component {
                 }}
                 onKeyDown={e => {
                   if (e.keyCode === 13) {
-                    this.state.allPlayers.push({
+                    const newPlayer = {
                       name: this.state.currentPlayer,
                       values: createZeroArray(this.props.fields.length),
                       score: 0
-                    });
-                    this.props.updatePlayers(this.state.allPlayers);
+                    };
+                    const allPlayers = [...this.props.allPlayers, newPlayer];
+                    this.props.updatePlayers(allPlayers);
                     this.setState({ currentPlayer: '' });
-                    this.updateAllPlayersWithNewInput(this.state.allPlayers);
+                    this.updateAllPlayersWithNewInput(allPlayers);
                   }
                 }}
               />
@@ -113,14 +114,15 @@ export default class PlayGame extends Component {
                 type="submit"
                 className="btn btn-default"
                 onClick={e => {
-                  this.state.allPlayers.push({
+                  const newPlayer = {
                     name: this.state.currentPlayer,
                     values: createZeroArray(this.props.fields.length),
                     score: 0
-                  });
-                  this.props.updatePlayers(this.state.allPlayers);
+                  };
+                  const allPlayers = [...this.props.allPlayers, newPlayer];
+                  this.props.updatePlayers(allPlayers);
                   this.setState({ currentPlayer: '' });
-                  this.updateAllPlayersWithNewInput(this.state.allPlayers);
+                  this.updateAllPlayersWithNewInput(allPlayers);
                 }}
               >
                 Add
@@ -152,9 +154,9 @@ export default class PlayGame extends Component {
                           <td key={piece.name}>
                             <input
                               className="table-input form-control"
-                              value={this.state.allPlayers[i].values[j]}
+                              value={this.props.allPlayers[i].values[j]}
                               onChange={e => {
-                                let allPlayers = [...this.state.allPlayers];
+                                let allPlayers = [...this.props.allPlayers];
                                 allPlayers[i].values[j] =
                                   Number(e.target.value) || 0;
                                 console.log(

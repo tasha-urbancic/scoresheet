@@ -2,7 +2,8 @@ import {
   UPDATE_PLAYERS,
   SAVE_GAME_INFO,
   CREATING_GAME,
-  CLEAR_CREATING_GAME
+  CLEAR_CREATING_GAME,
+  CLEAR_GAME
 } from '../constants/game-page';
 
 const defaultState = {
@@ -37,6 +38,8 @@ export default (state = defaultState, action) => {
         ...state,
         creatingGame: false
       };
+    case CLEAR_GAME:
+      return defaultState;
     default:
       return state;
   }
