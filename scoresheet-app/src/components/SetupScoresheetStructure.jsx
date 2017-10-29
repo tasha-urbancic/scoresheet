@@ -57,10 +57,10 @@ export default class SetupScoresheetStructure extends Component {
 
         <div className="form-group">
           <div className="col-sm-12">
-            <ul className="col-sm-4 list-group special-list">
+            <ul className="col-sm-4">
               {this.props.templateColumns.map(function(columnName, i) {
                 return (
-                  <li className="list-group-item" key={i}>
+                  <li key={i}>
                     {columnName}
                   </li>
                 );
@@ -103,6 +103,15 @@ export default class SetupScoresheetStructure extends Component {
             </button>
           </div>
         </div>
+
+        <div className="col-sm-12 ">
+          <ul className="col-sm-4 ">
+            <li>
+              Extra Notes:{this.props.templateNote}
+            </li>
+          </ul>
+        </div>
+
       </div>
     );
   }
