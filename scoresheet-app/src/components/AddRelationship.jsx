@@ -81,6 +81,7 @@ export default class AddRelationship extends Component {
                           });
                         }}
                       >
+                      <option>Select a piece</option>
                         {this.props.templateColumns.map(function(
                           columnName,
                           i
