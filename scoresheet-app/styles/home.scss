@@ -1,6 +1,10 @@
 $primary-color: #2c7452;
-$font-stack: Helvetica, sans-serif;
+$font-stack: Arial, Helvetica, sans-serif;
 $logo-height: 20px;
+body {
+  font-family: $font-stack;
+}
+
 a,
 a:hover {
   color: black;
@@ -21,7 +25,12 @@ a:hover {
   width: auto;
 }
 
-.template-list,
+#template-list-container,
+#game {
+  background-color: white;
+}
+
+#template-list,
 #game,
 #create-template {
   margin-top: $logo-height*3;
