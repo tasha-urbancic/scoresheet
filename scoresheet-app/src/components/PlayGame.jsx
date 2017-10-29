@@ -150,7 +150,6 @@ export default class PlayGame extends Component {
                         return (
                           <td key={piece}>
                             <input
-                              type="number"
                               className="table-input form-control"
                               value={this.state.allPlayers[i].values[j]}
                               onChange={e => {
