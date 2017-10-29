@@ -87,17 +87,21 @@ export default class TemplateRender extends Component {
             </div>
           </div>
           <div className="row well">
-            <div className="col-md-12 col-md-offset-6">
+            <div className="col-md-8 col-md-offset-3">
               <div className="form-horizontal">
-                <button
-                  className="btn btn-default"
-                  onClick={e => {
-                    console.log('this.props', this.props);
-                    this.props.postNewTemplate(this.props.newTemplate);
-                  }}
-                >
-                  Submit Template
-                </button>
+                <div className="form-group">
+                  <div className="col-sm-6 col-md-offset-2 text-center">
+                    <button
+                      className="btn btn-primary"
+                      onClick={e => {
+                        console.log('this.props', this.props);
+                        this.props.postNewTemplate(this.props.newTemplate);
+                      }}
+                    >
+                      Submit Template
+                    </button>
+                  </div>
+                </div>
               </div>
             </div>
           </div>

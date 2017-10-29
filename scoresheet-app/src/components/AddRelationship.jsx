@@ -21,15 +21,15 @@ export default class AddRelationship extends Component {
   render() {
     return (
       <div>
+        <h3>Add rules:</h3>
+        <br />
         {this.state.rules.map((rule, i) => {
           return (
             <div>
-              <h3>Add rules:</h3>
-              <br />
               {rule.pieces.map((piece, j) => {
                 return (
                   <div className="form-group">
-                    <div className="col-sm-11 col-md-offset-2">
+                    <div className="col-sm-11 col-md-offset-1">
                       <div className="col-sm-1">{j !== 0 ? 'and' : null}</div>
 
                       <div className="col-sm-1">
@@ -51,7 +51,7 @@ export default class AddRelationship extends Component {
                         </select>
                       </div>
 
-                      <div className="col-sm-2">
+                      <div className="col-sm-3">
                         <input
                           className="form-control"
                           type="number"
@@ -66,7 +66,7 @@ export default class AddRelationship extends Component {
                         />
                       </div>
 
-                      <div className="col-sm-2">
+                      <div className="col-sm-3">
                         <select
                           className="form-control"
                           name="column-list"
@@ -139,10 +139,10 @@ export default class AddRelationship extends Component {
               {rule.additional_operations.map((operation, k) => {
                 return (
                   <div className="form-group">
-                    <div className="col-sm-12 col-md-offset-2">
+                    <div className="col-sm-12 col-md-offset-1">
                       <div className="col-sm-1">{k !== 0 ? '+' : '+'}</div>
 
-                      <div className="col-sm-2">
+                      <div className="col-sm-3">
                         <select
                           className="form-control"
                           name="column-list"
@@ -185,7 +185,7 @@ export default class AddRelationship extends Component {
                         </select>
                       </div>
 
-                      <div className="col-sm-2">
+                      <div className="col-sm-3">
                         <input
                           className="form-control"
                           type="number"
@@ -226,8 +226,8 @@ export default class AddRelationship extends Component {
                   </button>
                 </div>
               </div>
+              <hr className="col-sm-10" />
             </div>
-            // <hr className="col-xs-12"></hr>
           );
         })}
         <div className="form-group">
@@ -248,7 +248,7 @@ export default class AddRelationship extends Component {
           <div className="col-sm-6 col-md-offset-2 text-center">
             <button
               type="button"
-              className="btn btn-default"
+              className="btn btn-primary"
               onClick={e => {
                 this.props.writeRulesIntoTemplate(this.state.rules);
               }}
