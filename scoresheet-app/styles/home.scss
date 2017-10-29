@@ -1,7 +1,6 @@
 $primary-color: #2c7452;
 $font-stack: Arial, Helvetica, sans-serif;
 $logo-height: 20px;
-
 @media (max-width: 768px) {
   body {
     padding-top: $logo-height*5;
@@ -130,4 +129,14 @@ hr {
   border-style: solid none;
   border-width: 1px 0;
   margin: 18px 0;
+}
+
+.btn-primary,
+.btn-primary:hover,
+.btn-primary:active,
+.btn-primary:visited,
+.btn-primary:focus {
+  background-color: $primary-color !important;
+  border-color: $primary-color !important;
+  background-image: none !important;
 }
