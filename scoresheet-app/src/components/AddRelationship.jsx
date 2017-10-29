@@ -226,7 +226,7 @@ export default class AddRelationship extends Component {
                   </button>
                 </div>
               </div>
-              <hr className="col-sm-10" />
+              <hr className="col-sm-9" />
             </div>
           );
         })}
