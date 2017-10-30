@@ -2,17 +2,17 @@
 // to be exported to the view template page, and
 // the gameplay page
 
-import React, { Component } from "react";
-import AddRelationship from "./AddRelationship.jsx";
-import ScoresheetStructure from "../containers/ScoresheetStructure.jsx";
-import RelationshipDefinitions from "../containers/RelationshipDefinitions.jsx";
-import NavBar from "../components/NavBar.jsx";
+import React, { Component } from 'react';
+import AddRelationship from './AddRelationship.jsx';
+import ScoresheetStructure from '../containers/ScoresheetStructure.jsx';
+import RelationshipDefinitions from '../containers/RelationshipDefinitions.jsx';
+import NavBar from '../components/NavBar.jsx';
 
 export default class TemplateRender extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      templateName: "",
+      templateName: '',
       hasError: false
     };
   }
@@ -31,8 +31,10 @@ export default class TemplateRender extends Component {
             <div className="col-md-8 col-md-offset-3">
               <h3>Add name:</h3>
               <br />
-              <div className="alert alert-danger" role="alert">
-                Please name your template!
+              <div className="col-sm-11">
+                <div className="alert alert-danger" role="alert">
+                  Please name your template!
+                </div>
               </div>
               <div className="form-group">
                 <label
@@ -54,7 +56,7 @@ export default class TemplateRender extends Component {
                     onKeyDown={e => {
                       if (e.keyCode === 13) {
                         this.props.renameTemplate(this.state.templateName);
-                        this.setState({ templateName: "" });
+                        this.setState({ templateName: '' });
                       }
                     }}
                   />
@@ -65,14 +67,14 @@ export default class TemplateRender extends Component {
                     className="btn btn-default"
                     onClick={e => {
                       this.props.renameTemplate(this.state.templateName);
-                      this.setState({ templateName: "" });
+                      this.setState({ templateName: '' });
                     }}
                   >
                     Add
                   </button>
                 </div>
               </div>
-              {this.props.templateName !== "" && (
+              {this.props.templateName !== '' && (
                 <div htmlFor="templateName" className="col-sm-12 control-label">
                   <h4>
                     The name of your template is {this.props.templateName}.
@@ -106,7 +108,7 @@ export default class TemplateRender extends Component {
                     <button
                       className="btn btn-primary"
                       onClick={e => {
-                        console.log("this.props", this.props);
+                        console.log('this.props', this.props);
                         this.props.postNewTemplate(this.props.newTemplate);
                       }}
                     >

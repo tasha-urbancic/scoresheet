@@ -1,8 +1,8 @@
-import React, { Component } from "react";
+import React, { Component } from 'react';
 
-const defaultPiece = { equality: "", number: null, piece: "" };
+const defaultPiece = { equality: '', number: null, piece: '' };
 const defaultValue = null;
-const defaultOperation = { piece: "", operation: "", number: null };
+const defaultOperation = { piece: '', operation: '', number: null };
 
 const defaultRule = {
   pieces: [{ ...defaultPiece }],
@@ -16,7 +16,8 @@ export default class AddRelationship extends Component {
     this.state = {
       rules: [{ ...defaultRule }],
       hasError: false,
-      rulesFull: false
+      rulesFull: false,
+      rulesSubmitted: false
     };
   }
 
@@ -24,8 +25,10 @@ export default class AddRelationship extends Component {
     return (
       <div>
         <h3>Add rules:</h3>
-        <div className="alert alert-danger" aria-hidden="true" role="alert">
-          Please add one rule for each piece.
+        <div className="col-sm-11">
+          <div className="alert alert-danger" aria-hidden="true" role="alert">
+            Please add one rule for each piece.
+          </div>
         </div>
         <br />
         {this.state.rules.map((rule, i) => {
@@ -35,7 +38,7 @@ export default class AddRelationship extends Component {
                 return (
                   <div className="form-group">
                     <div className="col-sm-11 col-md-offset-1">
-                      <div className="col-sm-1">{j !== 0 ? "and" : null}</div>
+                      <div className="col-sm-1">{j !== 0 ? 'and' : null}</div>
 
                       <div className="col-sm-2">
                         <select
@@ -160,7 +163,7 @@ export default class AddRelationship extends Component {
                 return (
                   <div className="form-group">
                     <div className="col-sm-12 col-md-offset-1">
-                      <div className="col-sm-1">{k !== 0 ? "+" : "+"}</div>
+                      <div className="col-sm-1">{k !== 0 ? '+' : '+'}</div>
 
                       <div className="col-sm-3">
                         <select
@@ -262,7 +265,7 @@ export default class AddRelationship extends Component {
                   </button>
                 </div>
               </div>
-              <hr className="col-sm-9" />
+              <hr className="col-sm-10" />
             </div>
           );
         })}
@@ -287,15 +290,24 @@ export default class AddRelationship extends Component {
               className="btn btn-primary"
               onClick={e => {
                 this.props.writeRulesIntoTemplate(this.state.rules);
+                this.setState({ rulesSubmitted: true });
               }}
             >
               Submit Rules
             </button>
           </div>
         </div>
-        <div className="alert alert-success" aria-hidden="true" role="alert">
-          Rules added! Please submit your template to start playing.
-        </div>
+        {this.state.rulesSubmitted && (
+          <div className="col-sm-11">
+            <div
+              className="alert alert-success"
+              aria-hidden="true"
+              role="alert"
+            >
+              Rules added! Please submit your template to start playing.
+            </div>
+          </div>
+        )}
       </div>
     );
   }

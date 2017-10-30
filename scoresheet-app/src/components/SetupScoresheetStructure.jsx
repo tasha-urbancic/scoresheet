@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component } from 'react';
 
 // export default function SetupScoresheetStructure(this.props) {
 
@@ -6,8 +6,8 @@ export default class SetupScoresheetStructure extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      columnName: "",
-      extraNotes: ""
+      columnName: '',
+      extraNotes: ''
     };
   }
 
@@ -17,8 +17,10 @@ export default class SetupScoresheetStructure extends Component {
         <div className="form-group">
           <h3>Add fields:</h3>
           <br />
-          <div className="alert alert-danger" role="alert">
-            Please add some pieces.
+          <div className="col-sm-11">
+            <div className="alert alert-danger" role="alert">
+              Please add some pieces.
+            </div>
           </div>
           <label htmlFor="templateName" className="col-sm-3 control-label">
             Enter column names:
@@ -33,16 +35,17 @@ export default class SetupScoresheetStructure extends Component {
                 this.props.updateCurrentColumn(e.target.value);
               }}
               onKeyDown={e => {
-                let columnNames = this.props.templateColumns
-                let currentColumnName = this.props.templateCurrentColumn
-                let dublicate = 0
-                for (var i = 0; i < columnNames.length; i++){
-                  if (columnNames[i] == currentColumnName){
-                    dublicate++
-                    }}
-                if (dublicate === 0 && e.keyCode === 13 ) {
+                let columnNames = this.props.templateColumns;
+                let currentColumnName = this.props.templateCurrentColumn;
+                let dublicate = 0;
+                for (var i = 0; i < columnNames.length; i++) {
+                  if (columnNames[i] == currentColumnName) {
+                    dublicate++;
+                  }
+                }
+                if (dublicate === 0 && e.keyCode === 13) {
                   this.props.addColumn(this.props.templateCurrentColumn);
-                  this.props.updateCurrentColumn("");
+                  this.props.updateCurrentColumn('');
                 }
               }}
             />
@@ -52,17 +55,18 @@ export default class SetupScoresheetStructure extends Component {
               type="button"
               className="btn btn-default"
               onClick={e => {
-                let columnNames = this.props.templateColumns
-                let currentColumnName = this.props.templateCurrentColumn
-                let dublicate = 0
-                for (var i = 0; i < columnNames.length; i++){
-                  if (columnNames[i] == currentColumnName){
-                    dublicate++
-                    }}
-                if (dublicate === 0 ) {
+                let columnNames = this.props.templateColumns;
+                let currentColumnName = this.props.templateCurrentColumn;
+                let dublicate = 0;
+                for (var i = 0; i < columnNames.length; i++) {
+                  if (columnNames[i] == currentColumnName) {
+                    dublicate++;
+                  }
+                }
+                if (dublicate === 0) {
                   this.props.addColumn(this.props.templateCurrentColumn);
                   this.props.updateCurrentColumn('');
-                  }
+                }
               }}
             >
               Add
@@ -98,7 +102,7 @@ export default class SetupScoresheetStructure extends Component {
               onKeyDown={e => {
                 if (e.keyCode === 13) {
                   this.props.addNoteToTemplate(this.state.extraNotes);
-                  this.setState({ extraNotes: "" });
+                  this.setState({ extraNotes: '' });
                 }
               }}
             />
@@ -109,7 +113,7 @@ export default class SetupScoresheetStructure extends Component {
               className="btn btn-default"
               onClick={e => {
                 this.props.addNoteToTemplate(this.state.extraNotes);
-                this.setState({ extraNotes: "" });
+                this.setState({ extraNotes: '' });
               }}
             >
               Add
@@ -118,7 +122,7 @@ export default class SetupScoresheetStructure extends Component {
         </div>
 
         <div className="col-sm-12 text-center ">
-          {this.props.templateNote !== "" && (
+          {this.props.templateNote !== '' && (
             <ul className="col-sm-4 ">Notes: {this.props.templateNote}</ul>
           )}
         </div>
