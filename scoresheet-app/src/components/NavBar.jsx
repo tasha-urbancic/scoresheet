@@ -14,10 +14,10 @@ export default function NavBar(props) {
                 <img src="/scoresheet-app/src/img-files/logo-first-draft.png" />
               </Link>
             </li>
-            <li className="nav-item">
+            <li className="nav-item nav-link">
               <Link to="/templates">Play Games</Link>
             </li>
-            <li className="nav-item">
+            <li className="nav-item nav-link">
               <Link to="/templates/new">Create New</Link>
             </li>
           </ul>
