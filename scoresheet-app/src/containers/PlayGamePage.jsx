@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { updatePlayers } from '../redux/actions/game-page';
+import { updatePlayers, renderFields } from '../redux/actions/game-page';
+import { getGame } from '../redux/actions/grab-data';
 import PlayGame from '../components/PlayGame.jsx';
 
 const mapStateToProps = state => {
@@ -11,7 +12,8 @@ const mapStateToProps = state => {
 };
 
 const mapDispatchToProps = {
-  updatePlayers
+  updatePlayers,
+  getGame
 };
 
 function PlayGamePage(props) {
