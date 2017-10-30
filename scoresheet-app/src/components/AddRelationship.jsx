@@ -1,8 +1,8 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
 
-const defaultPiece = { equality: '', number: null, piece: '' };
+const defaultPiece = { equality: "", number: null, piece: "" };
 const defaultValue = null;
-const defaultOperation = { piece: '', operation: '', number: null };
+const defaultOperation = { piece: "", operation: "", number: null };
 
 const defaultRule = {
   pieces: [{ ...defaultPiece }],
@@ -35,7 +35,7 @@ export default class AddRelationship extends Component {
                 return (
                   <div className="form-group">
                     <div className="col-sm-11 col-md-offset-1">
-                      <div className="col-sm-1">{j !== 0 ? 'and' : null}</div>
+                      <div className="col-sm-1">{j !== 0 ? "and" : null}</div>
 
                       <div className="col-sm-2">
                         <select
@@ -112,7 +112,10 @@ export default class AddRelationship extends Component {
                     className="btn btn-default"
                     onClick={e => {
                       const rules = [...this.state.rules];
-                      rules[i].pieces = [...rules[i].pieces, {...defaultPiece}];
+                      rules[i].pieces = [
+                        ...rules[i].pieces,
+                        { ...defaultPiece }
+                      ];
                       this.setState({
                         rules
                       });
@@ -157,7 +160,7 @@ export default class AddRelationship extends Component {
                 return (
                   <div className="form-group">
                     <div className="col-sm-12 col-md-offset-1">
-                      <div className="col-sm-1">{k !== 0 ? '+' : '+'}</div>
+                      <div className="col-sm-1">{k !== 0 ? "+" : "+"}</div>
 
                       <div className="col-sm-3">
                         <select
@@ -248,7 +251,7 @@ export default class AddRelationship extends Component {
                       const rules = [...this.state.rules];
                       rules[i].additional_operations = [
                         ...rules[i].additional_operations,
-                        {...defaultOperation}
+                        { ...defaultOperation }
                       ];
                       this.setState({
                         rules
@@ -289,6 +292,9 @@ export default class AddRelationship extends Component {
               Submit Rules
             </button>
           </div>
+        </div>
+        <div className="alert alert-success" aria-hidden="true" role="alert">
+          Rules added! Please submit your template to start playing.
         </div>
       </div>
     );
