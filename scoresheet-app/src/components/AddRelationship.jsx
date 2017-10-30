@@ -37,7 +37,7 @@ export default class AddRelationship extends Component {
                     <div className="col-sm-11 col-md-offset-1">
                       <div className="col-sm-1">{j !== 0 ? 'and' : null}</div>
 
-                      <div className="col-sm-1">
+                      <div className="col-sm-2">
                         <select
                           className="form-control"
                           name="equality"
@@ -51,6 +51,9 @@ export default class AddRelationship extends Component {
                             });
                           }}
                         >
+                          <option value="" selected disabled hidden>
+                            equality
+                          </option>
                           <option value="=">=</option>
                           <option value="&gt;">&gt;</option>
                           <option value="&lt;">&lt;</option>
@@ -86,6 +89,9 @@ export default class AddRelationship extends Component {
                             });
                           }}
                         >
+                          <option value="" selected disabled hidden>
+                            select piece
+                          </option>
                           {this.props.templateColumns.map(function(
                             columnName,
                             i
@@ -129,7 +135,7 @@ export default class AddRelationship extends Component {
                     <input
                       className="form-control"
                       type="number"
-                      placeholder="pts"
+                      placeholder="#"
                       onChange={e => {
                         const rules = [...this.state.rules];
                         rules[i].value = Number(e.target.value);
@@ -138,6 +144,11 @@ export default class AddRelationship extends Component {
                         });
                       }}
                     />
+                  </div>
+                  <div className="col-sm-1">
+                    <label htmlFor="templateName" className="control-label ">
+                      points
+                    </label>
                   </div>
                 </div>
               </div>
@@ -163,6 +174,9 @@ export default class AddRelationship extends Component {
                             });
                           }}
                         >
+                          <option value="" selected disabled hidden>
+                            select piece
+                          </option>
                           {this.props.templateColumns.map(function(
                             columnName,
                             i
@@ -172,7 +186,7 @@ export default class AddRelationship extends Component {
                         </select>
                       </div>
 
-                      <div className="col-sm-1">
+                      <div className="col-sm-2">
                         <select
                           className="form-control"
                           placeholder=""
@@ -185,6 +199,9 @@ export default class AddRelationship extends Component {
                             });
                           }}
                         >
+                          <option value="" selected disabled hidden>
+                            operation
+                          </option>
                           <option value="+">+</option>
                           <option value="-">-</option>
                           <option value="*">*</option>
@@ -208,6 +225,14 @@ export default class AddRelationship extends Component {
                             });
                           }}
                         />
+                      </div>
+                      <div className="col-sm-1">
+                        <label
+                          htmlFor="templateName"
+                          className="control-label "
+                        >
+                          points
+                        </label>
                       </div>
                     </div>
                   </div>
