@@ -8,14 +8,9 @@ const ipAddress = document.location.origin.split('/')[2].split(':')[0];
 const io = openSocket(`http://${ipAddress}:8080`);
 import NavBar from '../components/NavBar.jsx';
 
-// const defaultPieces = [
-//   "yellow card",
-//   "red card",
-//   "orange card",
-//   "blue coin",
-//   "green coin",
-//   "purple coin"
-// ];
+// const startPieces = [];
+// startPieces.push(this.props.fields);
+// console.log(startPieces);
 
 function createZeroArray(num) {
   let arr = [];
@@ -28,18 +23,23 @@ function createZeroArray(num) {
 export default class PlayGame extends Component {
   constructor(props) {
     super(props);
+
     this.state = {
       currentPlayer: '',
       // allPlayers: [],
-      // fields: defaultPieces,
+      // fields: this.props.fields,
       namesCompleted: false
     };
 
     io.on('sending new state', newState => {
       console.log('new state received');
       console.log(newState);
-      this.setState({ allPlayers: newState.newState });
-      this.props.updatePlayers(newState.newState);
+      this.setState({
+        // allPlayers: newState.newState
+        // fields: newState.newState
+      });
+      // this.props.renderFields(newState.newState.allFields);
+      this.props.updatePlayers(newState.newState.allPlayers);
     });
   }
 
@@ -48,6 +48,7 @@ export default class PlayGame extends Component {
     console.log('PROPS: ', this.props);
     let urlArray = this.props.location.pathname.split('/');
     let gameID = urlArray[urlArray.length - 1];
+    this.props.getGame(gameID);
     console.log('GAME ID: ', gameID);
     io.emit('room', { room: gameID });
   }
@@ -106,7 +107,10 @@ export default class PlayGame extends Component {
                     const allPlayers = [...this.props.allPlayers, newPlayer];
                     this.props.updatePlayers(allPlayers);
                     this.setState({ currentPlayer: '' });
-                    this.updateAllPlayersWithNewInput(allPlayers);
+                    this.updateAllPlayersWithNewInput({
+                      allPlayers
+                      // allFields: this.props.fields
+                    });
                   }
                 }}
               />
@@ -122,7 +126,10 @@ export default class PlayGame extends Component {
                   const allPlayers = [...this.props.allPlayers, newPlayer];
                   this.props.updatePlayers(allPlayers);
                   this.setState({ currentPlayer: '' });
-                  this.updateAllPlayersWithNewInput(allPlayers);
+                  this.updateAllPlayersWithNewInput({
+                    allPlayers
+                    // allFields: this.props.fields
+                  });
                 }}
               >
                 Add
@@ -135,7 +142,7 @@ export default class PlayGame extends Component {
               <thead>
                 <tr>
                   <td>Players</td>
-
+                  {console.log(this.props.fields)}
                   {this.props.fields.map(piece => {
                     return <td key={piece.name}>{piece.name}</td>;
                   })}
@@ -167,9 +174,12 @@ export default class PlayGame extends Component {
                                   allPlayers[i].values
                                 );
 
-                                this.setState({ allPlayers });
+                                // this.setState({ allPlayers });
                                 this.props.updatePlayers(allPlayers);
-                                this.updateAllPlayersWithNewInput(allPlayers);
+                                this.updateAllPlayersWithNewInput({
+                                  allPlayers
+                                  // allFields: this.props.fields
+                                });
                               }}
                             />
                           </td>
