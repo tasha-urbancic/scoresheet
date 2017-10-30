@@ -126,5 +126,10 @@ module.exports = {
   },
   getTemplates: function() {
     return knex.from('templates');
+  },
+  getGameTemplate: function(gameId) {
+    return knex('games')
+      .select('template_id')
+      .where('games.id', gameId);
   }
 };

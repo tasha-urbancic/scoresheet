@@ -15,6 +15,23 @@ router.get('/templates', (req, res) => {
   });
 });
 
+//save fields to database associated with game_id
+router.get('/games/:id', (req, res) => {
+  console.log(req.params.id);
+  const gameId = req.params.id;
+
+  queries.getGameTemplate(gameId).then(template => {
+    const templateId = template[0].template_id;
+    console.log(templateId);
+    queries.getFields(templateId).then(fields => {
+      const activeFields = fields.filter(field => field.name !== 'Total');
+      res.status(200).json({
+        fields: activeFields
+      });
+    });
+  });
+});
+
 // take create-template data and write it into the database as a new template
 router.post('/templates/new', (req, res) => {
   templateRules = req.body.templateRules;
@@ -137,9 +154,6 @@ router.post('/games/new', (req, res) => {
     }
   });
 });
-
-//save fields to database associated with game_id
-router.post('/games/:id', (req, res) => {});
 
 module.exports = router;
 

@@ -1,21 +1,26 @@
-import { addTemplate } from "./templates";
-import { saveGameInfo, creatingGame, clearCreatingGame } from "./game-page";
+import { addTemplate } from './templates';
+import {
+  saveGameInfo,
+  creatingGame,
+  clearCreatingGame,
+  renderFields
+} from './game-page';
 
-console.log("stuff: ", document.location);
+console.log('stuff: ', document.location);
 
-const ipAddress = document.location.origin.split("/")[2].split(":")[0];
+const ipAddress = document.location.origin.split('/')[2].split(':')[0];
 
 export function getTemplates() {
   return dispatch => {
     fetch(`http://${ipAddress}:8080/api/templates`, {
-      method: "GET",
-      headers: { "Content-Type": "application/json" },
-      mode: "cors"
+      method: 'GET',
+      headers: { 'Content-Type': 'application/json' },
+      mode: 'cors'
     })
       .then(res => res.json())
       .then(data => {
         data.map(template => {
-          console.log("adding template", template);
+          console.log('adding template', template);
           dispatch(addTemplate(template));
         });
       })
@@ -29,9 +34,9 @@ export function postNewGame(templateID) {
   return dispatch => {
     dispatch(creatingGame());
     fetch(`http://${ipAddress}:8080/api/games/new`, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      mode: "cors",
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      mode: 'cors',
       body: JSON.stringify({ templateID: templateID })
     })
       .then(res => {
@@ -47,6 +52,23 @@ export function postNewGame(templateID) {
       })
       .catch(error => {
         console.log(error);
+      });
+  };
+}
+
+export function getGame(gameID) {
+  return dispatch => {
+    fetch(`http://${ipAddress}:8080/api/games/${gameID}`, {
+      method: 'GET',
+      headers: { 'Content-Type': 'application/json' },
+      mode: 'cors'
+    })
+      .then(res => {
+        return res.json();
+      })
+      .then(data => {
+        console.log(data.fields);
+        dispatch(renderFields(data.fields));
       });
   };
 }

@@ -1,5 +1,3 @@
-const templateId = 1;
-
 import React, { Component } from 'react';
 import openSocket from 'socket.io-client';
 
@@ -21,6 +19,7 @@ function createZeroArray(num) {
 export default class PlayGame extends Component {
   constructor(props) {
     super(props);
+
     this.state = {
       currentPlayer: '',
       namesCompleted: false
@@ -29,7 +28,6 @@ export default class PlayGame extends Component {
     io.on('sending new state', newState => {
       console.log('new state received');
       console.log(newState);
-      this.setState({ allPlayers: newState.newState });
       this.props.updatePlayers(newState.newState);
     });
   }
@@ -39,6 +37,7 @@ export default class PlayGame extends Component {
     console.log('PROPS: ', this.props);
     let urlArray = this.props.location.pathname.split('/');
     let gameID = urlArray[urlArray.length - 1];
+    this.props.getGame(gameID);
     console.log('GAME ID: ', gameID);
     io.emit('room', { room: gameID });
   }
@@ -132,7 +131,7 @@ export default class PlayGame extends Component {
               <thead>
                 <tr>
                   <td>Players</td>
-
+                  {console.log(this.props.fields)}
                   {this.props.fields.map(piece => {
                     return <td key={piece.name}>{piece.name}</td>;
                   })}
@@ -164,8 +163,6 @@ export default class PlayGame extends Component {
                                   allPlayers[i].values,
                                   this.props.gameInfo
                                 );
-
-                                this.setState({ allPlayers });
                                 this.props.updatePlayers(allPlayers);
                                 this.updateAllPlayersWithNewInput(allPlayers);
                               }}
