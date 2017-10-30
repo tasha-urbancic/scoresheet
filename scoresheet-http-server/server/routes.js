@@ -148,7 +148,7 @@ router.post('/games/new', (req, res) => {
     } else {
       queries.getFields(templateId).then(fields => {
         const activeFields = fields.filter(field => field.name !== 'Total');
-        queries.getTemplateInfo(templateId).then(templateInfo => {
+        queries.getTemplateInfo(templateId).then(([templateInfo]) => {
           queries.getTemplateRelationshipsPieces(templateId).then(pieces => {
             queries.createNewGameInstance(templateId).then(([game]) => {
               res.status(200).json({
