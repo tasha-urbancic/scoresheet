@@ -74,8 +74,8 @@ body {
 }
 
 #landing-page {
-  background: linear-gradient(160deg, $primary-color 17%, white 45%);
-  height: 100%;
+  background: linear-gradient(160deg, $primary-color 17%, #5bff8c 85%);
+  height: 1000px;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
@@ -83,17 +83,18 @@ body {
 
 .landing-page-logo {
   height: auto;
-  width: 60%;
-  margin-bottom: 14em;
-  margin-left: 10%;
-  margin-right: 30%;
-  margin-top: 5%;
-  align-self: flex-start;
+  width: 70%;
+  // margin-bottom: 5em;
+  margin-left: 20%;
+  // margin-right: 50%;
+  margin-top: 20%;
+  align-self: center;
 }
 
 .landing-page-btn {
+  margin-top: 10%;
   align-self: center;
-  margin-left: 35%;
+  margin-left: 50%;
 }
 
 .white-text,
@@ -125,7 +126,7 @@ body {
 }
 
 .landing-page-notepad {
-  height: 450px;
+  height: 150px;
   align-self: flex-end;
 }
 
