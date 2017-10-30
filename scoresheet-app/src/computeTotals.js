@@ -18,10 +18,10 @@ function isTrue(element, index, array) {
   return element === true;
 }
 
-function groupByRelationship(pieces) {
+function groupByRelationship(allFields) {
   let relationshipIds = [];
-  pieces.forEach(piece => {
-    relationshipIds.push(piece.relationship_id);
+  allFields.forEach(field => {
+    relationshipIds.push(field.relationship_id);
   });
 
   var uniqueRelationshipIds = Array.from(new Set(relationshipIds));
@@ -31,10 +31,10 @@ function groupByRelationship(pieces) {
     relationships[`${uniqueRelationshipIds[i]}`] = [];
   }
 
-  pieces.forEach(piece => {
+  allFields.forEach(field => {
     for (var key in relationships) {
-      if (Number(key) === piece.relationship_id) {
-        relationships[key].push(piece);
+      if (Number(key) === field.relationship_id) {
+        relationships[key].push(field);
       }
     }
   });
@@ -47,7 +47,6 @@ function groupByRelationship(pieces) {
 module.exports = {
   piecesTotal: function(playerValues, fields, pieces) {
     let relationshipTotals = [];
-
     const relationships = groupByRelationship(pieces);
 
     for (let key in relationships) {
@@ -61,9 +60,13 @@ module.exports = {
 
         switch (piece.equality) {
           case '=':
-            relationshipTotals.push(
-              parseInt(playerValue / piece.number) * piece.value
-            );
+            if (piece.number === 0) {
+              relationshipTotals.push(0);
+            } else {
+              relationshipTotals.push(
+                parseInt(playerValue / piece.number) * piece.value
+              );
+            }
             break;
           case '>':
             if (playerValue > piece.number) {
@@ -89,10 +92,15 @@ module.exports = {
           );
           switch (piece.equality) {
             case '=':
-              const val = parseInt(playerValue / piece.number) * piece.value;
-              history.push(val);
-              if (val) {
+              if (piece.number === 0) {
+                history.push(0);
                 toggles.push(true);
+              } else {
+                const val = parseInt(playerValue / piece.number) * piece.value;
+                history.push(val);
+                if (val) {
+                  toggles.push(true);
+                }
               }
               break;
             case '>':
@@ -114,18 +122,6 @@ module.exports = {
           }
         });
 
-        // only add on min amount of matching = sign ones
-        // because > and < will not add to total value,
-        // just prevent toggles true check from going through
-
-        // case:
-        // = 1 blue, = 1 red, > 3 green is worth 5
-        // have 3 blue, 2 red and 4 green
-        // history = [15, 10]
-        // toggles = [true, true, true]
-        // relationshipTotals = [...relationshipTotals, 10]
-        // if length history is 0 assign value 
-
         if (toggles.every(isTrue)) {
           if (history.length > 0) {
             if (relationshipTotals.length > 24) {
@@ -143,9 +139,84 @@ module.exports = {
     console.log('relationshipTotals', relationshipTotals);
 
     return sum(relationshipTotals);
+  },
+  operationsTotal: function(playerValues, fields, operations) {
+    let relationshipTotals = [];
+    const relationships = groupByRelationship(operations);
+
+    for (let key in relationships) {
+      if (relationships[key].length === 1) {
+        console.log('single group case');
+        let operation = relationships[key][0];
+        let playerValue = findPlayerValueForPiece(
+          operation.name,
+          playerValues,
+          fields
+        );
+
+        console.log('typeof number', operation.number);
+        console.log('typeof playerValue', playerValue);
+
+        switch (operation.operator) {
+          case '-':
+            relationshipTotals.push(playerValue - operation.number);
+            break;
+          case '+':
+            relationshipTotals.push(playerValue + operation.number);
+            break;
+          case '*':
+            relationshipTotals.push(playerValue * operation.number);
+            break;
+          case '/':
+            relationshipTotals.push(playerValue / operation.number);
+            break;
+          case '^':
+            relationshipTotals.push(Math.pow(playerValue, operation.number));
+            break;
+          default:
+            break;
+        }
+      } else {
+        console.log('multi group case');
+        let history = [];
+        relationships[key].forEach(operation => {
+          let playerValue = findPlayerValueForPiece(
+            operation.name,
+            playerValues,
+            fields
+          );
+          switch (operation.operator) {
+            case '-':
+              history.push(playerValue - operation.number);
+              break;
+            case '+':
+              history.push(playerValue + operation.number);
+              break;
+            case '*':
+              history.push(playerValue * operation.number);
+              break;
+            case '/':
+              history.push(playerValue / operation.number);
+              break;
+            case '^':
+              history.push(Math.pow(playerValue, operation.number));
+              break;
+            default:
+              break;
+          }
+        });
+
+        console.log('history', history);
+       
+        relationshipTotals.push(sum(history));
+
+      }
+    }
+
+    console.log('relationshipTotals', relationshipTotals);
+
+    return sum(relationshipTotals);
+
+    console.log('sum(relationshipTotals)',sum(relationshipTotals));
   }
-  // ,
-  // operationsTotal: function(playerValues, fields, operations) {
-  //   return total;
-  // }
 };

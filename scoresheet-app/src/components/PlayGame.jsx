@@ -65,11 +65,21 @@ export default class PlayGame extends Component {
       gameInfo.fields,
       gameInfo.pieces
     );
-    // totalScore += computeTotals.operationsTotal(
-    //   playerValues,
-    //   gameInfo.fields,
-    //   gameInfo.operations
-    // );
+    totalScore += computeTotals.operationsTotal(
+      playerValues,
+      gameInfo.fields,
+      gameInfo.operations
+    );
+    console.log('pieces total:',computeTotals.piecesTotal(
+      playerValues,
+      gameInfo.fields,
+      gameInfo.pieces
+    ));
+    console.log('operations total:', computeTotals.operationsTotal(
+      playerValues,
+      gameInfo.fields,
+      gameInfo.operations
+    ));
     console.log('totalScore', totalScore);
     return totalScore;
   }
