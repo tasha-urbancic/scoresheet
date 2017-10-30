@@ -4,7 +4,7 @@ import {
   CREATING_GAME,
   CLEAR_CREATING_GAME,
   CLEAR_GAME,
-  RENDER_FIELDS
+  RENDER_GAME_INFO
 } from '../constants/game-page';
 
 export function updatePlayers(allPlayers) {
@@ -33,9 +33,9 @@ export function clearGame() {
   return { type: CLEAR_GAME };
 }
 
-export function renderFields(fields) {
+export function renderGameInfo(gameInfo) {
   return {
-    type: RENDER_FIELDS,
-    fields
+    type: RENDER_GAME_INFO,
+    gameInfo
   };
 }

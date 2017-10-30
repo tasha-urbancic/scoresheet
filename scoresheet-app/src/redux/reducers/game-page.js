@@ -4,7 +4,7 @@ import {
   CREATING_GAME,
   CLEAR_CREATING_GAME,
   CLEAR_GAME,
-  RENDER_FIELDS
+  RENDER_GAME_INFO
 } from '../constants/game-page';
 
 const defaultState = {
@@ -41,14 +41,11 @@ export default (state = defaultState, action) => {
       };
     case CLEAR_GAME:
       return defaultState;
-    case RENDER_FIELDS:
+    case RENDER_GAME_INFO:
       return {
         ...state,
         ...{
-          gameInfo: {
-            ...state.gameInfo,
-            fields: action.fields
-          }
+          gameInfo: action.gameInfo
         }
       };
     default:

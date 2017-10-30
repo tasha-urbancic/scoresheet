@@ -3,7 +3,7 @@ import {
   saveGameInfo,
   creatingGame,
   clearCreatingGame,
-  renderFields
+  renderGameInfo
 } from './game-page';
 
 console.log('stuff: ', document.location);
@@ -67,8 +67,8 @@ export function getGame(gameID) {
         return res.json();
       })
       .then(data => {
-        console.log(data.fields);
-        dispatch(renderFields(data.fields));
+        console.log('data is: ', data);
+        dispatch(renderGameInfo(data));
       });
   };
 }
