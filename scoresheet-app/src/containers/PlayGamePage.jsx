@@ -8,7 +8,7 @@ const mapStateToProps = state => {
   return {
     allPlayers: state.gamePage.allPlayers,
     fields: state.gamePage.gameInfo.fields,
-    gameInfo: state.gamePage.gameInfo
+    templateInfo: state.gamePage.gameInfo.templateInfo
   };
 };
 
