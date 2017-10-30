@@ -1,106 +1,104 @@
 $primary-color: #2c7452;
-$font-stack: Arial,
-Helvetica,
-sans-serif;
+$font-stack: Arial, Helvetica, sans-serif;
 $logo-height: 35px;
 @media (max-width: 768px) {
-    body {
-        padding-top: $logo-height*3;
-    }
+  body {
+    padding-top: $logo-height*3;
+  }
 }
 
 body {
-    font-family: $font-stack;
-    background-color: transparent;
+  font-family: $font-stack;
+  background-color: transparent;
 }
 
 #create-template h3 {
-    margin-top: 5px;
-    margin-bottom: 5px;
+  margin-top: 5px;
+  margin-bottom: 5px;
 }
 
 #create-template h4 {
-    margin-top: 20px;
+  margin-top: 20px;
 }
 
 a,
 a:hover {
-    color: black;
-    text-decoration: none;
+  color: black;
+  text-decoration: none;
 }
 
-.navbar-default .navbar-nav>li>a {
-    color: white;
-    font-size: $logo-height / 2;
+.navbar-default .navbar-nav > li > a {
+  color: white;
+  font-size: $logo-height / 2;
 }
 
 .nav-link {
-    padding-top: 7px;
-    padding-bottom: none;
+  padding-top: 7px;
+  padding-bottom: none;
 }
 
 .navbar {
-    background: $primary-color;
-    color: black;
+  background: $primary-color;
+  color: black;
 }
 
 .navbar img {
-    height: $logo-height;
-    width: auto;
+  height: $logo-height;
+  width: auto;
 }
 
-.navbar-default .navbar-nav>li>a:hover {
-    color: darken(white, 25%);
+.navbar-default .navbar-nav > li > a:hover {
+  color: darken(white, 25%);
 }
 
 #template-list-container,
 #game {
-    background-color: white;
+  background-color: white;
 }
 
 #template-list,
 #game,
 #create-template {
-    margin-top: $logo-height*4;
+  margin-top: $logo-height*3;
 }
 
 ul.special-list {
-    box-shadow: none;
+  box-shadow: none;
 }
 
 .btn-dark {
-    color: white;
-    border-color: white;
-    border-width: thin;
-    background-color: $primary-color;
+  color: white;
+  border-color: white;
+  border-width: thin;
+  background-color: $primary-color;
 }
 
 .btn-dark:hover,
 .btn-dark:focus,
 .btn-dark:active {
-    color: white;
-    background-color: $primary-color;
+  color: white;
+  background-color: $primary-color;
 }
 
 #landing-page {
-    background: linear-gradient(160deg, $primary-color 17%, #5bff8c 85%);
-    height: 1050px;
-    display: flex;
-    flex-direction: column;
+  background: linear-gradient(160deg, $primary-color 17%, #5bff8c 85%);
+  height: 1050px;
+  display: flex;
+  flex-direction: column;
 }
 
 .landing-page-logo {
-    height: auto;
-    width: 70%; // margin-bottom: 5em;
-    margin-left: 20%; // margin-right: 50%;
-    margin-top: 20%;
-    margin-left: 15%;
+  height: auto;
+  width: 70%; // margin-bottom: 5em;
+  margin-left: 20%; // margin-right: 50%;
+  margin-top: 20%;
+  margin-left: 15%;
 }
 
 .landing-page-btn {
-    margin-top: 10%;
-    margin-left: 45%;
-    width: 10%;
+  margin-top: 10%;
+  margin-left: 45%;
+  width: 10%;
 }
 
 .white-text,
@@ -108,36 +106,36 @@ ul.special-list {
 .white-text:active,
 .white-text:visited,
 .white-text:focus {
-    color: white;
+  color: white;
 }
 
 .btn.btn-dark.btn-lg.js-scroll-trigger:hover {
-    background-color: lighten($primary-color, 5%);
+  background-color: lighten($primary-color, 5%);
 }
 
 .white-text:hover {
-    background-color: lighten($primary-color, 5%);
+  background-color: lighten($primary-color, 5%);
 }
 
 .enter-name {
-    margin: 2em 0em 2em 15em;
-    margin-left: 2px;
+  margin: 2em 0em 2em 15em;
+  margin-left: 2px;
 }
 
 .table-input {
-    border: none;
+  border: none;
 }
 
 hr {
-    -moz-border-bottom-colors: none;
-    -moz-border-image: none;
-    -moz-border-left-colors: none;
-    -moz-border-right-colors: none;
-    -moz-border-top-colors: none;
-    border-color: #eeeeee -moz-use-text-color #ffffff;
-    border-style: solid none;
-    border-width: 1px 0;
-    margin: 18px 0;
+  -moz-border-bottom-colors: none;
+  -moz-border-image: none;
+  -moz-border-left-colors: none;
+  -moz-border-right-colors: none;
+  -moz-border-top-colors: none;
+  border-color: #eeeeee -moz-use-text-color #ffffff;
+  border-style: solid none;
+  border-width: 1px 0;
+  margin: 18px 0;
 }
 
 .btn-primary,
@@ -145,7 +143,7 @@ hr {
 .btn-primary:active,
 .btn-primary:visited,
 .btn-primary:focus {
-    background-color: $primary-color !important;
-    border-color: $primary-color !important;
-    background-image: none !important;
+  background-color: $primary-color !important;
+  border-color: $primary-color !important;
+  background-image: none !important;
 }
