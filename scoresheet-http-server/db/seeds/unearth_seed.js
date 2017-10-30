@@ -659,7 +659,7 @@ exports.seed = function(knex, Promise) {
                 individualPieceRelationshipIds[26],
               field_id: fieldIds[5],
               equality: '>',
-              number: 3
+              number: 2
             },
             {
               individual_piece_relationship_id:
