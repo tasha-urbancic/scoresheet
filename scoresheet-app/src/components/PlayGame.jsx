@@ -97,6 +97,9 @@ export default class PlayGame extends Component {
       <div id="gamepage">
         <NavBar />
         <div className="container" id="game">
+          <div className="row">
+            <h3>{toTitleCase(this.props.gameInfo.templateInfo[0].name)}</h3>
+          </div>
           <div className="form-inline">
             <label className="sr-only" htmlFor="inlineFormInput">
               New Player
@@ -140,10 +143,6 @@ export default class PlayGame extends Component {
             >
               Add
             </button>
-          </div>
-
-          <div className="row">
-            <h3>{toTitleCase(this.props.gameInfo.templateInfo[0].name)}</h3>
           </div>
 
           <div className="container">

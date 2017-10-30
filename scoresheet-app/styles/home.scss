@@ -56,8 +56,11 @@ a:hover {
   background-color: white;
 }
 
+#game {
+  margin-top: $logo-height*2;
+}
+
 #template-list,
-#game,
 #create-template {
   margin-top: $logo-height*3;
 }
