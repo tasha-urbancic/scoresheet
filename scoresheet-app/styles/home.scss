@@ -120,9 +120,13 @@ ul.special-list {
   background-color: lighten($primary-color, 5%);
 }
 
+.row {
+  margin-left: 15px;
+}
+
 .enter-name {
   margin: 2em 0em 2em 15em;
-  margin-left: 2px;
+  margin-left: 15px;
 }
 
 .table-input {
