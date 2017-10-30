@@ -1,12 +1,12 @@
-import React, { Component } from 'react';
-import openSocket from 'socket.io-client';
+import React, { Component } from "react";
+import openSocket from "socket.io-client";
 
-import computeTotals from '../computeTotals';
+import computeTotals from "../computeTotals";
 
-const ipAddress = document.location.origin.split('/')[2].split(':')[0];
+const ipAddress = document.location.origin.split("/")[2].split(":")[0];
 
 const io = openSocket(`http://${ipAddress}:8080`);
-import NavBar from '../components/NavBar.jsx';
+import NavBar from "../components/NavBar.jsx";
 
 function createZeroArray(num) {
   let arr = [];
@@ -28,12 +28,12 @@ export default class PlayGame extends Component {
     super(props);
 
     this.state = {
-      currentPlayer: '',
+      currentPlayer: "",
       namesCompleted: false
     };
 
-    io.on('sending new state', newState => {
-      console.log('new state received');
+    io.on("sending new state", newState => {
+      console.log("new state received");
       console.log(newState);
       this.props.updatePlayers(newState.newState);
     });
@@ -41,28 +41,28 @@ export default class PlayGame extends Component {
 
   componentDidMount() {
     // trigger join room
-    console.log('PROPS: ', this.props);
-    let urlArray = this.props.location.pathname.split('/');
+    console.log("PROPS: ", this.props);
+    let urlArray = this.props.location.pathname.split("/");
     let gameID = urlArray[urlArray.length - 1];
     this.props.getGame(gameID);
-    console.log('GAME ID: ', gameID);
-    io.emit('room', { room: gameID });
+    console.log("GAME ID: ", gameID);
+    io.emit("room", { room: gameID });
   }
 
   componentWillUnmount() {
     // trigger leave room
-    console.log('PROPS ON LEAVE: ', this.props);
-    let urlArray = this.props.location.pathname.split('/');
+    console.log("PROPS ON LEAVE: ", this.props);
+    let urlArray = this.props.location.pathname.split("/");
     let gameID = urlArray[urlArray.length - 1];
-    console.log('GAME ID ON LEAVE: ', gameID);
-    io.emit('leave', { room: gameID });
+    console.log("GAME ID ON LEAVE: ", gameID);
+    io.emit("leave", { room: gameID });
   }
 
   updateAllPlayersWithNewInput(tableState) {
-    console.log('table state has changed');
-    let urlArray = this.props.location.pathname.split('/');
+    console.log("table state has changed");
+    let urlArray = this.props.location.pathname.split("/");
     let gameID = urlArray[urlArray.length - 1];
-    io.emit('new input added', { room: gameID, newState: tableState });
+    io.emit("new input added", { room: gameID, newState: tableState });
   }
 
   calculateScore(playerValues, gameInfo) {
@@ -78,18 +78,18 @@ export default class PlayGame extends Component {
       gameInfo.operations
     );
     console.log(
-      'pieces total:',
+      "pieces total:",
       computeTotals.piecesTotal(playerValues, gameInfo.fields, gameInfo.pieces)
     );
     console.log(
-      'operations total:',
+      "operations total:",
       computeTotals.operationsTotal(
         playerValues,
         gameInfo.fields,
         gameInfo.operations
       )
     );
-    console.log('totalScore', totalScore);
+    console.log("totalScore", totalScore);
     return totalScore;
   }
 
@@ -122,7 +122,7 @@ export default class PlayGame extends Component {
                   };
                   const allPlayers = [...this.props.allPlayers, newPlayer];
                   this.props.updatePlayers(allPlayers);
-                  this.setState({ currentPlayer: '' });
+                  this.setState({ currentPlayer: "" });
                   this.updateAllPlayersWithNewInput(allPlayers);
                 }
               }}
@@ -138,7 +138,7 @@ export default class PlayGame extends Component {
                 };
                 const allPlayers = [...this.props.allPlayers, newPlayer];
                 this.props.updatePlayers(allPlayers);
-                this.setState({ currentPlayer: '' });
+                this.setState({ currentPlayer: "" });
                 this.updateAllPlayersWithNewInput(allPlayers);
               }}
             >
@@ -147,16 +147,32 @@ export default class PlayGame extends Component {
           </div>
 
           <div className="container">
-            <table className="table table-bordered">
+            <table className="table table-hover table-responsive">
               <thead>
                 <tr>
-                  <td>Players</td>
+                  <th className="rotate">
+                    <div id="player-names">
+                      <span>Players</span>
+                    </div>
+                  </th>
                   {console.log(this.props.fields)}
                   {this.props.fields.map(piece => {
-                    return <td key={piece.name}>{piece.name}</td>;
+                    return (
+                      <th className="rotate" key={piece.name}>
+                        <div>
+                          <span>{piece.name}</span>
+                        </div>
+                      </th>
+                    );
                   })}
 
-                  {<td>Total Score</td>}
+                  {
+                    <th className="rotate">
+                      <div id="total-score">
+                        <span>Total Score</span>
+                      </div>
+                    </th>
+                  }
                 </tr>
               </thead>
 
@@ -164,19 +180,19 @@ export default class PlayGame extends Component {
                 {this.props.allPlayers.map((playerObj, i) => {
                   return (
                     <tr key={playerObj.name}>
-                      <td>{playerObj.name}</td>
+                      <th className="bordered-rows">{playerObj.name}</th>
                       {this.props.fields.map((piece, j) => {
                         return (
-                          <td key={piece.name}>
+                          <td key={piece.name} className="bordered-rows">
                             <input
-                              className="table-input form-control"
+                              className="table-input form-control score-input"
                               value={this.props.allPlayers[i].values[j]}
                               onChange={e => {
                                 let allPlayers = [...this.props.allPlayers];
                                 allPlayers[i].values[j] =
                                   Number(e.target.value) || 0;
                                 console.log(
-                                  'this player updated: ',
+                                  "this player updated: ",
                                   allPlayers[i]
                                 );
                                 allPlayers[i].score = this.calculateScore(
@@ -190,7 +206,9 @@ export default class PlayGame extends Component {
                           </td>
                         );
                       })}
-                      <td>{parseInt(playerObj.score)}</td>
+                      <td className="bordered-rows">
+                        {parseInt(playerObj.score)}
+                      </td>
                     </tr>
                   );
                 })}
@@ -199,7 +217,7 @@ export default class PlayGame extends Component {
           </div>
           <div className="row">
             <div className="form-inline">
-              {this.props.templateInfo.footer !== '' && (
+              {this.props.gameInfo.templateInfo.footer !== "" && (
                 <div>
                   <h4>Notes:</h4>
                   <p>{this.props.templateInfo.footer}</p>

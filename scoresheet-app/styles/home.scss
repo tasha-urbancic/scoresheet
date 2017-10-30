@@ -133,6 +133,35 @@ ul.special-list {
   border: none;
 }
 
+th.rotate {
+  /* Something you can count on */
+  height: 140px;
+  white-space: nowrap;
+}
+
+div #player-names {
+  transform: rotate(315deg);
+  width: 30px;
+}
+
+div #total-score {
+  transform: rotate(315deg);
+  width: 30px;
+}
+
+th.rotate > div {
+  transform: rotate(315deg);
+  width: 30px;
+}
+th.rotate > div > span {
+  // border-bottom: 1px solid #ccc;
+  padding: 5px 10px;
+}
+
+.bordered-rows {
+  border: 1px solid #ccc;
+}
+
 hr {
   -moz-border-bottom-colors: none;
   -moz-border-image: none;
