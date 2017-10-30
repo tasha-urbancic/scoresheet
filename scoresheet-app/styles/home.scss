@@ -56,10 +56,13 @@ a:hover {
   background-color: white;
 }
 
+#game {
+  margin-top: $logo-height*2;
+}
+
 #template-list,
-#game,
 #create-template {
-  margin-top: $logo-height*4;
+  margin-top: $logo-height*3;
 }
 
 ul.special-list {
@@ -89,7 +92,8 @@ ul.special-list {
 
 .landing-page-logo {
   height: auto;
-  width: 70%;
+  width: 70%; // margin-bottom: 5em;
+  margin-left: 20%; // margin-right: 50%;
   margin-top: 20%;
   margin-left: 15%;
 }
@@ -117,8 +121,8 @@ ul.special-list {
 }
 
 .enter-name {
-  margin: 4em 0em;
-  margin-left: 15px;
+  margin: 2em 0em 2em 15em;
+  margin-left: 2px;
 }
 
 .table-input {

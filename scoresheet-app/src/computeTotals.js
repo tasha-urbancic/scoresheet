@@ -207,9 +207,8 @@ module.exports = {
         });
 
         console.log('history', history);
-       
-        relationshipTotals.push(sum(history));
 
+        relationshipTotals.push(sum(history));
       }
     }
 
@@ -217,6 +216,6 @@ module.exports = {
 
     return sum(relationshipTotals);
 
-    console.log('sum(relationshipTotals)',sum(relationshipTotals));
+    console.log('sum(relationshipTotals)', sum(relationshipTotals));
   }
 };

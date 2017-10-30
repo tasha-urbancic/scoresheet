@@ -209,7 +209,7 @@ export default class AddRelationship extends Component {
                           <option value="-">-</option>
                           <option value="*">*</option>
                           <option value="/">/</option>
-                          <option value="*">^</option>
+                          <option value="^">^</option>
                         </select>
                       </div>
 
