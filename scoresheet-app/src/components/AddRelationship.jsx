@@ -112,7 +112,10 @@ export default class AddRelationship extends Component {
                     className="btn btn-default"
                     onClick={e => {
                       const rules = [...this.state.rules];
-                      rules[i].pieces = [...rules[i].pieces, {...defaultPiece}];
+                      rules[i].pieces = [
+                        ...rules[i].pieces,
+                        { ...defaultPiece }
+                      ];
                       this.setState({
                         rules
                       });
@@ -206,7 +209,7 @@ export default class AddRelationship extends Component {
                           <option value="-">-</option>
                           <option value="*">*</option>
                           <option value="/">/</option>
-                          <option value="*">^</option>
+                          <option value="^">^</option>
                         </select>
                       </div>
 
@@ -248,7 +251,7 @@ export default class AddRelationship extends Component {
                       const rules = [...this.state.rules];
                       rules[i].additional_operations = [
                         ...rules[i].additional_operations,
-                        {...defaultOperation}
+                        { ...defaultOperation }
                       ];
                       this.setState({
                         rules

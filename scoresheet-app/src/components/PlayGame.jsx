@@ -16,6 +16,12 @@ function createZeroArray(num) {
   return arr;
 }
 
+function toTitleCase(str) {
+  return str.replace(/\w\S*/g, function(txt) {
+    return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
+  });
+}
+
 export default class PlayGame extends Component {
   constructor(props) {
     super(props);
@@ -70,16 +76,18 @@ export default class PlayGame extends Component {
       gameInfo.fields,
       gameInfo.operations
     );
-    console.log('pieces total:',computeTotals.piecesTotal(
-      playerValues,
-      gameInfo.fields,
-      gameInfo.pieces
-    ));
-    console.log('operations total:', computeTotals.operationsTotal(
-      playerValues,
-      gameInfo.fields,
-      gameInfo.operations
-    ));
+    console.log(
+      'pieces total:',
+      computeTotals.piecesTotal(playerValues, gameInfo.fields, gameInfo.pieces)
+    );
+    console.log(
+      'operations total:',
+      computeTotals.operationsTotal(
+        playerValues,
+        gameInfo.fields,
+        gameInfo.operations
+      )
+    );
     console.log('totalScore', totalScore);
     return totalScore;
   }
@@ -89,37 +97,20 @@ export default class PlayGame extends Component {
       <div id="gamepage">
         <NavBar />
         <div className="container" id="game">
-          <div>
-            <div className="form-inline">
-              <label className="sr-only" htmlFor="inlineFormInput">
-                New Player
-              </label>
-              <input
-                type="text"
-                className="form-control mb-2 mr-sm-2 mb-sm-0 enter-name"
-                placeholder="Enter new player"
-                value={this.state.currentPlayer}
-                onChange={e => {
-                  this.setState({ currentPlayer: e.target.value });
-                }}
-                onKeyDown={e => {
-                  if (e.keyCode === 13) {
-                    const newPlayer = {
-                      name: this.state.currentPlayer,
-                      values: createZeroArray(this.props.fields.length),
-                      score: 0
-                    };
-                    const allPlayers = [...this.props.allPlayers, newPlayer];
-                    this.props.updatePlayers(allPlayers);
-                    this.setState({ currentPlayer: '' });
-                    this.updateAllPlayersWithNewInput(allPlayers);
-                  }
-                }}
-              />
-              <button
-                type="submit"
-                className="btn btn-default"
-                onClick={e => {
+          <div className="form-inline">
+            <label className="sr-only" htmlFor="inlineFormInput">
+              New Player
+            </label>
+            <input
+              type="text"
+              className="form-control mb-2 mr-sm-2 mb-sm-0 enter-name"
+              placeholder="Enter new player"
+              value={this.state.currentPlayer}
+              onChange={e => {
+                this.setState({ currentPlayer: e.target.value });
+              }}
+              onKeyDown={e => {
+                if (e.keyCode === 13) {
                   const newPlayer = {
                     name: this.state.currentPlayer,
                     values: createZeroArray(this.props.fields.length),
@@ -129,11 +120,30 @@ export default class PlayGame extends Component {
                   this.props.updatePlayers(allPlayers);
                   this.setState({ currentPlayer: '' });
                   this.updateAllPlayersWithNewInput(allPlayers);
-                }}
-              >
-                Add
-              </button>
-            </div>
+                }
+              }}
+            />
+            <button
+              type="submit"
+              className="btn btn-default"
+              onClick={e => {
+                const newPlayer = {
+                  name: this.state.currentPlayer,
+                  values: createZeroArray(this.props.fields.length),
+                  score: 0
+                };
+                const allPlayers = [...this.props.allPlayers, newPlayer];
+                this.props.updatePlayers(allPlayers);
+                this.setState({ currentPlayer: '' });
+                this.updateAllPlayersWithNewInput(allPlayers);
+              }}
+            >
+              Add
+            </button>
+          </div>
+
+          <div className="row">
+            <h3>{toTitleCase(this.props.gameInfo.templateInfo[0].name)}</h3>
           </div>
 
           <div className="container">
@@ -180,12 +190,22 @@ export default class PlayGame extends Component {
                           </td>
                         );
                       })}
-                      <td>{playerObj.score}</td>
+                      <td>{parseInt(playerObj.score)}</td>
                     </tr>
                   );
                 })}
               </tbody>
             </table>
+          </div>
+          <div className="row">
+            <div className="form-inline">
+              {this.props.gameInfo.templateInfo[0].footer !== '' && (
+                <div>
+                  <h4>Notes:</h4>
+                  <p>{this.props.gameInfo.templateInfo[0].footer}</p>
+                </div>
+              )}
+            </div>
           </div>
         </div>
       </div>
