@@ -1,16 +1,17 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Switch, Route, Link } from 'react-router-dom';
-import { changeGameID } from '../redux/actions/pages';
+// import { changeGameID } from '../redux/actions/pages';
 import {
   changeTemplateName,
   updateCurrentColumn,
   addColumn
 } from '../redux/actions/create-templates';
+import { clearCreatingGame } from '../redux/actions/game-page';
+import { postNewTemplate } from '../redux/actions/grab-data';
 import TemplateRender from '../components/TemplateRender.jsx';
 import HomePage from '../components/HomePage.jsx';
 import PlayGamePage from '../containers/PlayGamePage.jsx';
-import { postNewTemplate } from '../redux/actions/grab-data';
 
 const mapStateToProps = state => {
   return {
@@ -27,11 +28,16 @@ const mapDispatchToProps = dispatch => ({
   },
   changeTemplateName: name => {
     dispatch(changeTemplateName(name));
+  },
+  clearCreatingGame: () => {
+    dispatch(clearCreatingGame());
   }
 });
 
 class Content extends Component {
-  homePage = () => <HomePage onKeyDown={this.props.changeGameID} />;
+  homePage = () => (
+    <HomePage clearCreatingGame={this.props.clearCreatingGame} />
+  );
 
   templateRender = () => (
     <TemplateRender
