@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 
-const defaultPiece = { equality: '=', number: 1, piece: '' };
-const defaultValue = 1;
-const defaultOperation = { piece: '', operation: '*', number: 1 };
+const defaultPiece = { equality: '', number: null, piece: '' };
+const defaultValue = null;
+const defaultOperation = { piece: '', operation: '', number: null };
 
 const defaultRule = {
   pieces: [{ ...defaultPiece }],
@@ -15,7 +15,8 @@ export default class AddRelationship extends Component {
     super(props);
     this.state = {
       rules: [{ ...defaultRule }],
-      hasError: false
+      hasError: false,
+      rulesFull: false
     };
   }
 
@@ -41,6 +42,7 @@ export default class AddRelationship extends Component {
                           className="form-control"
                           name="equality"
                           id="equality-dropdown"
+                          placeholder=""
                           onChange={e => {
                             const rules = [...this.state.rules];
                             rules[i].pieces[j].equality = e.target.value;
@@ -55,11 +57,11 @@ export default class AddRelationship extends Component {
                         </select>
                       </div>
 
-                      <div className="col-sm-3">
+                      <div className="col-sm-2">
                         <input
                           className="form-control"
                           type="number"
-                          placeholder="# pieces"
+                          placeholder="#"
                           onChange={e => {
                             const rules = [...this.state.rules];
                             rules[i].pieces[j].number = Number(e.target.value);
@@ -75,7 +77,7 @@ export default class AddRelationship extends Component {
                           className="form-control"
                           name="column-list"
                           id="column-list-dropdown"
-                          placeholder="Select a piece"
+                          placeholder="piece"
                           onChange={e => {
                             const rules = [...this.state.rules];
                             rules[i].pieces[j].piece = e.target.value;
@@ -127,7 +129,7 @@ export default class AddRelationship extends Component {
                     <input
                       className="form-control"
                       type="number"
-                      placeholder="# pts"
+                      placeholder="pts"
                       onChange={e => {
                         const rules = [...this.state.rules];
                         rules[i].value = Number(e.target.value);
@@ -151,6 +153,7 @@ export default class AddRelationship extends Component {
                           className="form-control"
                           name="column-list"
                           id="column-list-dropdown"
+                          placeholder=""
                           onChange={e => {
                             const rules = [...this.state.rules];
                             rules[i].additional_operations[k].piece =
@@ -172,6 +175,7 @@ export default class AddRelationship extends Component {
                       <div className="col-sm-1">
                         <select
                           className="form-control"
+                          placeholder=""
                           onChange={e => {
                             const rules = [...this.state.rules];
                             rules[i].additional_operations[k].operation =
@@ -189,11 +193,11 @@ export default class AddRelationship extends Component {
                         </select>
                       </div>
 
-                      <div className="col-sm-3">
+                      <div className="col-sm-2">
                         <input
                           className="form-control"
                           type="number"
-                          placeholder="# pieces"
+                          placeholder="#"
                           onChange={e => {
                             const rules = [...this.state.rules];
                             rules[i].additional_operations[k].number = Number(
