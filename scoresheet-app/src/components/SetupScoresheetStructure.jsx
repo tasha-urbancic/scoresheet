@@ -59,7 +59,7 @@ export default class SetupScoresheetStructure extends Component {
                   if (columnNames[i] == currentColumnName){
                     dublicate++
                     }}
-                if (dublicate === 0 && e.keyCode === 13 ) {
+                if (dublicate === 0 ) {
                   this.props.addColumn(this.props.templateCurrentColumn);
                   this.props.updateCurrentColumn('');
                   }
