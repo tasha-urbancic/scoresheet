@@ -17,6 +17,7 @@ function createZeroArray(num) {
 }
 
 function toTitleCase(str) {
+  str = `${str}`;
   return str.replace(/\w\S*/g, function(txt) {
     return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
   });
@@ -98,7 +99,7 @@ export default class PlayGame extends Component {
         <NavBar />
         <div className="container" id="game">
           <div className="row">
-            <h3>{toTitleCase(this.props.gameInfo.templateInfo[0].name)}</h3>
+            <h3>{toTitleCase(this.props.templateInfo.name)}</h3>
           </div>
           <div className="form-inline">
             <label className="sr-only" htmlFor="inlineFormInput">
@@ -198,10 +199,10 @@ export default class PlayGame extends Component {
           </div>
           <div className="row">
             <div className="form-inline">
-              {this.props.gameInfo.templateInfo[0].footer !== '' && (
+              {this.props.templateInfo.footer !== '' && (
                 <div>
                   <h4>Notes:</h4>
-                  <p>{this.props.gameInfo.templateInfo[0].footer}</p>
+                  <p>{this.props.templateInfo.footer}</p>
                 </div>
               )}
             </div>
