@@ -13,7 +13,8 @@ export default class TemplateRender extends Component {
     super(props);
     this.state = {
       templateName: '',
-      hasError: false
+      hasError: false,
+      templateNameFull: true
     };
   }
 
@@ -31,11 +32,6 @@ export default class TemplateRender extends Component {
             <div className="col-md-8 col-md-offset-3">
               <h3>Add name:</h3>
               <br />
-              <div className="col-sm-11">
-                <div className="alert alert-danger" role="alert">
-                  Please name your template!
-                </div>
-              </div>
               <div className="form-group">
                 <label
                   htmlFor="templateName"
@@ -54,9 +50,13 @@ export default class TemplateRender extends Component {
                       this.setState({ templateName: e.target.value });
                     }}
                     onKeyDown={e => {
-                      if (e.keyCode === 13) {
+                      let name = this.state.templateName
+                      if (name.length !== 0 && e.keyCode === 13) {
                         this.props.renameTemplate(this.state.templateName);
                         this.setState({ templateName: '' });
+                        this.setState({ templateNameFull: true });                        
+                      } else if (name.length == 0 && e.keyCode === 13) {
+                        this.setState({ templateNameFull: false });
                       }
                     }}
                   />
@@ -66,13 +66,26 @@ export default class TemplateRender extends Component {
                     type="button"
                     className="btn btn-default"
                     onClick={e => {
-                      this.props.renameTemplate(this.state.templateName);
-                      this.setState({ templateName: '' });
+                      let name = this.state.templateName
+                      if (name.length !== 0) {
+                        this.props.renameTemplate(this.state.templateName);
+                        this.setState({ templateName: '' });
+                        this.setState({ templateNameFull: true });                        
+                      } else if (name.length == 0) {
+                        this.setState({ templateNameFull: false });
+                      }
                     }}
                   >
                     Add
                   </button>
                 </div>
+                { !this.state.templateNameFull && (
+                  <div className="col-sm-11">
+                    <div className="alert alert-danger" aria-hidden="true" role="alert">
+                    Template name can not be empty. Please enter a name!
+                    </div>
+                  </div>
+                )}
               </div>
               {this.props.templateName !== '' && (
                 <div htmlFor="templateName" className="col-sm-12 control-label">
@@ -120,6 +133,8 @@ export default class TemplateRender extends Component {
             </div>
           </div>
         </div>
+        { console.log('before error', this.state.templateNameFull) }
+        
       </div>
     );
   }

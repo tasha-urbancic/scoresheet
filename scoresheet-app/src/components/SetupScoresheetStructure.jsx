@@ -65,19 +65,19 @@ export default class SetupScoresheetStructure extends Component {
                 let columnNames = this.props.templateColumns;
                 let currentColumnName = this.props.templateCurrentColumn;
                 let duplicate = 0;
-                if (currentColumnName.length !== 0 && e.keyCode === 13){
+                if (currentColumnName.length !== 0){
                   for (let i = 0; i < columnNames.length; i++) {
                     if (columnNames[i] == currentColumnName) {
                       duplicate++;
                       this.setState({ columnFull: false });
                     }
                   }
-                  if (duplicate === 0 && e.keyCode === 13) {
+                  if (duplicate === 0) {
                     this.props.addColumn(this.props.templateCurrentColumn);
                     this.props.updateCurrentColumn('');
                     this.setState({ columnFull: true });
                     }
-                }else if (currentColumnName.length == 0 && e.keyCode === 13) {
+                }else if (currentColumnName.length == 0) {
                   this.setState({ columnFull: false }); 
                 }
               }}
