@@ -12,7 +12,7 @@ exports.seed = function(knex, Promise) {
 			knex('fields').returning('id').insert([
 				{
 					template_id: templateIds[0],
-					name: 'Total Conflict Tokens'
+					name: 'Total Military VP'
 				},
 				{
 					template_id: templateIds[0],
@@ -84,7 +84,7 @@ exports.seed = function(knex, Promise) {
 				knex('individual_piece_relationships').returning('id').insert([
 					{
 						relationship_id: relationshipIds[0],
-						value: -1
+						value: 1
 					},
 					{
 						relationship_id: relationshipIds[1],

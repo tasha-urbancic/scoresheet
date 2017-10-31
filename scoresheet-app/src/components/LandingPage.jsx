@@ -15,10 +15,6 @@ export default class LandingPage extends Component {
 						</button>
 					</div>
 				</div>
-				{/* <img
-          src="/scoresheet-app/docs/imgs/notepad.png"
-          className="landing-page-notepad"
-        /> */}
 			</div>
 		);
 	}
