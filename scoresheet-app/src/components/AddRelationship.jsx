@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 
-const defaultPiece = { equality: '', number: null, piece: '' };
+const defaultPiece = { equality: null, number: null, piece: null };
 const defaultValue = null;
-const defaultOperation = { piece: '', operation: '', number: null };
+const defaultOperation = { piece: null, operation: null, number: null };
 
 const defaultRule = {
   pieces: [{ ...defaultPiece }],
@@ -16,8 +16,51 @@ export default class AddRelationship extends Component {
     this.state = {
       rules: [{ ...defaultRule }],
       hasError: false,
-      rulesFull: false
+      rulesFull: true
     };
+  }
+
+  checkAllEntriesNotEmpty(templateRules) {
+    /*
+    TemplateRules
+    0 ----|----pieces----0-|- equality
+          |                |- number
+          |                |- piece
+          |
+          |----operations--0-|-piece
+                             |-operation
+                             |-number
+                             |
+    */
+    
+    for(var i = 0; i < templateRules.length; i++){
+      var templateRule = templateRules[i];
+      var pieces = templateRules[i].pieces,
+          operations = templateRules[i].additional_operations;
+          // value = templateRule[i].value;
+      for(var j = 0; j < pieces.length; j++){
+        var piece = pieces[j];
+        if(piece.equality==null || piece.number==null || piece.piece==null){
+          console.log('rules full false');
+          this.state.rulesFull = false;
+          console.log(this.state.rulesFull);
+        }
+      }
+      if(operations){
+        for(var j = 0; j < operations.length; j++){
+          var operation = operations[j];
+          if(operation.piece==null || operation.operation==null || operation.number==null ){
+            console.log('rules full false');
+            this.state.rulesFull = false;          
+            console.log(this.state.rulesFull);
+          }
+          
+        }
+      }
+      // if(value==null){
+      //   this.state.rulesFull = false;                 
+      // }
+    }
   }
 
   render() {
@@ -283,7 +326,11 @@ export default class AddRelationship extends Component {
               type="button"
               className="btn btn-primary"
               onClick={e => {
-                this.props.writeRulesIntoTemplate(this.state.rules);
+                let templateRules = [...this.state.rules];
+                this.checkAllEntriesNotEmpty(templateRules);
+                if (this.state.rulesFull === true) {
+                  this.props.writeRulesIntoTemplate(this.state.rules);
+                }
               }}
             >
               Submit Rules
@@ -294,3 +341,4 @@ export default class AddRelationship extends Component {
     );
   }
 }
+
