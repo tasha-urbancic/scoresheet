@@ -55,9 +55,6 @@ export default class AddRelationship extends Component {
 					}
 				}
 			}
-			// if(value == null){
-			//   this.state.rulesFull = false;
-			// }
 		}
   }
 
