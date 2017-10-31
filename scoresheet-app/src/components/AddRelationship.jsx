@@ -1,20 +1,28 @@
 import React, { Component } from 'react';
 
-const defaultPiece = { equality: null, number: null, piece: null };
-const defaultValue = null;
-const defaultOperation = { piece: null, operation: null, number: null };
+let defaultPiece = { equality: null, number: null, piece: null };
+let defaultOperation = { piece: null, operation: null, number: null };
 
-const defaultRule = {
-  pieces: [{ ...defaultPiece }],
-  value: defaultValue,
-  additional_operations: []
-};
+// const defaultRule = {
+//   pieces: [{ ...defaultPiece }],
+//   value: null,
+//   additional_operations: []
+// };
+
+// let initialRule = { ...defaultRule };
+// initialRule.pieces.push({ ...defaultPiece });
 
 export default class AddRelationship extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      rules: [{ ...defaultRule }],
+      rules: [
+        {
+          pieces: [{ ...defaultPiece }],
+          value: null,
+          additional_operations: []
+        }
+      ],
       hasError: false,
       rulesFull: true,
       rulesSubmitted: false
@@ -33,33 +41,40 @@ export default class AddRelationship extends Component {
                              |-number
                              |
     */
-    
-    for(var i = 0; i < templateRules.length; i++){
+
+    for (var i = 0; i < templateRules.length; i++) {
       var templateRule = templateRules[i];
       var pieces = templateRules[i].pieces,
-          operations = templateRules[i].additional_operations;
-          // value = templateRule[i].value;
-      for(var j = 0; j < pieces.length; j++){
+        operations = templateRules[i].additional_operations;
+      // value = templateRule[i].value;
+      for (var j = 0; j < pieces.length; j++) {
         var piece = pieces[j];
-        if(piece.equality==null || piece.number==null || piece.piece==null){
+        if (
+          piece.equality == null ||
+          piece.number == null ||
+          piece.piece == null
+        ) {
           console.log('rules full false');
           this.state.rulesFull = false;
           console.log(this.state.rulesFull);
         }
       }
-      if(operations){
-        for(var j = 0; j < operations.length; j++){
+      if (operations) {
+        for (var j = 0; j < operations.length; j++) {
           var operation = operations[j];
-          if(operation.piece==null || operation.operation==null || operation.number==null ){
+          if (
+            operation.piece == null ||
+            operation.operation == null ||
+            operation.number == null
+          ) {
             console.log('rules full false');
-            this.state.rulesFull = false;          
+            this.state.rulesFull = false;
             console.log(this.state.rulesFull);
           }
-          
         }
       }
       // if(value==null){
-      //   this.state.rulesFull = false;                 
+      //   this.state.rulesFull = false;
       // }
     }
   }
@@ -153,54 +168,76 @@ export default class AddRelationship extends Component {
 
               <div className="form-group">
                 <div className="col-sm-8 col-md-offset-1 text-center">
-                  <button
-                    type="button"
-                    className="btn btn-default"
-                    onClick={e => {
-                      const rules = [...this.state.rules];
-                      rules[i].pieces = [
-                        ...rules[i].pieces,
-                        { ...defaultPiece }
-                      ];
-                      this.setState({
-                        rules
-                      });
-                    }}
-                  >
-                    Add New Piece
-                  </button>
-                </div>
-              </div>
-
-              <div className="form-group">
-                <div className="col-sm-12 col-md-offset-3">
-                  <div className="col-sm-2 text-center">
-                    <label htmlFor="templateName" className="control-label ">
-                      is worth
-                    </label>
-                  </div>
-
-                  <div className="col-sm-2">
-                    <input
-                      className="form-control"
-                      type="number"
-                      placeholder="#"
-                      onChange={e => {
+                  {this.state.rules[i].pieces.length === 0 && (
+                    <button
+                      type="button"
+                      className="btn btn-default"
+                      onClick={e => {
                         const rules = [...this.state.rules];
-                        rules[i].value = Number(e.target.value);
+                        rules[i].pieces = [
+                          ...rules[i].pieces,
+                          { ...defaultPiece }
+                        ];
                         this.setState({
                           rules
                         });
                       }}
-                    />
-                  </div>
-                  <div className="col-sm-1">
-                    <label htmlFor="templateName" className="control-label ">
-                      points
-                    </label>
-                  </div>
+                    >
+                      Add New Piece Value
+                    </button>
+                  )}
+                  {this.state.rules[i].pieces.length > 0 && (
+                    <button
+                      type="button"
+                      className="btn btn-default"
+                      onClick={e => {
+                        const rules = [...this.state.rules];
+                        rules[i].pieces = [
+                          ...rules[i].pieces,
+                          { ...defaultPiece }
+                        ];
+                        this.setState({
+                          rules
+                        });
+                      }}
+                    >
+                      Add New Piece
+                    </button>
+                  )}
                 </div>
               </div>
+
+              {this.state.rules[i].pieces.length > 0 && (
+                <div className="form-group">
+                  <div className="col-sm-12 col-md-offset-3">
+                    <div className="col-sm-2 text-center">
+                      <label htmlFor="templateName" className="control-label ">
+                        is worth
+                      </label>
+                    </div>
+
+                    <div className="col-sm-2">
+                      <input
+                        className="form-control"
+                        type="number"
+                        placeholder="#"
+                        onChange={e => {
+                          const rules = [...this.state.rules];
+                          rules[i].value = Number(e.target.value);
+                          this.setState({
+                            rules
+                          });
+                        }}
+                      />
+                    </div>
+                    <div className="col-sm-1">
+                      <label htmlFor="templateName" className="control-label ">
+                        points
+                      </label>
+                    </div>
+                  </div>
+                </div>
+              )}
 
               {rule.additional_operations.map((operation, k) => {
                 return (
@@ -319,7 +356,16 @@ export default class AddRelationship extends Component {
               className="btn btn-default"
               onClick={e => {
                 const rules = [...this.state.rules];
-                this.setState({ rules: [...rules, { ...defaultRule }] });
+                this.setState({
+                  rules: [
+                    ...rules,
+                    {
+                      pieces: [{ ...defaultPiece }],
+                      value: null,
+                      additional_operations: []
+                    }
+                  ]
+                });
               }}
             >
               Add Rule
@@ -338,8 +384,6 @@ export default class AddRelationship extends Component {
                   this.props.writeRulesIntoTemplate(this.state.rules);
                   this.setState({ rulesSubmitted: true });
                 }
-                {/* this.props.writeRulesIntoTemplate(this.state.rules); */}
-                {/* this.setState({ rulesSubmitted: true }); */}
               }}
             >
               Submit Rules
@@ -361,4 +405,3 @@ export default class AddRelationship extends Component {
     );
   }
 }
-
