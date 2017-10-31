@@ -7,6 +7,7 @@ class App extends Component {
   render() {
     return (
       <div>
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
         <Route exact path="/" component={LandingPage} />
         <Route path="/" component={Content} />
       </div>
