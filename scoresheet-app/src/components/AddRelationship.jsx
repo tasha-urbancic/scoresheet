@@ -30,40 +30,29 @@ export default class AddRelationship extends Component {
   }
 
   checkAllEntriesNotEmpty(templateRules) {
-    /*
-    TemplateRules
-    0 ----|----pieces----0-|- equality
-          |                |- number
-          |                |- piece
-          |
-          |----operations--0-|-piece
-                             |-operation
-                             |-number
-    */
 
 		for (var i = 0; i < templateRules.length; i++) {
 			var templateRule = templateRules[i];
 			var pieces = templateRules[i].pieces,
-				operations = templateRules[i].additional_operations;
-			  // value = templateRule[i].value;
+				operations = templateRules[i].additional_operations,
+        value = templateRules[i].value;
+      if(value == null){
+        return false;
+      }
 			for (var j = 0; j < pieces.length; j++) {
 				var piece = pieces[j];
 				if (piece.equality == null || piece.number == null || piece.piece == null) {
-          console.log('rules full false');
-          console.log(this.state.rulesFull);
-          // this.setState({rulesFull: false});
-					this.state.rulesFull = false;
-					console.log(this.state.rulesFull);
+					console.log('piece check');
+          
+          return false;
 				}
 			}
 			if (operations) {
 				for (var j = 0; j < operations.length; j++) {
 					var operation = operations[j];
 					if (operation.piece == null || operation.operation == null || operation.number == null) {
-            console.log('rules full false');
-            this.setState({rulesFull: false});
-						// this.state.rulesFull = false;
-						console.log(this.state.rulesFull);
+            console.log('operation check');
+            return false;
 					}
 				}
 			}
@@ -367,13 +356,17 @@ export default class AddRelationship extends Component {
               type="button"
               className="btn btn-primary"
               onClick={e => {
+                this.setState({rulesFull: true}); 
+                this.setState({ rulesSubmitted: false }); 
                 let templateRules = [...this.state.rules];
-                this.checkAllEntriesNotEmpty(templateRules);
-                if (this.state.rulesFull === true) {
+                let check = this.checkAllEntriesNotEmpty(templateRules);
+                if (check===false) {
+                  this.setState({rulesFull: false}); 
+                  
+                } else {
                   this.props.writeRulesIntoTemplate(this.state.rules);
-                  this.setState({ rulesSubmitted: true });
+                  this.setState({ rulesSubmitted: true });        
                 }
-                {console.log(this.state.rulesFull)}
               }}
             >
               Submit Rules
