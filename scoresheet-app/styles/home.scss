@@ -5,19 +5,22 @@
 // $font-stack: 'Raleway';
 // $font-stack: 'Roboto';
 $primary-color: #2c7452;
-// $font-stack: 'Assistant', sans-serif;
+$font-stack: 'Assistant', sans-serif;
 $secondary-color: #5bff8c;
-$font-stack: 'Roboto', 'Open Sans', sans-serif;
+// $font-stack: 'Roboto', 'Open Sans', sans-serif;
 $logo-height: 50px;
 $font-size: 39px;
 $body-font-size: 20px;
 @media (max-width: 768px) {
   body {
+    overflow-x: scroll;
     padding-top: $logo-height*3;
-    // height: 100vh;
-    // width: 100vw;
+    // width: auto;
     .table-responsive {
       border: none;
+    }
+    .game-container {
+      overflow: scroll;
     }
   }
 }
@@ -41,7 +44,12 @@ html {
   background-size: cover;
   background-repeat: no-repeat;
   background-attachment: fixed;
-  height: 100%; // background-color: rgba(44, 116, 82, 0.4);
+  height: 100%;
+}
+
+h2,
+h3 {
+  color: white;
 }
 
 // html.overlay {
@@ -62,7 +70,6 @@ body {
   font-weight: normal !important;
 }
 
-th,
 .bordered-rows {
   font-weight: normal !important;
 }
@@ -104,6 +111,7 @@ td.col-xs-10 {
   border: none;
   box-shadow: none;
   display: flex;
+  position: absolute;
   // background: $primary-color;
   // background: linear-gradient(170deg, $primary-color 15%, $secondary-color 95%);
   color: black;
@@ -135,6 +143,15 @@ td.col-xs-10 {
 #template-list,
 #create-template {
   padding-top: $logo-height*3;
+}
+
+.game-container {
+  background: white;
+  padding-left: 50px;
+  padding-right: 50px;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  border-radius: 10px;
 }
 
 ul.special-list {
@@ -205,6 +222,10 @@ ul.special-list {
   background-color: lighten($primary-color, 5%);
 }
 
+.footer-note {
+  padding-top: 50px;
+}
+
 .row {
   margin-left: 15px;
 }
@@ -246,6 +267,12 @@ th.rotate > div > span {
 
 .bordered-rows {
   border: 1px solid #ccc;
+}
+
+.player-name,
+.player-score {
+  align-content: center;
+  padding-top: 10px !important;
 }
 
 hr {
