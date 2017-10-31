@@ -42,8 +42,6 @@ export default class AddRelationship extends Component {
 			for (var j = 0; j < pieces.length; j++) {
 				var piece = pieces[j];
 				if (piece.equality == null || piece.number == null || piece.piece == null) {
-					console.log('piece check');
-          
           return false;
 				}
 			}
@@ -51,7 +49,6 @@ export default class AddRelationship extends Component {
 				for (var j = 0; j < operations.length; j++) {
 					var operation = operations[j];
 					if (operation.piece == null || operation.operation == null || operation.number == null) {
-            console.log('operation check');
             return false;
 					}
 				}
