@@ -16,7 +16,8 @@ export default class AddRelationship extends Component {
     this.state = {
       rules: [{ ...defaultRule }],
       hasError: false,
-      rulesFull: true
+      rulesFull: true,
+      rulesSubmitted: false
     };
   }
 
@@ -67,8 +68,10 @@ export default class AddRelationship extends Component {
     return (
       <div>
         <h3>Add rules:</h3>
-        <div className="alert alert-danger" aria-hidden="true" role="alert">
-          Please add one rule for each piece.
+        <div className="col-sm-11">
+          <div className="alert alert-danger" aria-hidden="true" role="alert">
+            Please add one rule for each piece.
+          </div>
         </div>
         <br />
         {this.state.rules.map((rule, i) => {
@@ -155,7 +158,10 @@ export default class AddRelationship extends Component {
                     className="btn btn-default"
                     onClick={e => {
                       const rules = [...this.state.rules];
-                      rules[i].pieces = [...rules[i].pieces, {...defaultPiece}];
+                      rules[i].pieces = [
+                        ...rules[i].pieces,
+                        { ...defaultPiece }
+                      ];
                       this.setState({
                         rules
                       });
@@ -249,7 +255,7 @@ export default class AddRelationship extends Component {
                           <option value="-">-</option>
                           <option value="*">*</option>
                           <option value="/">/</option>
-                          <option value="*">^</option>
+                          <option value="^">^</option>
                         </select>
                       </div>
 
@@ -291,7 +297,7 @@ export default class AddRelationship extends Component {
                       const rules = [...this.state.rules];
                       rules[i].additional_operations = [
                         ...rules[i].additional_operations,
-                        {...defaultOperation}
+                        { ...defaultOperation }
                       ];
                       this.setState({
                         rules
@@ -302,7 +308,7 @@ export default class AddRelationship extends Component {
                   </button>
                 </div>
               </div>
-              <hr className="col-sm-9" />
+              <hr className="col-sm-10" />
             </div>
           );
         })}
@@ -330,13 +336,27 @@ export default class AddRelationship extends Component {
                 this.checkAllEntriesNotEmpty(templateRules);
                 if (this.state.rulesFull === true) {
                   this.props.writeRulesIntoTemplate(this.state.rules);
+                  this.setState({ rulesSubmitted: true });
                 }
+                {/* this.props.writeRulesIntoTemplate(this.state.rules); */}
+                {/* this.setState({ rulesSubmitted: true }); */}
               }}
             >
               Submit Rules
             </button>
           </div>
         </div>
+        {this.state.rulesSubmitted && (
+          <div className="col-sm-11">
+            <div
+              className="alert alert-success"
+              aria-hidden="true"
+              role="alert"
+            >
+              Rules added! Please submit your template to start playing.
+            </div>
+          </div>
+        )}
       </div>
     );
   }

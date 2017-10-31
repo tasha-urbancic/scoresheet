@@ -1,7 +1,7 @@
 // navbar render html here
 
-import React from "react";
-import { Link } from "react-router-dom";
+import React from 'react';
+import { Link } from 'react-router-dom';
 
 export default function NavBar(props) {
   return (
@@ -14,10 +14,17 @@ export default function NavBar(props) {
                 <img src="/scoresheet-app/src/img-files/logo-first-draft.png" />
               </Link>
             </li>
-            <li className="nav-item">
-              <Link to="/templates">Play Games</Link>
+            <li className="nav-item nav-link">
+              <Link
+                to="/templates"
+                onClick={e => {
+                  this.props.clearCreatingGame();
+                }}
+              >
+                Play Games
+              </Link>
             </li>
-            <li className="nav-item">
+            <li className="nav-item nav-link">
               <Link to="/templates/new">Create New</Link>
             </li>
           </ul>

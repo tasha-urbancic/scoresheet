@@ -1,100 +1,161 @@
+// Google Fonts
+@import url(https://fonts.googleapis.com/css?family=Open+Sans|PT+Sans|Raleway:300|Roboto:300);
+
+// $font-stack: 'PT Sans';
+// $font-stack: 'Open Sans';
+// $font-stack: 'Raleway';
+// $font-stack: 'Roboto';
+
 $primary-color: #2c7452;
-$font-stack: Arial, Helvetica, sans-serif;
-$logo-height: 20px;
+$secondary-color: #5bff8c;
+$font-stack: 'Roboto', 'Open Sans', sans-serif;
+$logo-height: 35px;
+$font-size: 39px;
+$body-font-size: 20px;
+
 @media (max-width: 768px) {
-  body {
-    padding-top: $logo-height*5;
-  }
+	body {
+		padding-top: $logo-height*3;
+	}
+}
+
+#create-template button {
+	font-size: $body-font-size !important;
+}
+
+.navbar a {
+	font-size: $body-font-size !important;
+}
+
+input,
+select,
+textarea {
+	font-size: $body-font-size !important;
 }
 
 body {
-  font-family: $font-stack;
+	font-family: $font-stack;
+	font-size: $body-font-size;
+	background-color: transparent;
+	font-weight: normal !important;
+}
+
+th,
+.bordered-rows {
+	font-weight: normal !important;
 }
 
 #create-template h3 {
-  margin-top: 5px;
-  margin-bottom: 5px;
+	margin-top: 5px;
+	margin-bottom: 5px;
 }
 
 #create-template h4 {
-  margin-top: 20px;
+	margin-top: 20px;
 }
 
 a,
 a:hover {
-  color: black;
-  text-decoration: none;
+	color: black;
+	text-decoration: none;
 }
 
 .navbar-default .navbar-nav > li > a {
-  color: white;
+	color: white;
+	font-size: $logo-height / 2;
+	text-shadow: none;
+	font-weight: lighter !important;
+}
+
+td.col-xs-10 {
+	font-size: 20px;
+}
+
+.nav-link {
+	padding-top: 7px;
+	padding-bottom: none;
 }
 
 .navbar {
-  background: $primary-color;
-  color: black;
+	// background: $primary-color;
+	background: linear-gradient(170deg, $primary-color 15%, $secondary-color 95%);
+	color: black;
 }
 
 .navbar img {
-  height: $logo-height;
-  width: auto;
+	height: $logo-height;
+	width: auto;
+}
+
+.navbar-default .navbar-nav > li > a:hover {
+	color: darken(white, 25%);
 }
 
 #template-list-container,
 #game {
-  background-color: white;
+	background-color: white;
+}
+
+#game {
+	margin-top: $logo-height*2;
 }
 
 #template-list,
-#game,
 #create-template {
-  margin-top: $logo-height*3;
+	margin-top: $logo-height*3;
 }
 
 ul.special-list {
-  box-shadow: none;
+	box-shadow: none;
+}
+
+.panel-default {
 }
 
 .btn-dark {
-  color: white;
-  border-color: white;
-  border-width: thin;
-  background-color: $primary-color;
+	color: white;
+	border-color: white;
+	border-width: 8px;
+	background-color: transparent;
+	font-size: $font-size;
+	border-radius: 15px;
+}
+
+@media (max-width: 320px) {
+	.btn-dark {
+		font-size: $font-size/4;
+		border-width: 2px;
+		padding: 5px;
+		border-radius: 5px;
+	}
 }
 
 .btn-dark:hover,
 .btn-dark:focus,
 .btn-dark:active {
-  color: white;
-  background-color: $primary-color;
-}
-
-body {
-  background-color: transparent;
+	color: white;
+	background-color: $primary-color;
 }
 
 #landing-page {
-  background: linear-gradient(160deg, $primary-color 17%, #5bff8c 85%);
-  height: 1000px;
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
+	background: linear-gradient(160deg, $primary-color 17%, $secondary-color 85%);
+	height: 1050px;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	flex-wrap: wrap;
 }
 
 .landing-page-logo {
-  height: auto;
-  width: 70%;
-  // margin-bottom: 5em;
-  margin-left: 20%;
-  // margin-right: 50%;
-  margin-top: 20%;
-  align-self: center;
+	height: auto;
+	width: 70%;
+	margin-top: 0;
+	margin-left: 15%;
 }
 
 .landing-page-btn {
-  margin-top: 10%;
-  align-self: center;
-  margin-left: 50%;
+	margin-top: 10%;
+	text-align: center;
 }
 
 .white-text,
@@ -102,58 +163,69 @@ body {
 .white-text:active,
 .white-text:visited,
 .white-text:focus {
-  color: white;
+	color: white;
 }
 
 .btn.btn-dark.btn-lg.js-scroll-trigger:hover {
-  background-color: lighten($primary-color, 5%);
+	background-color: lighten($primary-color, 5%);
 }
 
 .white-text:hover {
-  background-color: lighten($primary-color, 5%);
+	background-color: lighten($primary-color, 5%);
 }
 
-.nav > li > a > img {
-  height: 35px;
-}
-
-.navbar-default .navbar-nav > li > a {
-  font-size: 18px;
-}
-
-.navbar-default .navbar-nav > li > a:hover {
-  color: darken(white, 25%);
-}
-
-.landing-page-notepad {
-  height: 150px;
-  align-self: flex-end;
-}
-
-.landing-page-btn-notepad {
-  display: flex;
-  flex-direction: row;
+.row {
+	margin-left: 15px;
 }
 
 .enter-name {
-  margin: 4em 0em;
-  margin-left: 15px;
+	margin: 2em 0em 2em 15em;
+	margin-left: 15px;
 }
 
 .table-input {
-  border: none;
+	border: none;
+}
+
+th.rotate {
+	/* Something you can count on */
+	height: 140px;
+	white-space: nowrap;
+}
+
+div #player-names {
+	transform: rotate(315deg);
+	width: 30px;
+}
+
+div #total-score {
+	transform: rotate(315deg);
+	width: 30px;
+}
+
+th.rotate > div {
+	transform: rotate(315deg);
+	width: 30px;
+}
+th.rotate > div > span {
+	// border-bottom: 1px solid #ccc;
+	padding: 5px 10px;
+}
+
+.bordered-rows {
+	border: 1px solid #ccc;
 }
 
 hr {
-  -moz-border-bottom-colors: none;
-  -moz-border-image: none;
-  -moz-border-left-colors: none;
-  -moz-border-right-colors: none;
-  -moz-border-top-colors: none;
-  border-color: #eeeeee -moz-use-text-color #ffffff;
-  border-style: solid none;
-  border-width: 1px 0;
-  margin: 18px 0;
+	-moz-border-bottom-colors: none;
+	-moz-border-image: none;
+	-moz-border-left-colors: none;
+	-moz-border-right-colors: none;
+	-moz-border-top-colors: none;
+	border-color: #eeeeee -moz-use-text-color #ffffff;
+	border-style: solid none;
+	border-width: 1px 0;
+	margin: 18px 0;
 }
 
 .btn-primary,
@@ -161,7 +233,7 @@ hr {
 .btn-primary:active,
 .btn-primary:visited,
 .btn-primary:focus {
-  background-color: $primary-color !important;
-  border-color: $primary-color !important;
-  background-image: none !important;
+	background-color: $primary-color !important;
+	border-color: $primary-color !important;
+	background-image: none !important;
 }

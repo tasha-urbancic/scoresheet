@@ -25,8 +25,19 @@ router.get('/games/:id', (req, res) => {
     console.log(templateId);
     queries.getFields(templateId).then(fields => {
       const activeFields = fields.filter(field => field.name !== 'Total');
-      res.status(200).json({
-        fields: activeFields
+      queries.getTemplateInfo(templateId).then(([templateInfo]) => {
+        queries.getTemplateRelationshipsPieces(templateId).then(pieces => {
+          queries
+            .getTemplateRelationshipsOperations(templateId)
+            .then(operations => {
+              res.status(200).json({
+                fields: activeFields,
+                templateInfo,
+                pieces,
+                operations
+              });
+            });
+        });
       });
     });
   });
@@ -137,7 +148,7 @@ router.post('/games/new', (req, res) => {
     } else {
       queries.getFields(templateId).then(fields => {
         const activeFields = fields.filter(field => field.name !== 'Total');
-        queries.getTemplateInfo(templateId).then(templateInfo => {
+        queries.getTemplateInfo(templateId).then(([templateInfo]) => {
           queries.getTemplateRelationshipsPieces(templateId).then(pieces => {
             queries.createNewGameInstance(templateId).then(([game]) => {
               res.status(200).json({
