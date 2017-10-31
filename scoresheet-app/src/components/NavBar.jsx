@@ -6,8 +6,8 @@ import { Link } from 'react-router-dom';
 export default function NavBar(props) {
   return (
     <div className="navbar navbar-default navbar-fixed-top">
-      <div className="container">
-        <div id="navbar" className="nav nav-pills flex-column flex-sm-row">
+      <div className="container nav-container">
+        <div id="navbar" className="nav flex-column flex-sm-row">
           <ul className="nav navbar-nav">
             <li>
               <Link to="/">

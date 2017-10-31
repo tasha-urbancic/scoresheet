@@ -8,7 +8,7 @@ $primary-color: #2c7452;
 // $font-stack: 'Assistant', sans-serif;
 $secondary-color: #5bff8c;
 $font-stack: 'Roboto', 'Open Sans', sans-serif;
-$logo-height: 35px;
+$logo-height: 50px;
 $font-size: 39px;
 $body-font-size: 20px;
 @media (max-width: 768px) {
@@ -94,11 +94,18 @@ td.col-xs-10 {
 }
 
 .navbar {
+  // padding-top: 10px;
   background: transparent;
   border: none;
-  box-shadow: none; // background: $primary-color;
+  box-shadow: none;
+  display: flex;
+  // background: $primary-color;
   // background: linear-gradient(170deg, $primary-color 15%, $secondary-color 95%);
   color: black;
+}
+
+.nav-container {
+  margin-left: 15px;
 }
 
 .navbar img {
