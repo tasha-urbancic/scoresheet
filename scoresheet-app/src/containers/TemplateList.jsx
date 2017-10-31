@@ -4,27 +4,35 @@ import { postNewGame } from '../redux/actions/grab-data';
 import { clearGame } from '../redux/actions/game-page';
 import { Link, Redirect } from 'react-router-dom';
 
-const mapStateToProps = state => {
-  return {
-    templates: state.templates,
-    gameId: state.gamePage.gameInfo.game.id,
-    creatingGame: state.gamePage.creatingGame
-    // templateId: state.gamePage
-  };
+function toTitleCase(str) {
+	str = `${str}`;
+	return str.replace(/\w\S*/g, function(txt) {
+		return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
+	});
+}
+
+const mapStateToProps = (state) => {
+	return {
+		templates: state.templates,
+		gameId: state.gamePage.gameInfo.game.id,
+		creatingGame: state.gamePage.creatingGame
+		// templateId: state.gamePage
+	};
 };
 
-const mapDispatchToProps = dispatch => ({
-  postNewGame: id => {
-    const newGameThunk = postNewGame(id);
-    console.log('New Game Thunk', newGameThunk);
-    dispatch(newGameThunk);
-  },
-  clearGame: () => {
-    dispatch(clearGame());
-  }
+const mapDispatchToProps = (dispatch) => ({
+	postNewGame: (id) => {
+		const newGameThunk = postNewGame(id);
+		console.log('New Game Thunk', newGameThunk);
+		dispatch(newGameThunk);
+	},
+	clearGame: () => {
+		dispatch(clearGame());
+	}
 });
 
 class TemplateList extends Component {
+
   constructor(props) {
     super(props);
     this.state = {
