@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
-const defaultPiece = { equality: '', number: null, piece: '' };
-const defaultOperation = { piece: '', operation: '', number: null };
+const defaultPiece = { equality: null, number: null, piece: null };
+const defaultOperation = { piece: null, operation: null, number: null };
 
 const defaultRule = {
 	pieces: [],
@@ -16,7 +16,7 @@ export default class AddRelationship extends Component {
 			rules: [ { ...defaultRule } ],
 			hasError: false,
 			rulesFull: true,
-			rulesSubmitted: false
+      rulesSubmitted: false
 		};
 	}
 
@@ -30,14 +30,13 @@ export default class AddRelationship extends Component {
           |----operations--0-|-piece
                              |-operation
                              |-number
-                             |
     */
 
 		for (var i = 0; i < templateRules.length; i++) {
 			var templateRule = templateRules[i];
 			var pieces = templateRules[i].pieces,
 				operations = templateRules[i].additional_operations;
-			// value = templateRule[i].value;
+			  // value = templateRule[i].value;
 			for (var j = 0; j < pieces.length; j++) {
 				var piece = pieces[j];
 				if (piece.equality == null || piece.number == null || piece.piece == null) {
@@ -56,21 +55,19 @@ export default class AddRelationship extends Component {
 					}
 				}
 			}
-			// if(value==null){
+			// if(value == null){
 			//   this.state.rulesFull = false;
 			// }
 		}
-	}
+  }
+
+  
+  
 
 	render() {
 		return (
 			<div>
 				<h3>Add rules:</h3>
-				<div className="col-sm-11">
-					<div className="alert alert-danger" aria-hidden="true" role="alert">
-						Please add one rule for each piece.
-					</div>
-				</div>
 				<br />
 				{this.state.rules.map((rule, i) => {
 					return (
@@ -354,6 +351,14 @@ export default class AddRelationship extends Component {
 						</div>
 					</div>
 				)}
+
+        { !this.state.rulesSubmitted && (
+          <div className="col-sm-11">
+            <div className="alert alert-danger" aria-hidden="true" role="alert">
+            Please fill out the rule form completely.
+            </div>
+          </div>
+        )}
 			</div>
 		);
 	}
