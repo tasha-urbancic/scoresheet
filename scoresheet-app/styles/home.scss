@@ -1,5 +1,5 @@
 $primary-color: #2c7452;
-$font-stack: Arial, Helvetica, sans-serif;
+$font-stack: 'Assistant', sans-serif;
 $logo-height: 35px;
 @media (max-width: 768px) {
   body {
@@ -7,9 +7,30 @@ $logo-height: 35px;
   }
 }
 
+html {
+  background-image: url(../docs/imgs/boardgamegrey.png);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  height: 100%;
+  // background-color: rgba(44, 116, 82, 0.4);
+}
+
+// html.overlay {
+//   background-color: $primary-color;
+//   height: 100%;
+//   opacity: 0.2;
+//   z-index: 2;
+// }
+
 body {
+  min-height: 100%;
   font-family: $font-stack;
-  background-color: transparent;
+  background: linear-gradient(
+    160deg,
+    rgba(44, 116, 80, 1) 17%,
+    rgba(91, 255, 137, 0.7) 85%
+  );
 }
 
 #create-template h3 {
@@ -38,8 +59,10 @@ a:hover {
 }
 
 .navbar {
-  background: $primary-color;
-  color: black;
+  background: transparent;
+  // background: linear-gradient(180deg, $primary-color 17%, white 85%);
+  border: none;
+  box-shadow: none;
 }
 
 .navbar img {
@@ -47,22 +70,22 @@ a:hover {
   width: auto;
 }
 
-.navbar-default .navbar-nav > li > a:hover {
+.navbar-nav > li > a:hover {
   color: darken(white, 25%);
 }
 
 #template-list-container,
 #game {
-  background-color: white;
+  background-color: transparent;
 }
 
 #game {
-  margin-top: $logo-height*2;
+  padding-top: $logo-height*2;
 }
 
 #template-list,
 #create-template {
-  margin-top: $logo-height*3;
+  padding-top: $logo-height*3;
 }
 
 ul.special-list {
@@ -84,7 +107,11 @@ ul.special-list {
 }
 
 #landing-page {
-  background: linear-gradient(160deg, $primary-color 17%, #5bff8c 85%);
+  // background: linear-gradient(
+  //   160deg,
+  //   $primary-color 17%,
+  //   rgba(91, 255, 137, 0.769) 85%
+  // );
   height: 1050px;
   display: flex;
   flex-direction: column;
@@ -153,4 +180,11 @@ hr {
   background-color: $primary-color !important;
   border-color: $primary-color !important;
   background-image: none !important;
+}
+
+.list-group-item {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
 }
