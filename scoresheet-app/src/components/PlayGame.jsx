@@ -197,8 +197,8 @@ export default class PlayGame extends Component {
 					<div className="row">
 						<div className="form-inline">
 							{this.props.gameInfo.templateInfo.footer !== '' && (
-								<div>
-									<p>{this.props.templateInfo.footer}</p>
+								<div className="panel panel-default">
+									<div className="panel-body">{this.props.templateInfo.footer}</div>
 								</div>
 							)}
 						</div>

@@ -2,7 +2,7 @@ exports.seed = function(knex, Promise) {
 	return Promise.all([
 		knex('templates').returning('id').insert([
 			{
-				name: 'unearth',
+				name: 'Unearth',
 				footer:
 					'Long ago, your ancestors built great cities across the world. Now your tribe must explore forests, deserts, islands, mountains, and caverns to find these lost cities. Claim the ruins, build places of power, and restore the glory of a bygone age.'
 			}
@@ -177,83 +177,83 @@ exports.seed = function(knex, Promise) {
 					},
 					{
 						relationship_id: relationshipIds[5],
-						value: 4
+						value: 2
 					},
 					{
 						relationship_id: relationshipIds[6],
-						value: 4
+						value: 2
 					},
 					{
 						relationship_id: relationshipIds[7],
-						value: 4
+						value: 2
 					},
 					{
 						relationship_id: relationshipIds[8],
-						value: 4
+						value: 2
 					},
 					{
 						relationship_id: relationshipIds[9],
-						value: 4
+						value: 2
 					},
 					{
 						relationship_id: relationshipIds[10],
-						value: 6
+						value: 4
 					},
 					{
 						relationship_id: relationshipIds[11],
-						value: 6
+						value: 4
 					},
 					{
 						relationship_id: relationshipIds[12],
-						value: 6
+						value: 4
 					},
 					{
 						relationship_id: relationshipIds[13],
-						value: 6
+						value: 4
 					},
 					{
 						relationship_id: relationshipIds[14],
-						value: 6
+						value: 4
 					},
 					{
 						relationship_id: relationshipIds[15],
-						value: 8
+						value: 4
 					},
 					{
 						relationship_id: relationshipIds[16],
-						value: 8
+						value: 4
 					},
 					{
 						relationship_id: relationshipIds[17],
-						value: 8
+						value: 4
 					},
 					{
 						relationship_id: relationshipIds[18],
-						value: 8
+						value: 4
 					},
 					{
 						relationship_id: relationshipIds[19],
-						value: 8
+						value: 4
 					},
 					{
 						relationship_id: relationshipIds[20],
-						value: 10
+						value: 8
 					},
 					{
 						relationship_id: relationshipIds[21],
-						value: 10
+						value: 8
 					},
 					{
 						relationship_id: relationshipIds[22],
-						value: 10
+						value: 8
 					},
 					{
 						relationship_id: relationshipIds[23],
-						value: 10
+						value: 8
 					},
 					{
 						relationship_id: relationshipIds[24],
-						value: 10
+						value: 8
 					},
 					{
 						relationship_id: relationshipIds[25],
