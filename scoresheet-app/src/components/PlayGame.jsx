@@ -89,12 +89,13 @@ export default class PlayGame extends Component {
 				<NavBar />
 				<div className="container" id="game">
 					<div className="row">
-						<h3>{toUpper(this.props.templateInfo.name)}</h3>
+						<h2>{toUpper(this.props.templateInfo.name)}</h2>
 					</div>
 					<div className="form-inline">
 						<label className="sr-only" htmlFor="inlineFormInput">
 							New Player
 						</label>
+            <div className="form-inline">
 						<input
 							type="text"
 							className="form-control 
@@ -135,9 +136,10 @@ export default class PlayGame extends Component {
 						>
 							Add
 						</button>
+          </div>
 					</div>
 
-					<div className="container">
+					<div className="container game-container">
 						<table className="table table-hover table-responsive">
 							<thead>
 								<tr>
@@ -159,7 +161,7 @@ export default class PlayGame extends Component {
 									{
 										<th className="rotate">
 											<div id="total-score">
-												<span>Total Score</span>
+												<span>Total</span>
 											</div>
 										</th>
 									}
@@ -170,7 +172,7 @@ export default class PlayGame extends Component {
 								{this.props.allPlayers.map((playerObj, i) => {
 									return (
 										<tr key={playerObj.name}>
-											<th className="bordered-rows">{playerObj.name}</th>
+											<th className="bordered-rows player-name">{playerObj.name}</th>
 											{this.props.fields.map((piece, j) => {
 												return (
 													<td key={piece.name} className="bordered-rows">
@@ -192,14 +194,14 @@ export default class PlayGame extends Component {
 													</td>
 												);
 											})}
-											<td className="bordered-rows">{parseInt(playerObj.score)}</td>
+											<td className="bordered-rows player-score">{parseInt(playerObj.score)}</td>
 										</tr>
 									);
 								})}
 							</tbody>
 						</table>
 					</div>
-					<div className="row">
+					<div className="row footer-note">
 						<div className="form-inline">
 							{this.props.gameInfo.templateInfo.footer !== '' && (
 								<div className="panel panel-default">
