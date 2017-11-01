@@ -326,28 +326,30 @@ export default class AddRelationship extends Component {
 						</button>
 					</div>
 				</div>
-				<div className="form-group">
-					<div className="col-sm-6 col-md-offset-2 text-center">
-						<button
-							type="button"
-							className="btn btn-primary"
-							onClick={(e) => {
-								this.setState({ rulesFull: true });
-								this.setState({ rulesSubmitted: false });
-								let templateRules = [ ...this.state.rules ];
-								let check = this.checkAllEntriesNotEmpty(templateRules);
-								if (check === false) {
-									this.setState({ rulesFull: false });
-								} else {
-									this.props.writeRulesIntoTemplate(this.state.rules);
-									this.setState({ rulesSubmitted: true });
-								}
-							}}
-						>
-							Submit Rules
-						</button>
+				{!this.state.rulesSubmitted && (
+					<div className="form-group">
+						<div className="col-sm-6 col-md-offset-2 text-center">
+							<button
+								type="button"
+								className="btn btn-primary"
+								onClick={(e) => {
+									this.setState({ rulesFull: true });
+									this.setState({ rulesSubmitted: false });
+									let templateRules = [ ...this.state.rules ];
+									let check = this.checkAllEntriesNotEmpty(templateRules);
+									if (check === false) {
+										this.setState({ rulesFull: false });
+									} else {
+										this.props.writeRulesIntoTemplate(this.state.rules);
+										this.setState({ rulesSubmitted: true });
+									}
+								}}
+							>
+								Submit Rules
+							</button>
+						</div>
 					</div>
-				</div>
+				)}
 				{this.state.rulesSubmitted && (
 					<div className="col-sm-11">
 						<div className="alert alert-success" aria-hidden="true" role="alert">

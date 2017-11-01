@@ -7,6 +7,7 @@ import AddRelationship from './AddRelationship.jsx';
 import ScoresheetStructure from '../containers/ScoresheetStructure.jsx';
 import RelationshipDefinitions from '../containers/RelationshipDefinitions.jsx';
 import NavBar from '../components/NavBar.jsx';
+import { Link } from 'react-router-dom';
 
 export default class TemplateRender extends Component {
 	constructor(props) {
@@ -14,7 +15,8 @@ export default class TemplateRender extends Component {
 		this.state = {
 			templateName: '',
 			hasError: false,
-			templateNameFull: true
+			templateNameFull: true,
+			formSubmitted: false
 		};
 	}
 
@@ -109,22 +111,49 @@ export default class TemplateRender extends Component {
 					</div>
 
 					<div className="row well">
-						<div className="col-md-8 col-md-offset-3">
-							<div className="form-horizontal">
-								<div className="form-group">
-									<div className="col-sm-6 col-md-offset-2 text-center">
-										<button
-											className="btn btn-primary"
-											onClick={(e) => {
-												this.props.postNewTemplate(this.props.newTemplate);
-											}}
-										>
-											Submit Template
-										</button>
+						{!this.state.formSubmitted && (
+							<div className="col-md-8 col-md-offset-3">
+								<div className="form-horizontal">
+									<div className="form-group">
+										<div className="col-sm-6 col-md-offset-2 text-center">
+											<button
+												className="btn btn-primary"
+												onClick={(e) => {
+													this.props.postNewTemplate(this.props.newTemplate);
+													this.setState({ formSubmitted: true });
+												}}
+											>
+												Submit Template
+											</button>
+										</div>
 									</div>
 								</div>
 							</div>
-						</div>
+						)}
+						{this.state.formSubmitted && (
+							<div>
+								<div className="col-md-8 col-md-offset-3">
+									<div className="col-sm-11">
+										<div className="alert alert-success" aria-hidden="true" role="alert">
+											Form Submitted!
+										</div>
+									</div>
+								</div>
+								<div className="col-md-8 col-md-offset-3">
+									<div className="form-horizontal">
+										<div className="form-group">
+											<div className="col-sm-6 col-md-offset-2 text-center">
+												<button className="btn btn-primary">
+													<Link to="/templates" className="white-text">
+														Return to Templates
+													</Link>
+												</button>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						)}
 					</div>
 				</div>
 			</div>
