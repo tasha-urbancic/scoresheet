@@ -17,12 +17,10 @@ router.get('/templates', (req, res) => {
 
 //save fields to database associated with game_id
 router.get('/games/:id', (req, res) => {
-	console.log(req.params.id);
 	const gameId = req.params.id;
 
 	queries.getGameTemplate(gameId).then((template) => {
 		const templateId = template[0].template_id;
-		console.log(templateId);
 		queries.getFields(templateId).then((fields) => {
 			const activeFields = fields.filter((field) => field.name !== 'Total');
 			queries.getTemplateInfo(templateId).then(([ templateInfo ]) => {
@@ -47,7 +45,6 @@ router.post('/templates/new', (req, res) => {
 	templateFields = req.body.templateColumns;
 	templateNote = req.body.templateNote;
 	templateName = req.body.templateName;
-	// res.status(200).json({ data });
 	queries.createNewTemplateInstance(templateName, templateNote).then((templateId) => {
 		templateId = templateId[0].id;
 		let arrayOfFields = [];
@@ -64,24 +61,19 @@ router.post('/templates/new', (req, res) => {
 					rule.pieces.forEach(function(piece) {
 						const indexMatch = findIndexMatch(piece.piece, arrayOfFields);
 						const fieldId = arrayOfFieldIndicies[indexMatch];
-						console.log('fieldId piece', fieldId);
 						queries
 							.createNewPieceInstance(IPRId[0].id, fieldId, piece.equality, piece.number)
 							.then((arr) => {
 								console.log('completed piece', arr[0].id);
 							});
 					}, this);
-					console.log('length of operations', rule.additional_operations.length);
 					if (rule.additional_operations.length !== 0) {
 						rule.additional_operations.forEach(function(operation) {
 							const indexMatch = findIndexMatch(operation.piece, arrayOfFields);
 							const fieldId = arrayOfFieldIndicies[indexMatch];
-							console.log('fieldId operations', fieldId);
 							queries
 								.createNewOperationInstance(IPRId[0].id, fieldId, operation.operation, operation.number)
-								.then((arr) => {
-									console.log('completed operation', arr[0].id);
-								});
+								.then((arr) => {});
 						}, this);
 					}
 				});
@@ -93,7 +85,6 @@ router.post('/templates/new', (req, res) => {
 // create new game with a template id passed in and pass back a generated game_id
 // reroutes you to get game for that game_id
 router.post('/games/new', (req, res) => {
-	console.log(req.body.templateID);
 	const templateId = req.body.templateID;
 
 	queries.allTemplateOperations(templateId).then((operations) => {

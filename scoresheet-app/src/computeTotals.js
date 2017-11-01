@@ -39,8 +39,6 @@ function groupByRelationship(allFields) {
 		}
 	});
 
-	console.log('relationships', relationships);
-
 	return relationships;
 }
 
@@ -58,12 +56,8 @@ module.exports = {
 					case '=':
 						if (piece.number === 0) {
 							relationshipTotals.push(0);
-							console.log(piece.equality, piece.number);
-							console.log(relationshipTotals[relationshipTotals.length - 1]);
 						} else {
 							relationshipTotals.push(parseInt(playerValue / piece.number) * piece.value);
-							console.log(playerValue, piece.equality, piece.number);
-							console.log(relationshipTotals[relationshipTotals.length - 1]);
 						}
 						break;
 					case '>':
@@ -119,8 +113,6 @@ module.exports = {
 				if (toggles.every(isTrue)) {
 					if (history.length > 0) {
 						if (relationshipTotals.length > 24) {
-							console.log('history', history);
-							console.log('min', Math.min.apply(null, history));
 						}
 						relationshipTotals.push(Math.min.apply(null, history));
 					} else {
@@ -130,8 +122,6 @@ module.exports = {
 			}
 		}
 
-		console.log('relationshipTotals', relationshipTotals);
-
 		return sum(relationshipTotals);
 	},
 	operationsTotal: function(playerValues, fields, operations) {
@@ -140,12 +130,8 @@ module.exports = {
 
 		for (let key in relationships) {
 			if (relationships[key].length === 1) {
-				console.log('single group case');
 				let operation = relationships[key][0];
 				let playerValue = findPlayerValueForPiece(operation.name, playerValues, fields);
-
-				console.log('typeof number', operation.number);
-				console.log('typeof playerValue', playerValue);
 
 				switch (operation.operator) {
 					case '-':
@@ -162,14 +148,11 @@ module.exports = {
 						break;
 					case '^':
 						relationshipTotals.push(Math.pow(playerValue, operation.number));
-						console.log(playerValue, operation.operator, operation.number);
-						console.log(relationshipTotals[relationshipTotals.length - 1]);
 						break;
 					default:
 						break;
 				}
 			} else {
-				console.log('multi group case');
 				let history = [];
 				relationships[key].forEach((operation) => {
 					let playerValue = findPlayerValueForPiece(operation.name, playerValues, fields);
@@ -194,16 +177,10 @@ module.exports = {
 					}
 				});
 
-				console.log('history', history);
-
 				relationshipTotals.push(sum(history));
 			}
 		}
 
-		console.log('relationshipTotals', relationshipTotals);
-
 		return sum(relationshipTotals);
-
-		console.log('sum(relationshipTotals)', sum(relationshipTotals));
 	}
 };
