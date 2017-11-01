@@ -24,27 +24,30 @@ $body-font-size: 20px;
     #game {
       padding-top: 120px;
     }
+    #template-list {
+      padding-top: 25px;
+    }
   }
 }
 
 #game h3 {
-	font-family: 'Quicksand', 'Open Sans', sans-serif;
-	// font-family: 'Julius Sans One', 'Open Sans', sans-serif;
-	color: white;
+  font-family: 'Quicksand', 'Open Sans', sans-serif;
+  // font-family: 'Julius Sans One', 'Open Sans', sans-serif;
+  color: white;
 }
 
 #create-template button {
-	font-size: $body-font-size !important;
+  font-size: $body-font-size !important;
 }
 
 .navbar a {
-	font-size: $body-font-size !important;
+  font-size: $body-font-size !important;
 }
 
 input,
 select,
 textarea {
-	font-size: $body-font-size !important;
+  font-size: $body-font-size !important;
 }
 
 html {
@@ -72,22 +75,22 @@ body {
 }
 
 .bordered-rows {
-	font-weight: normal !important;
+  font-weight: normal !important;
 }
 
 #create-template h3 {
-	margin-top: 5px;
-	margin-bottom: 5px;
+  margin-top: 5px;
+  margin-bottom: 5px;
 }
 
 #create-template h4 {
-	margin-top: 20px;
+  margin-top: 20px;
 }
 
 a,
 a:hover {
-	color: black;
-	text-decoration: none;
+  color: black;
+  text-decoration: none;
 }
 
 .navbar-nav .right-nav > div > a {
@@ -98,7 +101,7 @@ a:hover {
 }
 
 td.col-xs-10 {
-	font-size: 20px;
+  font-size: 20px;
 }
 
 .nav-link {
@@ -158,7 +161,7 @@ td.col-xs-10 {
 
 #template-list,
 #create-template {
-	padding-top: $logo-height*3;
+  padding-top: $logo-height*3;
 }
 
 .game-container {
@@ -178,35 +181,35 @@ td.col-xs-10 {
 }
 
 ul.special-list {
-	box-shadow: none;
+  box-shadow: none;
 }
 
 .panel-default {
 }
 
 .btn-dark {
-	color: white;
-	border-color: white;
-	border-width: 8px;
-	background-color: transparent;
-	font-size: $font-size;
-	border-radius: 15px;
+  color: white;
+  border-color: white;
+  border-width: 8px;
+  background-color: transparent;
+  font-size: $font-size;
+  border-radius: 15px;
 }
 
 @media (max-width: 320px) {
-	.btn-dark {
-		font-size: $font-size/4;
-		border-width: 2px;
-		padding: 5px;
-		border-radius: 5px;
-	}
+  .btn-dark {
+    font-size: $font-size/4;
+    border-width: 2px;
+    padding: 5px;
+    border-radius: 5px;
+  }
 }
 
 .btn-dark:hover,
 .btn-dark:focus,
 .btn-dark:active {
-	color: white;
-	background-color: $primary-color;
+  color: white;
+  background-color: $primary-color;
 }
 
 #landing-page {
@@ -218,15 +221,15 @@ ul.special-list {
 }
 
 .landing-page-logo {
-	height: auto;
-	width: 70%;
-	margin-top: 0;
-	margin-left: 15%;
+  height: auto;
+  width: 70%;
+  margin-top: 0;
+  margin-left: 15%;
 }
 
 .landing-page-btn {
-	margin-top: 10%;
-	text-align: center;
+  margin-top: 10%;
+  text-align: center;
 }
 
 .white-text,
@@ -234,15 +237,15 @@ ul.special-list {
 .white-text:active,
 .white-text:visited,
 .white-text:focus {
-	color: white;
+  color: white;
 }
 
 .btn.btn-dark.btn-lg.js-scroll-trigger:hover {
-	background-color: lighten($primary-color, 5%);
+  background-color: lighten($primary-color, 5%);
 }
 
 .white-text:hover {
-	background-color: lighten($primary-color, 5%);
+  background-color: lighten($primary-color, 5%);
 }
 
 .footer-note {
@@ -250,8 +253,8 @@ ul.special-list {
 }
 
 .row {
-	margin-left: 15px;
-	margin-right: 15px;
+  margin-left: 15px;
+  margin-right: 15px;
 }
 
 .enter-name {
@@ -259,37 +262,37 @@ ul.special-list {
 }
 
 .table-input {
-	border: none;
+  border: none;
 }
 
 th.rotate {
-	/* Something you can count on */
-	height: 140px;
-	white-space: nowrap;
+  /* Something you can count on */
+  height: 140px;
+  white-space: nowrap;
 }
 
 div #player-names {
-	transform: rotate(315deg);
-	width: 30px;
+  transform: rotate(315deg);
+  width: 30px;
 }
 
 div #total-score {
-	transform: rotate(315deg);
-	width: 30px;
+  transform: rotate(315deg);
+  width: 30px;
 }
 
 th.rotate > div {
-	transform: rotate(315deg);
-	width: 30px;
+  transform: rotate(315deg);
+  width: 30px;
 }
 
 th.rotate > div > span {
-	// border-bottom: 1px solid #ccc;
-	padding: 5px 10px;
+  // border-bottom: 1px solid #ccc;
+  padding: 5px 10px;
 }
 
 .bordered-rows {
-	border: 1px solid #ccc;
+  border: 1px solid #ccc;
 }
 
 .player-name,
@@ -299,15 +302,15 @@ th.rotate > div > span {
 }
 
 hr {
-	-moz-border-bottom-colors: none;
-	-moz-border-image: none;
-	-moz-border-left-colors: none;
-	-moz-border-right-colors: none;
-	-moz-border-top-colors: none;
-	border-color: #eeeeee -moz-use-text-color #ffffff;
-	border-style: solid none;
-	border-width: 1px 0;
-	margin: 18px 0;
+  -moz-border-bottom-colors: none;
+  -moz-border-image: none;
+  -moz-border-left-colors: none;
+  -moz-border-right-colors: none;
+  -moz-border-top-colors: none;
+  border-color: #eeeeee -moz-use-text-color #ffffff;
+  border-style: solid none;
+  border-width: 1px 0;
+  margin: 18px 0;
 }
 
 .btn-primary,
@@ -315,19 +318,19 @@ hr {
 .btn-primary:active,
 .btn-primary:visited,
 .btn-primary:focus {
-	background-color: $primary-color !important;
-	border-color: $primary-color !important;
-	background-image: none !important;
+  background-color: $primary-color !important;
+  border-color: $primary-color !important;
+  background-image: none !important;
 }
 
 .list-group {
 }
 
 .list-group-item {
-	display: flex;
-	flex-direction: row;
-	justify-content: space-between;
-	align-items: center;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .list-group-item:hover {
