@@ -1,9 +1,6 @@
 // Google Fonts
-@import url(https://fonts.googleapis.com/css?family=Open+Sans|PT+Sans|Raleway:300|Roboto:300);
-// $font-stack: 'PT Sans';
-// $font-stack: 'Open Sans';
-// $font-stack: 'Raleway';
-// $font-stack: 'Roboto';
+@import url(https://fonts.googleapis.com/css?family=Open+Sans|Pacifico|PT+Sans|Press+Start+2P|Quicksand|BioRhyme+Expanded|Raleway:300|Roboto:300);
+
 $primary-color: #2c7452;
 // $font-stack: 'Assistant', sans-serif;
 $secondary-color: #5bff8c;
@@ -15,6 +12,11 @@ $body-font-size: 20px;
 	body {
 		padding-top: $logo-height*3;
 	}
+}
+
+#game h3 {
+	font-family: 'Quicksand';
+	color: white;
 }
 
 #create-template button {

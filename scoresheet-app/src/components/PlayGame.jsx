@@ -84,7 +84,7 @@ export default class PlayGame extends Component {
 				<NavBar />
 				<div className="container" id="game">
 					<div className="row">
-						<h3>{toTitleCase(this.props.templateInfo.name)}</h3>
+						<h3>{this.props.templateInfo.name.toUpperCase()}</h3>
 					</div>
 					<div className="form-inline">
 						<label className="sr-only" htmlFor="inlineFormInput">
