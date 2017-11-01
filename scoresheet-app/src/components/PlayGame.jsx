@@ -23,6 +23,11 @@ function toTitleCase(str) {
 	});
 }
 
+function toUpper(str) {
+	str = `${str}`;
+	return str.toUpperCase();
+}
+
 export default class PlayGame extends Component {
 	constructor(props) {
 		super(props);
@@ -84,7 +89,7 @@ export default class PlayGame extends Component {
 				<NavBar />
 				<div className="container" id="game">
 					<div className="row">
-						<h3>{this.props.templateInfo.name.toUpperCase()}</h3>
+						<h3>{toUpper(this.props.templateInfo.name)}</h3>
 					</div>
 					<div className="form-inline">
 						<label className="sr-only" htmlFor="inlineFormInput">
