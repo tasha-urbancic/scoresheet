@@ -14,13 +14,17 @@ $body-font-size: 20px;
 @media (max-width: 768px) {
   body {
     overflow-x: scroll;
-    padding-top: $logo-height*3;
-    // width: auto;
     .table-responsive {
       border: none;
     }
+    .right-nav {
+      justify-content: flex-start;
+    }
     .game-container {
       overflow: scroll;
+    }
+    #game {
+      padding-top: 120px;
     }
   }
 }
@@ -47,17 +51,10 @@ html {
   height: 100%;
 }
 
-h2,
-h3 {
+h2 {
   color: white;
 }
 
-// html.overlay {
-//   background-color: $primary-color;
-//   height: 100%;
-//   opacity: 0.2;
-//   z-index: 2;
-// }
 body {
   min-height: 100%;
   font-family: $font-stack;
@@ -66,7 +63,7 @@ body {
     rgba(44, 116, 80, 1) 17%,
     rgba(91, 255, 137, 0.7) 85%
   );
-  font-size: $body-font-size; // background-color: transparent;
+  font-size: $body-font-size;
   font-weight: normal !important;
 }
 
@@ -89,7 +86,7 @@ a:hover {
   text-decoration: none;
 }
 
-.navbar-default .navbar-nav > li > a {
+.navbar-nav .right-nav > div > a {
   color: white;
   font-size: $logo-height / 2;
   text-shadow: none;
@@ -101,43 +98,58 @@ td.col-xs-10 {
 }
 
 .nav-link {
-  padding-top: 7px;
-  padding-bottom: none;
+  padding: 10px;
 }
 
 .navbar {
-  // padding-top: 10px;
   background: transparent;
   border: none;
   box-shadow: none;
-  display: flex;
   position: absolute;
-  // background: $primary-color;
-  // background: linear-gradient(170deg, $primary-color 15%, $secondary-color 95%);
-  color: black;
 }
 
 .nav-container {
-  margin-left: 15px;
+  padding-top: 20px;
+  margin-left: 20px;
+  margin-right: 20px;
+
+  display: flex;
+  flex: 1;
+  flex-direction: row;
 }
 
 .navbar img {
   height: $logo-height;
-  width: auto;
+  display: flex;
+  flex-shrink: 1;
 }
 
-.navbar-nav > li > a:hover {
-  color: darken(white, 25%); // .navbar-default .navbar-nav > li > a:hover {
-  // color: darken(white, 25%);
+.navbar-nav {
+  display: flex;
+  flex: 1;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.right-nav > div > a:hover {
+  color: darken(white, 25%);
+}
+
+.right-nav {
+  display: flex;
+  justify-content: flex-end;
+  flex-grow: 1;
 }
 
 #template-list-container,
 #game {
   background-color: transparent;
+  padding-bottom: 15px;
 }
 
 #game {
-  padding-top: $logo-height*2;
+  padding-top: 80px;
 }
 
 #template-list,
@@ -152,6 +164,13 @@ td.col-xs-10 {
   padding-top: 20px;
   padding-bottom: 20px;
   border-radius: 10px;
+}
+
+.form-inline {
+  display: flex;
+  flex: 1;
+  padding-top: 10px;
+  padding-bottom: 15px;
 }
 
 ul.special-list {
@@ -189,7 +208,7 @@ ul.special-list {
 #landing-page {
   height: 1050px;
   display: flex;
-  flex-direction: column; // background: linear-gradient(160deg, $primary-color 17%, $secondary-color 85%);
+  flex-direction: column;
   justify-content: center;
   flex-wrap: wrap;
 }
@@ -231,7 +250,6 @@ ul.special-list {
 }
 
 .enter-name {
-  margin: 2em 0em 2em 15em;
   margin-left: 15px;
 }
 
@@ -297,9 +315,16 @@ hr {
   background-image: none !important;
 }
 
+.list-group {
+}
+
 .list-group-item {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
+}
+
+.list-group-item:hover {
+  background-color: #ddd;
 }

@@ -99,22 +99,39 @@ export default class PlayGame extends Component {
         <NavBar />
         <div className="container" id="game">
           <div className="row">
-            <h3>{toTitleCase(this.props.templateInfo.name)}</h3>
+            <h2>{toTitleCase(this.props.templateInfo.name)}</h2>
           </div>
           <div className="form-inline">
             <label className="sr-only" htmlFor="inlineFormInput">
               New Player
             </label>
-            <input
-              type="text"
-              className="form-control mb-2 mr-sm-2 mb-sm-0 enter-name"
-              placeholder="Enter new player"
-              value={this.state.currentPlayer}
-              onChange={e => {
-                this.setState({ currentPlayer: e.target.value });
-              }}
-              onKeyDown={e => {
-                if (e.keyCode === 13) {
+            <div className="form-inline">
+              <input
+                type="text"
+                className="form-control  enter-name"
+                placeholder="Enter new player"
+                value={this.state.currentPlayer}
+                onChange={e => {
+                  this.setState({ currentPlayer: e.target.value });
+                }}
+                onKeyDown={e => {
+                  if (e.keyCode === 13) {
+                    const newPlayer = {
+                      name: this.state.currentPlayer,
+                      values: createZeroArray(this.props.fields.length),
+                      score: 0
+                    };
+                    const allPlayers = [...this.props.allPlayers, newPlayer];
+                    this.props.updatePlayers(allPlayers);
+                    this.setState({ currentPlayer: '' });
+                    this.updateAllPlayersWithNewInput(allPlayers);
+                  }
+                }}
+              />
+              <button
+                type="submit"
+                className="btn btn-default"
+                onClick={e => {
                   const newPlayer = {
                     name: this.state.currentPlayer,
                     values: createZeroArray(this.props.fields.length),
@@ -124,26 +141,11 @@ export default class PlayGame extends Component {
                   this.props.updatePlayers(allPlayers);
                   this.setState({ currentPlayer: '' });
                   this.updateAllPlayersWithNewInput(allPlayers);
-                }
-              }}
-            />
-            <button
-              type="submit"
-              className="btn btn-default"
-              onClick={e => {
-                const newPlayer = {
-                  name: this.state.currentPlayer,
-                  values: createZeroArray(this.props.fields.length),
-                  score: 0
-                };
-                const allPlayers = [...this.props.allPlayers, newPlayer];
-                this.props.updatePlayers(allPlayers);
-                this.setState({ currentPlayer: '' });
-                this.updateAllPlayersWithNewInput(allPlayers);
-              }}
-            >
-              Add
-            </button>
+                }}
+              >
+                Add
+              </button>
+            </div>
           </div>
 
           <div className="container game-container">
