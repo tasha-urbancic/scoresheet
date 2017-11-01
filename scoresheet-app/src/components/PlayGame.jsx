@@ -140,7 +140,6 @@ export default class PlayGame extends Component {
 											<span>Players</span>
 										</div>
 									</th>
-									{console.log(this.props.fields)}
 									{this.props.fields.map((piece) => {
 										return (
 											<th className="rotate" key={piece.name}>

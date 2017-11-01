@@ -29,26 +29,21 @@ import '../../node_modules/bootstrap/dist/css/bootstrap.css';
 import '../../node_modules/bootstrap/dist/css/bootstrap-theme.css';
 
 const totalReducer = combineReducers({
-  pages,
-  createTemplates,
-  templates,
-  gamePage
+	pages,
+	createTemplates,
+	templates,
+	gamePage
 });
 
-const store = createStore(
-  totalReducer,
-  composeWithDevTools(applyMiddleware(thunk), applyMiddleware(logger))
-);
+const store = createStore(totalReducer, composeWithDevTools(applyMiddleware(thunk), applyMiddleware(logger)));
 
 store.dispatch(getTemplates());
 
-console.log(store.getState());
-
 ReactDOM.render(
-  <Provider store={store}>
-    <Router>
-      <App />
-    </Router>
-  </Provider>,
-  document.getElementById('react-root')
+	<Provider store={store}>
+		<Router>
+			<App />
+		</Router>
+	</Provider>,
+	document.getElementById('react-root')
 );
