@@ -3,15 +3,6 @@ import React, { Component } from 'react';
 const defaultPiece = { equality: null, number: null, piece: null };
 const defaultOperation = { piece: null, operation: null, number: null };
 
-// const defaultRule = {
-//   pieces: [{ ...defaultPiece }],
-//   value: null,
-//   additional_operations: []
-// };
-
-// let initialRule = { ...defaultRule };
-// initialRule.pieces.push({ ...defaultPiece });
-
 export default class AddRelationship extends Component {
 	constructor(props) {
 		super(props);
@@ -58,18 +49,16 @@ export default class AddRelationship extends Component {
 	render() {
 		return (
 			<div>
-				<h3>Add rules:</h3>
-				<br />
 				{this.state.rules.map((rule, i) => {
 					return (
 						<div>
 							{rule.pieces.map((piece, j) => {
 								return (
 									<div className="form-group">
-										<div className="col-sm-11 col-md-offset-1">
-											<div className="col-sm-1">{j !== 0 ? 'and' : null}</div>
+										<div>
+											<div>{j !== 0 ? 'and' : null}</div>
 
-											<div className="col-sm-2">
+											<div className="col-sm-4">
 												<select
 													className="form-control"
 													name="equality"
@@ -92,7 +81,7 @@ export default class AddRelationship extends Component {
 												</select>
 											</div>
 
-											<div className="col-sm-2">
+											<div className="col-sm-4">
 												<input
 													className="form-control"
 													type="number"
@@ -107,7 +96,7 @@ export default class AddRelationship extends Component {
 												/>
 											</div>
 
-											<div className="col-sm-3">
+											<div className="col-sm-4">
 												<select
 													className="form-control"
 													name="column-list"
@@ -135,7 +124,7 @@ export default class AddRelationship extends Component {
 							})}
 
 							<div className="form-group">
-								<div className="col-sm-8 col-md-offset-1 text-center">
+								<div className="col-md-4 col-md-offset-4 text-center">
 									{this.state.rules[i].pieces.length === 0 && (
 										<button
 											type="button"
@@ -171,14 +160,14 @@ export default class AddRelationship extends Component {
 
 							{this.state.rules[i].pieces.length > 0 && (
 								<div className="form-group">
-									<div className="col-sm-12 col-md-offset-3">
-										<div className="col-sm-2 text-center">
+									<div>
+										<div className="col-sm-4 text-right">
 											<label htmlFor="templateName" className="control-label ">
 												is worth
 											</label>
 										</div>
 
-										<div className="col-sm-2">
+										<div className="col-sm-4">
 											<input
 												className="form-control"
 												type="number"
@@ -192,7 +181,7 @@ export default class AddRelationship extends Component {
 												}}
 											/>
 										</div>
-										<div className="col-sm-1">
+										<div className="col-sm-4">
 											<label htmlFor="templateName" className="control-label ">
 												points
 											</label>
@@ -204,8 +193,8 @@ export default class AddRelationship extends Component {
 							{rule.additional_operations.map((operation, k) => {
 								return (
 									<div className="form-group">
-										<div className="col-sm-12 col-md-offset-1">
-											<div className="col-sm-1">{k !== 0 ? '+' : '+'}</div>
+										<div>
+											<div className="col-sm-1 text-right">{k !== 0 ? '+' : '+'}</div>
 
 											<div className="col-sm-3">
 												<select
@@ -230,7 +219,7 @@ export default class AddRelationship extends Component {
 												</select>
 											</div>
 
-											<div className="col-sm-2">
+											<div className="col-sm-3">
 												<select
 													className="form-control"
 													placeholder=""
@@ -253,7 +242,7 @@ export default class AddRelationship extends Component {
 												</select>
 											</div>
 
-											<div className="col-sm-2">
+											<div className="col-sm-3">
 												<input
 													className="form-control"
 													type="number"
@@ -269,7 +258,7 @@ export default class AddRelationship extends Component {
 													}}
 												/>
 											</div>
-											<div className="col-sm-1">
+											<div className="col-sm-2">
 												<label htmlFor="templateName" className="control-label ">
 													points
 												</label>
@@ -280,7 +269,7 @@ export default class AddRelationship extends Component {
 							})}
 
 							<div className="form-group">
-								<div className="col-sm-8 col-md-offset-1 text-center">
+								<div className="col-md-4 col-md-offset-4 text-center">
 									<button
 										type="button"
 										className="btn btn-default"
@@ -299,12 +288,12 @@ export default class AddRelationship extends Component {
 									</button>
 								</div>
 							</div>
-							<hr className="col-sm-10" />
+							<hr className="col-sm-10 text-center" />
 						</div>
 					);
 				})}
 				<div className="form-group">
-					<div className="col-sm-6 col-md-offset-2 text-center">
+					<div className="col-md-4 col-md-offset-4 text-center">
 						<button
 							type="button"
 							className="btn btn-default"
@@ -328,7 +317,7 @@ export default class AddRelationship extends Component {
 				</div>
 				{!this.state.rulesSubmitted && (
 					<div className="form-group">
-						<div className="col-sm-6 col-md-offset-2 text-center">
+						<div className="col-md-4 col-md-offset-4 text-center">
 							<button
 								type="button"
 								className="btn btn-primary"
@@ -351,7 +340,7 @@ export default class AddRelationship extends Component {
 					</div>
 				)}
 				{this.state.rulesSubmitted && (
-					<div className="col-sm-11">
+					<div>
 						<div className="alert alert-success" aria-hidden="true" role="alert">
 							Rules added! Please submit your template to start playing.
 						</div>
@@ -359,7 +348,7 @@ export default class AddRelationship extends Component {
 				)}
 
 				{!this.state.rulesFull && (
-					<div className="col-sm-11">
+					<div>
 						<div className="alert alert-danger" aria-hidden="true" role="alert">
 							Please fill out the rule form completely.
 						</div>

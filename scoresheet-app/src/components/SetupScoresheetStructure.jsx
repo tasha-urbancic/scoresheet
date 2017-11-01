@@ -16,17 +16,10 @@ export default class SetupScoresheetStructure extends Component {
 		return (
 			<div>
 				<div className="form-group">
-					<h3>Add fields:</h3>
-					<br />
-					{/* <div className="col-sm-11">
-            <div className="alert alert-danger" role="alert">
-              Please add some pieces.
-            </div>
-          </div> */}
-					<label htmlFor="templateName" className="col-sm-3 control-label">
+					<label htmlFor="templateName" className="col-sm-4 control-label">
 						Enter column names:
 					</label>
-					<div className="col-sm-5">
+					<div className="col-sm-4">
 						<input
 							type="text"
 							className="form-control"
@@ -57,7 +50,7 @@ export default class SetupScoresheetStructure extends Component {
 							}}
 						/>
 					</div>
-					<div className="col-sm-1">
+					<div className="col-sm-4">
 						<button
 							type="button"
 							className="btn btn-default"
@@ -88,9 +81,9 @@ export default class SetupScoresheetStructure extends Component {
 				</div>
 
 				<div className="form-group">
-					<div className="col-sm-12 col-md-offset-3">
+					<div>
 						{this.props.templateColumns.length !== 0 && (
-							<ul className="col-sm-4">
+							<ul className="col-md-4 col-md-offset-4">
 								{this.props.templateColumns.map(function(columnName, i) {
 									return <li>{columnName}</li>;
 								})}
@@ -100,13 +93,14 @@ export default class SetupScoresheetStructure extends Component {
 				</div>
 
 				<div className="form-group">
-					<label htmlFor="templateName" className="col-sm-3 control-label">
+					<label htmlFor="templateName" className="col-sm-4 control-label">
 						Add notes:
 					</label>
-					<div className="col-sm-5">
+					<div className="col-sm-4">
 						<textarea
 							type="text"
 							className="form-control"
+							å
 							placeholder="Extra rules go here..."
 							value={this.state.extraNotes}
 							onChange={(e) => {
@@ -120,7 +114,7 @@ export default class SetupScoresheetStructure extends Component {
 							}}
 						/>
 					</div>
-					<div className="col-sm-1">
+					<div className="col-sm-4">
 						<button
 							type="button"
 							className="btn btn-default"
@@ -134,12 +128,14 @@ export default class SetupScoresheetStructure extends Component {
 					</div>
 				</div>
 
-				<div className="col-sm-12 text-center ">
-					{this.props.templateNote !== '' && <ul className="col-sm-4 ">Notes: {this.props.templateNote}</ul>}
+				<div className="text-center">
+					{this.props.templateNote !== '' && (
+						<ul className="col-md-4 col-md-offset-4 text-left">Notes: {this.props.templateNote}</ul>
+					)}
 				</div>
 
 				{!this.state.columnFull && (
-					<div className="col-sm-11">
+					<div>
 						<div className="alert alert-danger" aria-hidden="true" role="alert">
 							Please enter column names that are unique and not blank.
 						</div>
