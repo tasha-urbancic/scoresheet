@@ -31,14 +31,14 @@ export default class TemplateRender extends Component {
 				<NavBar />
 				<div className="container-fluid" id="create-template">
 					<div className="row well">
-						<div className="col-md-8 col-md-offset-3">
+						<div>
 							<h3>Add name:</h3>
 							<br />
 							<div className="form-group">
-								<label htmlFor="templateName" className="col-sm-3 control-label">
+								<label htmlFor="templateName" className="col-sm-4 control-label text-right">
 									Name your template:
 								</label>
-								<div className="col-sm-5">
+								<div className="col-sm-4">
 									<input
 										type="text"
 										className="form-control"
@@ -60,7 +60,7 @@ export default class TemplateRender extends Component {
 										}}
 									/>
 								</div>
-								<div className="col-sm-1">
+								<div className="col-sm-4">
 									<button
 										type="button"
 										className="btn btn-default"
@@ -78,16 +78,19 @@ export default class TemplateRender extends Component {
 										Add
 									</button>
 								</div>
-								{!this.state.templateNameFull && (
-									<div className="col-sm-11">
-										<div className="alert alert-danger" aria-hidden="true" role="alert">
-											Template name can not be empty. Please enter a name!
-										</div>
-									</div>
-								)}
 							</div>
+							{!this.state.templateNameFull && (
+								<div
+									className="alert alert-danger"
+									aria-hidden="true"
+									role="alert"
+									style={{ marginTop: 60 }}
+								>
+									Template name can not be empty. Please enter a name!
+								</div>
+							)}
 							{this.props.templateName !== '' && (
-								<div htmlFor="templateName" className="col-sm-12 control-label">
+								<div htmlFor="templateName" className="col-md-4 col-md-offset-4 text-left">
 									<h4>The name of your template is {this.props.templateName}.</h4>
 								</div>
 							)}
@@ -95,16 +98,20 @@ export default class TemplateRender extends Component {
 					</div>
 
 					<div className="row well">
-						<div className="col-md-8 col-md-offset-3">
+						<div>
 							<div className="form-horizontal">
+								<h3>Add fields:</h3>
+								<br />
 								<ScoresheetStructure />
 							</div>
 						</div>
 					</div>
 
 					<div className="row well">
-						<div className="col-md-8 col-md-offset-3">
+						<div>
 							<div className="form-horizontal">
+								<h3>Add rules:</h3>
+								<br />
 								<RelationshipDefinitions />
 							</div>
 						</div>
@@ -112,10 +119,10 @@ export default class TemplateRender extends Component {
 
 					<div className="row well">
 						{!this.state.formSubmitted && (
-							<div className="col-md-8 col-md-offset-3">
+							<div className="col-md-4 col-md-offset-4 text-center">
 								<div className="form-horizontal">
 									<div className="form-group">
-										<div className="col-sm-6 col-md-offset-2 text-center">
+										<div>
 											<button
 												className="btn btn-primary"
 												onClick={(e) => {
@@ -132,17 +139,17 @@ export default class TemplateRender extends Component {
 						)}
 						{this.state.formSubmitted && (
 							<div>
-								<div className="col-md-8 col-md-offset-3">
-									<div className="col-sm-11">
+								<div>
+									<div>
 										<div className="alert alert-success" aria-hidden="true" role="alert">
 											Form Submitted!
 										</div>
 									</div>
 								</div>
-								<div className="col-md-8 col-md-offset-3">
+								<div>
 									<div className="form-horizontal">
 										<div className="form-group">
-											<div className="col-sm-6 col-md-offset-2 text-center">
+											<div className="col-md-4 col-md-offset-4 text-center">
 												<button className="btn btn-primary">
 													<Link to="/templates" className="white-text">
 														Return to Templates
