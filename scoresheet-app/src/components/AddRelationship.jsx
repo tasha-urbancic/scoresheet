@@ -288,7 +288,7 @@ export default class AddRelationship extends Component {
 									</button>
 								</div>
 							</div>
-							<hr className="col-sm-10 text-center" />
+							<hr className="divider-line" />
 						</div>
 					);
 				})}
