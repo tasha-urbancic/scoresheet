@@ -1,5 +1,5 @@
 // Google Fonts
-@import url(https://fonts.googleapis.com/css?family=Open+Sans|Pacifico|PT+Sans|Press+Start+2P|Quicksand|BioRhyme+Expanded|Raleway:300|Roboto:300);
+@import url(https://fonts.googleapis.com/css?family=Open+Sans|Pacifico|PT+Sans|Julius+Sans+One|Press+Start+2P|Quicksand|BioRhyme+Expanded|Raleway:300|Roboto:300);
 
 $primary-color: #2c7452;
 // $font-stack: 'Assistant', sans-serif;
@@ -15,7 +15,8 @@ $body-font-size: 20px;
 }
 
 #game h3 {
-	font-family: 'Quicksand';
+	font-family: 'Quicksand', 'Open Sans', sans-serif;
+	// font-family: 'Julius Sans One', 'Open Sans', sans-serif;
 	color: white;
 }
 
