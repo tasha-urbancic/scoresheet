@@ -67,7 +67,10 @@ class TemplateList extends Component {
               .filter(template => {
                 // get string from search bar and apply here
                 console.log(template.name);
-                if (template.name.includes(this.state.searchString)) {
+                if (
+                  template.name.includes(this.state.searchString) ||
+                  template.name.includes(toTitleCase(this.state.searchString))
+                ) {
                   return true;
                 }
               })
