@@ -9,18 +9,18 @@ const io = openSocket(`http://${ipAddress}:8080`);
 import NavBar from '../components/NavBar.jsx';
 
 function createZeroArray(num) {
-	let arr = [];
-	for (var i = 0; i < num; i++) {
-		arr.push(0);
-	}
-	return arr;
+  let arr = [];
+  for (var i = 0; i < num; i++) {
+    arr.push(0);
+  }
+  return arr;
 }
 
 function toTitleCase(str) {
-	str = `${str}`;
-	return str.replace(/\w\S*/g, function(txt) {
-		return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
-	});
+  str = `${str}`;
+  return str.replace(/\w\S*/g, function(txt) {
+    return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
+  });
 }
 
 function toUpper(str) {
@@ -97,7 +97,8 @@ export default class PlayGame extends Component {
 						</label>
 						<input
 							type="text"
-							className="form-control mb-2 mr-sm-2 mb-sm-0 enter-name"
+							className="form-control 
+                         enter-name"
 							placeholder="Enter new player"
 							value={this.state.currentPlayer}
 							onChange={(e) => {

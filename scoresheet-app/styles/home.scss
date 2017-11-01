@@ -2,16 +2,29 @@
 @import url(https://fonts.googleapis.com/css?family=Open+Sans|Pacifico|PT+Sans|Julius+Sans+One|Press+Start+2P|Quicksand|BioRhyme+Expanded|Raleway:300|Roboto:300);
 
 $primary-color: #2c7452;
-// $font-stack: 'Assistant', sans-serif;
+$font-stack: 'Assistant', sans-serif;
 $secondary-color: #5bff8c;
-$font-stack: 'Roboto', 'Open Sans', sans-serif;
+// $font-stack: 'Roboto', 'Open Sans', sans-serif;
 $logo-height: 50px;
 $font-size: 39px;
 $body-font-size: 20px;
 @media (max-width: 768px) {
-	body {
-		padding-top: $logo-height*3;
-	}
+  body {
+    padding-top: $logo-height*3;
+    overflow-x: scroll;
+    .table-responsive {
+      border: none;
+    }
+    .right-nav {
+      justify-content: flex-start;
+    }
+    .game-container {
+      overflow: scroll;
+    }
+    #game {
+      padding-top: 120px;
+    }
+  }
 }
 
 #game h3 {
@@ -35,28 +48,29 @@ textarea {
 }
 
 html {
-	background-image: url(../docs/imgs/boardgamegrey.png);
-	background-size: cover;
-	background-repeat: no-repeat;
-	background-attachment: fixed;
-	height: 100%; // background-color: rgba(44, 116, 82, 0.4);
+  background-image: url(../docs/imgs/boardgamegrey.png);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  height: 100%;
 }
 
-// html.overlay {
-//   background-color: $primary-color;
-//   height: 100%;
-//   opacity: 0.2;
-//   z-index: 2;
-// }
+h2 {
+  color: white;
+}
+
 body {
-	min-height: 100%;
-	font-family: $font-stack;
-	background: linear-gradient(160deg, rgba(44, 116, 80, 1) 17%, rgba(91, 255, 137, 0.7) 85%);
-	font-size: $body-font-size; // background-color: transparent;
-	font-weight: normal !important;
+  min-height: 100%;
+  font-family: $font-stack;
+  background: linear-gradient(
+    160deg,
+    rgba(44, 116, 80, 1) 17%,
+    rgba(91, 255, 137, 0.7) 85%
+  );
+  font-size: $body-font-size;
+  font-weight: normal !important;
 }
 
-th,
 .bordered-rows {
 	font-weight: normal !important;
 }
@@ -76,11 +90,11 @@ a:hover {
 	text-decoration: none;
 }
 
-.navbar-default .navbar-nav > li > a {
-	color: white;
-	font-size: $logo-height / 2;
-	text-shadow: none;
-	font-weight: lighter !important;
+.navbar-nav .right-nav > div > a {
+  color: white;
+  font-size: $logo-height / 2;
+  text-shadow: none;
+  font-weight: lighter !important;
 }
 
 td.col-xs-10 {
@@ -88,48 +102,79 @@ td.col-xs-10 {
 }
 
 .nav-link {
-	padding-top: 7px;
-	padding-bottom: none;
+  padding: 10px;
 }
 
 .navbar {
-	// padding-top: 10px;
-	background: transparent;
-	border: none;
-	box-shadow: none;
-	display: flex;
-	// background: $primary-color;
-	// background: linear-gradient(170deg, $primary-color 15%, $secondary-color 95%);
-	color: black;
+  background: transparent;
+  border: none;
+  box-shadow: none;
+  position: absolute;
 }
 
 .nav-container {
-	margin-left: 15px;
-	margin-right: 15px;
+  padding-top: 20px;
+  margin-left: 20px;
+  margin-right: 20px;
+
+  display: flex;
+  flex: 1;
+  flex-direction: row;
 }
 
 .navbar img {
-	height: $logo-height;
-	width: auto;
+  height: $logo-height;
+  display: flex;
+  flex-shrink: 1;
 }
 
-.navbar-nav > li > a:hover {
-	color: darken(white, 25%); // .navbar-default .navbar-nav > li > a:hover {
-	// color: darken(white, 25%);
+.navbar-nav {
+  display: flex;
+  flex: 1;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.right-nav > div > a:hover {
+  color: darken(white, 25%);
+}
+
+.right-nav {
+  display: flex;
+  justify-content: flex-end;
+  flex-grow: 1;
 }
 
 #template-list-container,
 #game {
-	background-color: transparent;
+  background-color: transparent;
+  padding-bottom: 15px;
 }
 
 #game {
-	padding-top: $logo-height*2;
+  padding-top: 80px;
 }
 
 #template-list,
 #create-template {
 	padding-top: $logo-height*3;
+}
+
+.game-container {
+  background: white;
+  padding-left: 50px;
+  padding-right: 50px;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  border-radius: 10px;
+}
+
+.form-inline {
+  display: flex;
+  flex: 1;
+  padding-top: 10px;
+  padding-bottom: 15px;
 }
 
 ul.special-list {
@@ -165,11 +210,11 @@ ul.special-list {
 }
 
 #landing-page {
-	height: 1050px;
-	display: flex;
-	flex-direction: column; // background: linear-gradient(160deg, $primary-color 17%, $secondary-color 85%);
-	justify-content: center;
-	flex-wrap: wrap;
+  height: 1050px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  flex-wrap: wrap;
 }
 
 .landing-page-logo {
@@ -200,14 +245,17 @@ ul.special-list {
 	background-color: lighten($primary-color, 5%);
 }
 
+.footer-note {
+  padding-top: 50px;
+}
+
 .row {
 	margin-left: 15px;
 	margin-right: 15px;
 }
 
 .enter-name {
-	margin: 2em 0em 2em 15em;
-	margin-left: 15px;
+  margin-left: 15px;
 }
 
 .table-input {
@@ -244,6 +292,12 @@ th.rotate > div > span {
 	border: 1px solid #ccc;
 }
 
+.player-name,
+.player-score {
+  align-content: center;
+  padding-top: 10px !important;
+}
+
 hr {
 	-moz-border-bottom-colors: none;
 	-moz-border-image: none;
@@ -266,9 +320,16 @@ hr {
 	background-image: none !important;
 }
 
+.list-group {
+}
+
 .list-group-item {
 	display: flex;
 	flex-direction: row;
 	justify-content: space-between;
 	align-items: center;
+}
+
+.list-group-item:hover {
+  background-color: #ddd;
 }
