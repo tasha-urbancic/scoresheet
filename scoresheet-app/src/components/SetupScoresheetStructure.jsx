@@ -7,7 +7,8 @@ export default class SetupScoresheetStructure extends Component {
     super(props);
     this.state = {
       columnName: '',
-      extraNotes: ''
+      extraNotes: '',
+      columnFull: true
     };
   }
 
@@ -17,11 +18,11 @@ export default class SetupScoresheetStructure extends Component {
         <div className="form-group">
           <h3>Add fields:</h3>
           <br />
-          <div className="col-sm-11">
+          {/* <div className="col-sm-11">
             <div className="alert alert-danger" role="alert">
               Please add some pieces.
             </div>
-          </div>
+          </div> */}
           <label htmlFor="templateName" className="col-sm-3 control-label">
             Enter column names:
           </label>
@@ -37,15 +38,21 @@ export default class SetupScoresheetStructure extends Component {
               onKeyDown={e => {
                 let columnNames = this.props.templateColumns;
                 let currentColumnName = this.props.templateCurrentColumn;
-                let dublicate = 0;
-                for (var i = 0; i < columnNames.length; i++) {
-                  if (columnNames[i] == currentColumnName) {
-                    dublicate++;
+                let duplicate = 0;
+                if (currentColumnName.length !== 0 && e.keyCode === 13){
+                  for (let i = 0; i < columnNames.length; i++) {
+                    if (columnNames[i] == currentColumnName) {
+                      duplicate++;
+                      this.setState({ columnFull: false });
+                    }
                   }
-                }
-                if (dublicate === 0 && e.keyCode === 13) {
-                  this.props.addColumn(this.props.templateCurrentColumn);
-                  this.props.updateCurrentColumn('');
+                  if (duplicate === 0 && e.keyCode === 13) {
+                    this.props.addColumn(this.props.templateCurrentColumn);
+                    this.props.updateCurrentColumn('');
+                    this.setState({ columnFull: true });
+                    }
+                }else if (currentColumnName.length == 0 && e.keyCode === 13) {
+                  this.setState({ columnFull: false }); 
                 }
               }}
             />
@@ -57,15 +64,21 @@ export default class SetupScoresheetStructure extends Component {
               onClick={e => {
                 let columnNames = this.props.templateColumns;
                 let currentColumnName = this.props.templateCurrentColumn;
-                let dublicate = 0;
-                for (var i = 0; i < columnNames.length; i++) {
-                  if (columnNames[i] == currentColumnName) {
-                    dublicate++;
+                let duplicate = 0;
+                if (currentColumnName.length !== 0){
+                  for (let i = 0; i < columnNames.length; i++) {
+                    if (columnNames[i] == currentColumnName) {
+                      duplicate++;
+                      this.setState({ columnFull: false });
+                    }
                   }
-                }
-                if (dublicate === 0) {
-                  this.props.addColumn(this.props.templateCurrentColumn);
-                  this.props.updateCurrentColumn('');
+                  if (duplicate === 0) {
+                    this.props.addColumn(this.props.templateCurrentColumn);
+                    this.props.updateCurrentColumn('');
+                    this.setState({ columnFull: true });
+                    }
+                }else if (currentColumnName.length == 0) {
+                  this.setState({ columnFull: false }); 
                 }
               }}
             >
@@ -126,7 +139,17 @@ export default class SetupScoresheetStructure extends Component {
             <ul className="col-sm-4 ">Notes: {this.props.templateNote}</ul>
           )}
         </div>
+
+        { !this.state.columnFull && (
+          <div className="col-sm-11">
+            <div className="alert alert-danger" aria-hidden="true" role="alert">
+            Please enter column names that are unique and not blank.
+            </div>
+          </div>
+        )}
       </div>
+      
     );
+
   }
 }
