@@ -1,4 +1,5 @@
-const PORT = process.env.PORT || 8080;
+const portNum = 1234;
+const PORT = process.env.PORT || portNum;
 const express = require('express');
 const app = express();
 const http = require('http').Server(app);

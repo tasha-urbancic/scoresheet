@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
 import openSocket from 'socket.io-client';
+const port = 1234;
 
 import computeTotals from '../computeTotals';
 
 const ipAddress = document.location.origin.split('/')[2].split(':')[0];
 
-const io = openSocket(`http://${ipAddress}:8080`);
+const io = openSocket(`http://${ipAddress}:${port}`);
 import NavBar from '../components/NavBar.jsx';
 
 function createZeroArray(num) {

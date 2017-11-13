@@ -1,3 +1,4 @@
+const port = 1234;
 import { addTemplate } from './templates';
 import { saveGameInfo, creatingGame, clearCreatingGame, renderGameInfo } from './game-page';
 
@@ -5,7 +6,7 @@ const ipAddress = document.location.origin.split('/')[2].split(':')[0];
 
 export function getTemplates() {
 	return (dispatch) => {
-		fetch(`http://${ipAddress}:8080/api/templates`, {
+		fetch(`http://${ipAddress}:${port}/api/templates`, {
 			method: 'GET',
 			headers: { 'Content-Type': 'application/json' },
 			mode: 'cors'
@@ -26,7 +27,7 @@ export function getTemplates() {
 export function postNewGame(templateID) {
 	return (dispatch) => {
 		dispatch(creatingGame());
-		fetch(`http://${ipAddress}:8080/api/games/new`, {
+		fetch(`http://${ipAddress}:${port}/api/games/new`, {
 			method: 'POST',
 			headers: { 'Content-Type': 'application/json' },
 			mode: 'cors',
@@ -51,7 +52,7 @@ export function postNewGame(templateID) {
 
 export function getGame(gameID) {
 	return (dispatch) => {
-		fetch(`http://${ipAddress}:8080/api/games/${gameID}`, {
+		fetch(`http://${ipAddress}:${port}/api/games/${gameID}`, {
 			method: 'GET',
 			headers: { 'Content-Type': 'application/json' },
 			mode: 'cors'
@@ -68,7 +69,7 @@ export function getGame(gameID) {
 
 export function postNewTemplate(newTemplate) {
 	return (dispatch) => {
-		fetch('http://localhost:8080/api/templates/new', {
+		fetch('http://localhost:${port}/api/templates/new', {
 			method: 'POST',
 			headers: { 'Content-Type': 'application/json' },
 			mode: 'cors',
